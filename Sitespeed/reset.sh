@@ -15,19 +15,19 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Delete all of the logs
-rm logs/* &> /dev/null
+rm /usr/local/sitespeed/logs/* &> /dev/null
 
 # Delete all of the seed files
-rm tld/*.txt &> /dev/null
-rm comp/*.txt &> /dev/null
+rm /usr/local/sitespeed/tld/*.txt &> /dev/null
+rm /usr/local/sitespeed/comp/*.txt &> /dev/null
 
 # Delete all of the symbolic links
-rm portal/tld* &> /dev/null
-rm portal/comp* &> /dev/null
+rm /usr/local/sitespeed/portal/tld* &> /dev/null
+rm /usr/local/sitespeed/portal/comp* &> /dev/null
 
 # Delete all of the sitespeed results
-rm -Rf tld/sitespeed-result &> /dev/null
-rm -Rf comp/sitespeed-result &> /dev/null
+rm -Rf /usr/local/sitespeed/tld/sitespeed-result &> /dev/null
+rm -Rf /usr/local/sitespeed/comp/sitespeed-result &> /dev/null
 
 # Delete all of the sitespeed images
-rm -Rf portal/images/ &> /dev/null
+rm -Rf /usr/local/sitespeed/portal/images/ &> /dev/null
