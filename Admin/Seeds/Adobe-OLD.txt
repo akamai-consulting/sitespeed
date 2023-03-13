@@ -1,7 +1,0 @@
-https://www.adobe.com/ Home Adobe
-https://www.adobe.com/creativecloud/plans.html CC_Plans Adobe
-https://www.adobe.com/acrobat.html Cloud_Home Adobe
-https://business.adobe.com/ DX_Home Adobe
-https://www.adobe.com/acrobat/online.html Frictionless_Home Adobe
-https://www.adobe.com/acrobat/online/word-to-pdf.html Frictionless_App Adobe
-https://www.adobe.com/max.html Events Adobe

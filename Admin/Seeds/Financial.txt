@@ -1,7 +1,0 @@
-https://www.jpmorganchase.com/ JPMorgan-Chase JPMorgan-Chase
-https://www.bankofamerica.com/ Bank-of-America BoA
-https://www.citigroup.com/ Citigroup Citigroup
-https://www.wellsfargo.com/ WellsFargo WellsFargo
-https://www.goldmansachs.com/ GoldmanSachs GoldmanSachs
-https://www.morganstanley.com/ Morgan-Stanley Morgan-Stanley
-https://www.schwab.com/ Charles-Schwab Charles-Schwab
