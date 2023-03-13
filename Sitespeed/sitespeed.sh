@@ -13,11 +13,6 @@ ChromeLAN="--browsertime.connectivity.alias LAN"
 ChromeLTE="-c custom --browsertime.connectivity.alias LTE --downstreamKbps 12000 --upstreamKbps 12000 --latency 35 --connectivity.engine throttle --chrome.CPUThrottlingRate 4 --mobile"
 Pragma="--requestheader Pragma:akamai-x-get-cache-key,akamai-x-cache-on,akamai-x-cache-remote-on,akamai-x-get-true-cache-key,akamai-x-check-cacheable,akamai-x-get-request-id"
 
-# Check to see if previous sitespeed-result exists
-if [ ! -d /usr/local/sitespeed/$1/sitespeed-result ]; then
-   runNginx=true
-fi
-
 # Print help
 if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
    echo -e "\nUsage: master arg1 arg2 arg3 [arg4]"
@@ -163,8 +158,3 @@ sudo ln -nsf $(find /usr/local/sitespeed/$1/sitespeed-result/ -maxdepth 3 -name 
 
 # Set the symlink for nginx root directive to point to the latest Mobile index.html
 sudo ln -nsf $(find /usr/local/sitespeed/$1/sitespeed-result/ -maxdepth 3 -name index.html | xargs ls -Art | tail -n 2 | xargs ls -At | tail -n 1 | xargs dirname) /usr/local/sitespeed/portal/$webmobile
-
-# Run nginx.sh iff previous sitespeed-result did not exist
-if [ "$runNginx" = true ]; then
-  $(sudo /usr/local/sitespeed/nginx.sh &> /dev/null)
-fi
