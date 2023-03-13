@@ -1,0 +1,210 @@
+<!--
+############################################
+#                                          #
+#                index.html                #
+#                  v 7                     #
+#                                          #
+############################################
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>
+    Site Analysis Portal
+</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png"/>
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png"/>
+    <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/favicons/favicon-194x194.png" sizes="194x194"/>
+    <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/png" href="/favicons/android-chrome-192x192.png" sizes="192x192"/>
+    <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16"/>
+    <link rel="manifest" href="/favicons/manifest.json"/>
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Lato&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #f4f4f4;
+        font-size: 18px;
+        font-family: "Lato", serif;
+        display: inline;
+    }
+
+    #text {
+        margin: 15px;
+        font-size: 18px;
+        padding-top: 5px;
+    }
+
+    h1 {
+        font-size: 2.5vw;
+        text-align: center;
+        line-height: 1;
+        padding: 30px 0px 20px 0px;;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    #logo {
+        height: 50px;
+        vertical-align:top;
+        margin: 10px 10px 10px;
+    }
+
+    #banner {
+        background-color: #f4f4f4;
+        z-index:10;
+        top: 0;
+        margin: 10px 10px 10px 10px;
+        padding: 5px; 
+        height: 100px;
+    }
+
+    .launch {
+        background-color: #FF9933;
+        font-family: "Lato", serif;
+        font-size: 18px;
+        border-width: 0px;
+        border-radius: 10px;
+        height: 25px;
+    }
+
+    .launch:hover {
+        background-color: #009cde;
+        font-family: "Lato", serif;
+        font-size: 18px;
+        border-width: 0px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .dropbutton {
+        font-family: "Lato", serif;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+    
+    .dropbutton:hover {
+        font-family: "Lato", serif;
+        font-size: 18px;
+        border-radius: 10px;
+        background-color: #009cde;
+    }
+    
+</style>
+
+<script type="text/javascript">
+var getURL = function(){
+    var option1 = document.getElementById('dropDown1').value;
+    var option2 = document.getElementById('dropDown2').value;
+    var option3 = document.getElementById('dropDown3').value;
+    var URL = option1 + option2 + option3;
+    open(URL);
+}
+</script>
+
+<script type="text/javascript">
+	//JavaScript variable to track in mPulse
+	var fullimgpixels=Math.round(window.devicePixelRatio*window.screen.availWidth);
+</script>
+
+</head>
+
+<body>
+
+<div id="banner">
+    <img id="logo" style="float:left;padding: 10px 10px 10px 50px" src="akamai-logo.png" alt="Akamai logo"></img>
+    <img id="logo" style="float:right;padding: 10px 50px 10px 10px" src="akamai-logo.png" alt="Akamai logo"></img> 
+    <h1>Site Analysis Portal</h1>
+</div>
+
+<div id="text">
+  <p>
+   <hr>Welcome to the GS Advanced Services Site Analysis Portal. The purpose of this site is to share the results of synthetic testing
+   driven by <a href="https://sitespeed.io" target="_blank">sitespeed.io</a>. The objective of the testing is to provide an easy and fast way to
+   test different URLs for a site to gather information that can serve as the basis for doing an in-depth analysis. The data can be
+   used in a standalone manner or compliment existing <a href="https://mpulse.soasta.com/concerto/" target="_blank">mPulse</a> data. Site testing is done from Linodes
+   servers that are located in each of Linode's regional data centers. To get an overview of the Site Analysis Portal and learn more about the architecture and underlying
+   software components, refer to <a href=" https://as.akamai.com/user/gwolf-2e566b8711afa134d752619ea2dc7f2eb90c29602e8f91c8/Sitespeed.pdf" target="_blank">Sitespeed
+   Overview</a>.
+  </p>
+  
+  <p>
+   Testing can be done for either a single domain with multiple pages or for URLs across multiple domains (e.g., eCommerce, airlines, financial), which would be the basis for a competitive analysis.
+   
+    <br><br>Highlights include:<br>
+    <ul>
+      <li>Site and Page Metrics</li>
+      <li>Site Construction</li>
+      <li>1st & 3rd Party Domain Information</li>
+      <li>Largest JS, CSS, and Images</li>
+      <li>Slowest Responses</li>
+      <li>Core Web Vitals</li>
+      <li>Waterfall</li>
+      <li>Filmstrip</li>
+      <li>Video</li>
+      <li>PageSpeed Insights</li>
+      <li>Lighthouse</li>
+      <li>Chrome User Experience</li>
+    </ul>
+    
+    <i>and much much more ...</i>
+   </p>
+</div>
+
+<div id="text">
+  <p>
+   <hr>See the results of the most recent <button class="launch" onclick="getURL()">Sitespeed</button> test, which provides in-depth information along with perscriptive advice on how to improve page performance. Be sure to pick the server and test type of interest.
+  </p>
+
+</div id="text">
+  <p>&nbsp &nbsp Region &nbsp
+    <select id="dropDown1" class="dropbutton">
+      <option value="https://us-east.sitespeed.akamai.com/">US East</option>
+      <option value="https://us-central.sitespeed.akamai.com/">US Central</option>
+      <option value="https://us-west.sitespeed.akamai.com/">US West</option>
+      <option value="https://toronto.sitespeed.akamai.com/">Toronto</option>
+      <option value="https://london.sitespeed.akamai.com/">London</option>
+      <option value="https://frankfurt.sitespeed.akamai.com/">Frankfurt</option>
+      <option value="https://singapore.sitespeed.akamai.com/">Singapore</option>
+      <option value="https://tokyo.sitespeed.akamai.com/">Tokyo</option>
+      <option value="https://mumbai.sitespeed.akamai.com/">Mumbai</option>
+      <option value="https://sydney.sitespeed.akamai.com/">Sydney</option>
+    </select>
+
+    &nbsp &nbsp Test Type &nbsp
+    <select id="dropDown2" class="dropbutton">
+      <option value="tld">Single Domain</option>
+      <option value="comp">Competitive Analysis</option>
+    </select>
+
+    &nbsp &nbsp Connectivity &nbsp
+    <select id="dropDown3" class="dropbutton">
+      <option value="lan/">Lan</option>
+      <option value="mobile/">LTE</option>
+    </select>
+  </p>
+
+<div id="text">
+  <p><hr>
+    Dive into all of the historical data with <button class="launch" onclick="window.open('https://grafana.sitespeed.akamai.com/','_blank')">Grafana</button> dashboards that provide
+   information about page performance and construction, along with details about CPU events and the impact of JavaScript. All data is saved in a <a href="http://graphiteapp.org/quick-start-guides/" target="_blank">Graphite</a> database for up to 13 months.
+  </p>
+</div>
+
+<div id="text">
+  <p>
+   <hr>For questions contact <a href="mailto:gwolf@akamai.com">Greg Wolf</a>
+  </p>
+</div>
+
+</body>
+</html>

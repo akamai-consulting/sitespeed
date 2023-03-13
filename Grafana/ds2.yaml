@@ -1,0 +1,12 @@
+apiVersion: 1
+
+providers:
+ - name: 'ds2'
+   orgId: 1
+   folder: 'Datastream'
+   folderUid: ''
+   type: file
+   allowUiUpdates: true
+   options:
+        path: /var/lib/grafana/dashboards/ds2
+        

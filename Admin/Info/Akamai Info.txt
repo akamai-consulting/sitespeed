@@ -1,0 +1,127 @@
+/  										png, html, ico			1 month
+/favicons/ 								png, json				1 year
+/images/*/								png, json, mp4			1 hour
+/complan/css/							css						1 year
+/complan/								html					1 hour
+/complan/pages/*/*/						html					1 hour
+/complan/img/ico/						ico						1 year
+/complan/pages/*/data/filmstrip/*/		jpg						1 hour
+/complan/js/							js						1 year
+/complan/pages/*/*/data/video/			mp4						1 hour
+/complan/pages/*/*/data/screenshots/*/	png						1 hour
+/complan/img/							png						1 year
+
+complan, compmobile, tldlan, tldmobile
+
+
+
+
+disable buffering
+
+<network:http.buffer-response-v2>off</network:http.buffer-response-v2>
+<edgeservices:modify-outgoing-response.chunk-to-client>on</edgeservices:modify-outgoing-response.chunk-to-client>
+<edgeservices:wco.input-buffer-minimum>0B</edgeservices:wco.input-buffer-minimum>
+<edgeservices:wco.request-flush>on</edgeservices:wco.request-flush>
+<edgeservices:wco.flush-response-headers-early>on</edgeservices:wco.flush-response-headers-early>
+
+
+SPA monitoring options
+
+Clear the Resource Timing buffer
+{
+   "ResourceTiming":{ 
+      "comment": "Clear RT Buffer on mPulse beacon",
+      "clearOnBeacon": true
+   }
+}
+
+Always Send XHR
+
+{
+   "comment": "Always send data on XHRs",
+   "AutoXHR":{ 
+      "alwaysSendXhr": true
+   }
+}
+
+Monitor FETCH XHRs
+
+{
+   "comment": "Monitor XHRs requested using FETCH",
+   "AutoXHR":{ 
+      "monitorFetch": true
+   }
+}
+
+Enable the Collection of Early Beacons
+
+{
+   "comment": "Enable collection of Early Beacons - need both LOGN and Early items",
+   "LOGN":{
+      "storeConfig": true
+   },
+   "Early":{
+      "enabled": true
+   }
+}
+
+Enable SPA Data Collection (Path-Specific Configurations)
+
+{
+   "comment": "Disable Page Load and switch to SPA",
+   "autorun": false,
+   "History":{ 
+     "enabled": true
+   }
+}
+
+Disable SPA Data Collection (Path-Specific Configurations)
+
+{
+   "comment": "Disable SPA and switch to Page Load",
+   "autorun": true,
+   "History":{ 
+      "enabled": false
+   }
+}
+
+Chaining Multiple Rules
+
+{
+   "ResourceTiming":{ 
+      "comment": "Clear RT Buffer on mPulse beacon",
+      "clearOnBeacon": true
+   },
+   "AutoXHR":{
+      "comment": "Monitor XHRs requested using FETCH", 
+      "monitorFetch": true
+   },
+   "comment": "Enable collection of Early Beacons - need both LOGN and Early items",
+   "LOGN":{
+      "storeConfig": true
+   },
+   "Early":{
+      "enabled": true
+   },
+   "comment": "Disable Page Load and switch to SPA",
+   "autorun": false,
+   "History":{ 
+     "enabled": true
+   }
+}
+
+
+Spoofing of all hosts
+23.50.51.50		sitespeed.akamai.com
+23.50.51.50		grafana.sitespeed.akamai.com
+23.50.51.50		psi-crux.sitespeed.akamai.com
+23.50.51.50		us-east.sitespeed.akamai.com
+23.50.51.50		us-central.sitespeed.akamai.com
+23.50.51.50		us-west.sitespeed.akamai.com
+23.50.51.50     toronto.sitespeed.akamai.com
+23.50.51.50     london.sitespeed.akamai.com
+23.50.51.50     frankfurt.sitespeed.akamai.com
+23.50.51.50     mumbai.sitespeed.akamai.com
+23.50.51.50     tokyo.sitespeed.akamai.com
+23.50.51.50     singapore.sitespeed.akamai.com
+23.50.51.50     sydney.sitespeed.akamai.com

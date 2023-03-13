@@ -1,0 +1,4601 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      },
+      {
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "enable": false,
+        "iconColor": "red",
+        "name": "Annotations",
+        "target": {
+          "fromAnnotations": true,
+          "queryType": "tags",
+          "tags": [
+            "$path",
+            "$group",
+            "$page",
+            "$region",
+            "$connectivity",
+            "$browser"
+          ]
+        }
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 84,
+      "panels": [],
+      "title": "Overview",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 80,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.$function, \"First Visual Change\")",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestContentfulPaint.$function,  \"Largest Contentful Paint\")",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.$function, \"Largest Image\")",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "D",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, \"Speed Index\")",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "E",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.firstPaint.$function, \"First Paint\")",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.ttfb.$function, \"TTFB\")",
+          "textEditor": true
+        }
+      ],
+      "title": "Visual Metrics",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "description": "Screenshot of the latest test",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 1
+      },
+      "id": 159,
+      "links": [],
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<a href=\"https://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\">\n<img src=\"https://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\"></a>",
+        "mode": "html"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($base.$path.pageSummary.$group.$page.$browser.$connectivity.pagexray.requests, 8)",
+          "textEditor": false
+        }
+      ],
+      "title": "Screenshot",
+      "type": "text"
+    },
+    {
+      "cacheTimeout": "",
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "description": "Video of the loading process of the latest test",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 160,
+      "links": [],
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<video controls width=\"100%\"src=\"https://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.mp4\"></video>\n",
+        "mode": "html"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.advice.info.domElements, 'DOM elements')",
+          "textEditor": false
+        }
+      ],
+      "title": "Video",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "description": "Highlighted LCP image from the latest test",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 9
+      },
+      "id": 281,
+      "links": [],
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<a href=\"https://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\">\n<img src=\"https://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\"></a>",
+        "mode": "html"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($base.$path.pageSummary.$group.$page.$browser.$connectivity.pagexray.requests, 8)",
+          "textEditor": false
+        }
+      ],
+      "title": "LCP Image",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "description": "Highlighted layout shifts from the latest test",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 9
+      },
+      "id": 282,
+      "links": [],
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<a href=\"https://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\">\n<img src=\"https://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\"></a>",
+        "mode": "html"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($base.$path.pageSummary.$group.$page.$browser.$connectivity.pagexray.requests, 8)",
+          "textEditor": false
+        }
+      ],
+      "title": "Visual Layout Shifts",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "id": 228,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "refId": "A",
+          "target": ""
+        }
+      ],
+      "title": "Page Info",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 12,
+        "x": 12,
+        "y": 17
+      },
+      "id": 190,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "refId": "A",
+          "target": ""
+        }
+      ],
+      "title": "Google Web Vitals",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 18
+      },
+      "id": 224,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.transferSize, 'Transfer Size')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 18
+      },
+      "id": 225,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.requests, 'Requests')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 18
+      },
+      "id": 269,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.firstParty.requests, 'First Party Requests')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 18
+      },
+      "id": 226,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.thirdParty.requests, 'Third Party Requests')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 18
+      },
+      "id": 191,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, 'LCP')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 2500
+              },
+              {
+                "color": "red",
+                "value": 4000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 15,
+        "y": 18
+      },
+      "id": 192,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, 'TBT')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0.1
+              },
+              {
+                "color": "red",
+                "value": 0.25
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 18,
+        "y": 18
+      },
+      "id": 193,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function, 'CLS')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 18
+      },
+      "id": 268,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.ttfb.$function, 'TTFB')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "All requests and their HTTP Status Code",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 83,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 280,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "groupByNode(summarize(movingAverage($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.responseCodes.*, 5), '1h', 'sum', false), 11, 'sum')",
+          "textEditor": false
+        }
+      ],
+      "title": "HTTP Response Codes",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 256,
+      "panels": [],
+      "title": "Web Vitals",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 254,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(movingAverage($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function, '24h'), 'Last 24 hours')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(timeShift(movingAverage($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function, '24h'), '7d'), 'One Week Earlier')",
+          "textEditor": true
+        }
+      ],
+      "title": "First Contentful Paint",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 32
+      },
+      "id": 204,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.paintTiming.first-contentful-paint.$function, 'FCP')",
+          "textEditor": true
+        }
+      ],
+      "title": "First Contentful Paint",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/earlier/"
+            },
+            "properties": [
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 40
+      },
+      "id": 274,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(movingAverage($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, '24h'), 'Last 24 hours')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(timeShift(movingAverage($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, '24h'), '7d'), 'One Week Earlier')",
+          "textEditor": true
+        }
+      ],
+      "title": "Largest Contentful Paint",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {},
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 40
+      },
+      "id": 205,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.largestContentfulPaint.renderTime.$function, 'LCP')",
+          "textEditor": true
+        }
+      ],
+      "title": "Largest Contentful Paint",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 48
+      },
+      "id": 275,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(movingAverage($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, '24h'), 'Last 24 hours')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(timeShift(movingAverage($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, '24h'), '7d'), 'One Week Earlier')",
+          "textEditor": true
+        }
+      ],
+      "title": "Total Blocking Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {},
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 48
+      },
+      "id": 207,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.longTasks.totalBlockingTime.$function, 'TBT')",
+          "textEditor": true
+        }
+      ],
+      "title": "Total Blocking Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 56
+      },
+      "id": 276,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(movingAverage($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function, '24h'), 'Last 24 hours')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(timeShift(movingAverage($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function, '24h'), '7d'), 'One Week Earlier')",
+          "textEditor": true
+        }
+      ],
+      "title": "Cumulative Layout Shift",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {},
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 56
+      },
+      "id": 206,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.pageinfo.cumulativeLayoutShift.$function, 'CLS')",
+          "textEditor": true
+        }
+      ],
+      "title": "Cumulative Layout Shift",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 64
+      },
+      "id": 113,
+      "panels": [],
+      "title": "Requests and Size",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 8,
+        "x": 0,
+        "y": 65
+      },
+      "id": 221,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.contentTypes.*.requests, 11)",
+          "textEditor": true
+        }
+      ],
+      "title": "Requests",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 8,
+        "x": 8,
+        "y": 65
+      },
+      "id": 277,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.contentTypes.*.transferSize, 11)",
+          "textEditor": true
+        }
+      ],
+      "title": "Transfer Size",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 8,
+        "x": 16,
+        "y": 65
+      },
+      "id": 278,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.contentTypes.*.contentSize, 11)",
+          "textEditor": true
+        }
+      ],
+      "title": "Content Size",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 0,
+        "y": 77
+      },
+      "id": 273,
+      "links": [],
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "7.5.0-beta1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.contentTypes.*.requests, 11)",
+          "textEditor": false
+        }
+      ],
+      "title": "Requests per Type",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 8,
+        "y": 77
+      },
+      "id": 247,
+      "links": [],
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "7.5.0-beta1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.contentTypes.*.transferSize, 11)",
+          "textEditor": true
+        }
+      ],
+      "title": "Transfer Size per Type",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 16,
+        "y": 77
+      },
+      "id": 246,
+      "links": [],
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "7.5.0-beta1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.contentTypes.*.contentSize, 11)",
+          "textEditor": true
+        }
+      ],
+      "title": "Content Size per Type",
+      "type": "piechart"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 87
+      },
+      "id": 146,
+      "panels": [],
+      "title": "Page Metrics",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "The document height in pixels.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 88
+      },
+      "id": 149,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.coach.advice.info.documentHeight, 'Document Height')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "The max depth of DOM elements on the page.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 88
+      },
+      "id": 156,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.coach.advice.info.domDepth.max, 'Max DOM Depth')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 88
+      },
+      "id": 150,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.coach.advice.info.localStorageSize, 'Local Storage Size')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "The total number of iframes used on the page.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 88
+      },
+      "id": 148,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.coach.advice.info.iframes, 'iFrames')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 88
+      },
+      "id": 151,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.totalDomains, 'Domains')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 15,
+        "y": 88
+      },
+      "id": 152,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.firstParty.cookies, ' First Party Cookies')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 18,
+        "y": 88
+      },
+      "id": 249,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.thirdParty.cookies, 'Third Party Cookies')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "The $function cache expire time for all responses on the page.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 88
+      },
+      "id": 153,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.expireStats.median, 'Cache Expiration')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "Timing metrics collected using browser APIs like the Navigation Timing API.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 92
+      },
+      "id": 118,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.fullyLoaded.$function, 'Fully Loaded')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.firstPaint.$function, 'Time to First Paint')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.largestContentfulPaint.renderTime.$function, 'Largest Contentful Paint')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "D",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.loadEventEnd.$function, 'Load Event Complete')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "E",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.pageTimings.domContentLoadedTime.$function, 'DOM Content Loaded')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.pageTimings.serverResponseTime.$function, 'Server Response Time')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "G",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.pageTimings.domInteractiveTime.$function, 'DOM Interactive')",
+          "textEditor": true
+        }
+      ],
+      "title": "Page Timings",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 12,
+        "y": 92
+      },
+      "id": 235,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.firstParty.cookies, 'First Party')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.thirdParty.cookies, 'Third Party')"
+        }
+      ],
+      "title": "Cookies",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 106
+      },
+      "id": 136,
+      "panels": [],
+      "title": "Third Party",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 107
+      },
+      "id": 142,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.thirdparty.category.*.requests.$function, 11)",
+          "textEditor": true
+        }
+      ],
+      "title": "Requests by Category",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 107
+      },
+      "id": 279,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.thirdparty.tool.*.cpu.$function, 11)",
+          "textEditor": true
+        }
+      ],
+      "title": "Time Spent per Third Party",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 117
+      },
+      "id": 264,
+      "panels": [],
+      "title": "Navigation Timings",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "Metrics collected from theNavigation Timing API",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 118
+      },
+      "id": 265,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.navigationTiming.*.$function, 13)",
+          "textEditor": true
+        }
+      ],
+      "title": "Navigation Timings",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 133
+      },
+      "id": 223,
+      "panels": [],
+      "title": "CPU",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "green",
+                "value": 3
+              },
+              {
+                "color": "yellow",
+                "value": 6
+              },
+              {
+                "color": "red",
+                "value": 9
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 134
+      },
+      "id": 229,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function, 'Total Long Tasks')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "green",
+                "value": 50
+              },
+              {
+                "color": "yellow",
+                "value": 75
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 8,
+        "y": 134
+      },
+      "id": 232,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.longTasks.durations.$function, 'Longest Long Task')",
+          "textEditor": true
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 3
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 134
+      },
+      "id": 230,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.longTasks.beforeLargestContentfulPaint.tasks.$function, 'Long Tasks Before LCP')",
+          "textEditor": false
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 139
+      },
+      "id": 81,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.categories.garbageCollection.$function, 'Garbage Collection')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.categories.paintCompositeRender.$function, 'Paint Composite Render')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.categories.parseHTML.$function, 'Parse HTML')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "D",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.categories.scriptEvaluation.$function, 'Script Evaluation')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "E",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.categories.scriptParseCompile.$function, 'Script Parse & Compile')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.categories.styleLayout.$function, 'Layout')",
+          "textEditor": true
+        }
+      ],
+      "title": "Categories",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "The CPU metrics are collected from Chrome when you add --chrome.timeline to your run. The trace log is analyzed and sorted by type.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 154
+      },
+      "id": 138,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.events.*.median, 13)",
+          "textEditor": true
+        }
+      ],
+      "title": "Events",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "-PMS0T17z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 168
+      },
+      "id": 140,
+      "panels": [],
+      "title": "JavaScript",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 169
+      },
+      "id": 104,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cdp.performance.JSHeapTotalSize.$function, 'Total JS Heap Size')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cdp.performance.JSHeapUsedSize.$function, 'Used JS Heap Size')",
+          "textEditor": true
+        }
+      ],
+      "title": "Heap Size",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [
+    "Page Metrics",
+    "Verizon"
+  ],
+  "templating": {
+    "list": [
+      {
+        "hide": 2,
+        "label": "Namespace",
+        "name": "namespace",
+        "query": "sitespeed_io",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Competitors",
+          "value": "Competitors"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "$namespace.*",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Test Type",
+        "multi": false,
+        "name": "path",
+        "options": [],
+        "query": "$namespace.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Nutrisystem",
+          "value": "Nutrisystem"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "$namespace.$path.*",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Test Name",
+        "multi": false,
+        "name": "testname",
+        "options": [],
+        "query": "$namespace.$path.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "BistroMD",
+          "value": "BistroMD"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "$namespace.$path.$testname.$region.pageSummary.*",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Domain",
+        "multi": false,
+        "name": "group",
+        "options": [],
+        "query": "$namespace.$path.$testname.$region.pageSummary.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "BistroMD",
+          "value": "BistroMD"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "$namespace.$path.$testname.$region.pageSummary.$group.*",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Page",
+        "multi": false,
+        "name": "page",
+        "options": [],
+        "query": "$namespace.$path.$testname.$region.pageSummary.$group.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "US-Central",
+          "value": "US-Central"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "$namespace.$path.$testname.*",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Region",
+        "multi": false,
+        "name": "region",
+        "options": [],
+        "query": "$namespace.$path.$testname.*",
+        "refresh": 1,
+        "regex": "/^(?!PSI-CrUX).+/gm",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "chrome",
+          "value": "chrome"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "$namespace.$path.$testname.$region.pageSummary.$group.$page.*",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Browser",
+        "multi": false,
+        "name": "browser",
+        "options": [],
+        "query": "$namespace.$path.$testname.$region.pageSummary.$group.$page.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "LAN",
+          "value": "LAN"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "$namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.*",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Connectivity",
+        "multi": false,
+        "name": "connectivity",
+        "options": [],
+        "query": "$namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
+        "current": {
+          "selected": false,
+          "text": "median",
+          "value": "median"
+        },
+        "hide": 0,
+        "label": "Percentile",
+        "name": "function",
+        "options": [
+          {
+            "selected": false,
+            "text": "p25",
+            "value": "p25"
+          },
+          {
+            "selected": false,
+            "text": "mean",
+            "value": "mean"
+          },
+          {
+            "selected": true,
+            "text": "median",
+            "value": "median"
+          },
+          {
+            "selected": false,
+            "text": "p75",
+            "value": "p75"
+          },
+          {
+            "selected": false,
+            "text": "p95",
+            "value": "p95"
+          }
+        ],
+        "query": "p25,mean,median,p75,p95",
+        "queryValue": "",
+        "refresh": 2,
+        "skipUrlSync": false,
+        "type": "interval"
+      },
+      {
+        "hide": 2,
+        "name": "resulturl",
+        "query": "sitespeed.akadns.net/images",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "screenshottype",
+        "query": "png",
+        "skipUrlSync": false,
+        "type": "constant"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Page Metrics",
+  "uid": "9NDMzFfMk",
+  "version": 148,
+  "weekStart": ""
+}

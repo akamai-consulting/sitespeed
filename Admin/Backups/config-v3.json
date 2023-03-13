@@ -1,0 +1,34 @@
+{
+"browsertime": {
+  "percentiles": [25,75,95],
+  "browser": "chrome",
+  "cacheClearRaw": true,
+  "visualMetrics": true,
+  "visualMetricsPerceptual": true,
+  "visualMetricsContentful": true,
+  "visualElements": true,
+  "video": true,
+  "cpu": true,
+  "screenshot": true
+  },
+"chrome": {
+  "collectLongTasks": true
+  },
+"screenshot": {
+  "type": "png"
+  },
+"copyLatestFilesToBase": true,
+  "thirdParty": {
+  "cpu": true
+  },
+"filmstrip":  {
+  "showAll": true
+  },
+"graphite": {
+  "host": "198.74.57.70",
+  "httpPort": "8888",
+  "annotationScreenshot": true,
+  "sendAnnotation": true,
+  "annotationRetentionMinutes": "60",
+  "auth": "asteam:asteam123"}
+}

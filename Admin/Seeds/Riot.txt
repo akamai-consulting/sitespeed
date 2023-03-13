@@ -1,0 +1,2 @@
+https://www.tellstones.com/ Netlify Tellstones
+https://akamai.tellstones.com/ Akamai Tellstones

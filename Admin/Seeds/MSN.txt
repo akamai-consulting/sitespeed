@@ -1,0 +1,7 @@
+https://www.msn.com/ Home_Today MSN
+https://www.msn.com/en-us/sports?ocid=StripeOCID Sports_Today MSN
+https://www.msn.com/en-us/video?ocid=StripeOCID Video_Today MSN
+https://www.msn.com/en-us/autos/marketplace?form=PRBNAV&ocid=StripeOCID Car_Today MSN
+https://www.msn.com/en-us/news News_Home MSN
+https://www.msn.com/en-us/news/us US_News MSN
+https://www.msn.com/en-us/news/us/university-in-michigan-accidentally-tells-5-500-students-they-received-nearly-full-scholarships/ar-AATkMqM News_Story MSN

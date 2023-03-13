@@ -1,0 +1,207 @@
+<!--
+############################################
+#                                          #
+#                index.html                #
+#                  v 5                     #
+#                                          #
+############################################
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>
+    Site Analysis Portal
+</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png"/>
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png"/>
+    <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/favicons/favicon-194x194.png" sizes="194x194"/>
+    <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/png" href="/favicons/android-chrome-192x192.png" sizes="192x192"/>
+    <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16"/>
+    <link rel="manifest" href="/favicons/manifest.json"/>
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Lato&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #f4f4f4;
+        font-size: 18px;
+        font-family: "Lato", serif;
+        display: inline;
+    }
+
+    #text {
+        margin: 15px;
+    }
+
+    h1 { 
+        margin-left: 20px;
+        color: #000000;
+        text-align: center;
+        padding: 0px 0px 10px 0px;
+    }
+
+    #logo {
+        height: 50px;
+        float:left;
+        vertical-align:top;
+        padding: 10px 10px 10px 50px;
+        margin: 10px 10px 10px;
+    }
+
+    #logo2 {
+        height: 50px;
+        float:right;
+        vertical-align:top;
+        padding: 10px 50px 10px 10px;
+        margin: 10px 10px 10px;
+    }
+
+    #banner {
+        background-color: #f4f4f4;
+        z-index:10;
+        top: 0;
+        margin: 10px 10px 10px 10px;
+        padding: 5px; 
+        height: 100px;
+    }
+
+    .launch {
+        background-color: #FF9933;
+        font-family: "Lato", serif;
+        font-size: 18px;
+        border-width: 0px;
+        border-radius: 10px;
+        height: 25px;
+    }
+
+    .launch:hover {
+        background-color: #009cde;
+        font-family: "Lato", serif;
+        font-size: 18px;
+        border-width: 0px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .dropbutton {
+        font-family: "Lato", serif;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+    
+    .dropbutton:hover {
+        font-family: "Lato", serif;
+        font-size: 18px;
+        border-radius: 10px;
+        background-color: #009cde;
+    }
+    
+</style>
+
+<script type="text/javascript">
+var getURL = function(){
+    var option1 = document.getElementById('dropDown1').value;
+    var option2 = document.getElementById('dropDown2').value;
+    var option3 = document.getElementById('dropDown3').value;
+    var URL = option1 + option2 + option3;
+    open(URL);
+}
+</script>
+
+</head>
+
+<body>
+
+<div id="banner">
+    <img id="logo" src="https://www.akamai.com/content/dam/akamai/site/en/logo/akamai-logo.png" alt="Akamai logo"></img>
+    <img id="logo2" src="https://www.akamai.com/content/dam/akamai/site/en/logo/akamai-logo.png" alt="Akamai logo"></img> 
+    <h1>GS Advanced Services - Site Analysis Portal</h1>
+</div>
+
+<div id="text">
+  <p>
+   <hr>Welcome to the GS Advanced Services Site Analysis Portal. The purpose of this site is to share the results of synthetic testing
+   driven by <a href="https://sitespeed.io" target="_blank">sitespeed.io</a>. The objective of the testing is to provide an easy and fast way to
+   test different URLs for a site to gather information that can serve as the basis for doing an in-depth analysis. The data can be
+   used in a standalone manner or compliment existing <a href="https://mpulse.soasta.com/concerto/" target="_blank">mPulse</a> data. Site testing is done from Linodes
+   servers that are located in each of Linode's regional data centers. To get an overview of the Site Analysis Portal and learn more about the architecture and underlying
+   software components, refer to <a href=" https://as.akamai.com/user/gwolf-2e566b8711afa134d752619ea2dc7f2eb90c29602e8f91c8/Sitespeed.pdf" target="_blank">Sitespeed
+   Overview</a>.
+  </p>
+  
+  <p>
+   Testing can be done for either a single domain with multiple pages or for URLs across multiple domains (e.g., eCommerce, airlines, financial), which would be
+   the basis for a competitive analysis.
+   
+    <br><br>Highlights include:<br>
+    <ul><li>Site and Page Metrics</li>
+    <li>Site Construction</li>
+    <li>1st & 3rd Party Domain Information</li>
+    <li>Largest JS, CSS, and Images</li>
+    <li>Slowest Responses</li>
+    <li>Core Web Vitals</li>
+    <li>Waterfall</li>
+    <li>Filmstrip</li>
+    <li>Video</li>
+    <li><i><strong>and much much more ...</strong></i></li></ul>
+   </p>
+</div>
+
+<div id="text">
+  <p>
+   <hr>See the results of the most recent <button class="launch" onclick="getURL()">Sitespeed</button> test, which provides in-depth information along with perscriptive advice on how to improve page performance. Be sure to pick the server and test type of interest.
+  </p>
+
+</div id="text">
+  <p>&nbsp &nbsp Region &nbsp
+    <select id="dropDown1" class="dropbutton">
+      <option value="http://us-east.hilltoptech.net/">US East (NJ)</option>
+      <option value="http://us-central.hilltoptech.net/">US Central (TX)</option>
+      <option value="http://us-west.hilltoptech.net/">US West (CA)</option>
+      <option value="http://toronto.hilltoptech.net/">Toronto, ON</option>
+      <option value="http://london.hilltoptech.net/">London, UK</option>
+      <option value="http://frankfurt.hilltoptech.net/">Frankfurt, DE</option>
+      <option value="http://singapore.hilltoptech.net/">Singapore, SG</option>
+      <option value="http://tokyo.hilltoptech.net/">Tokyo, JP</option>
+      <option value="http://mumbai.hilltoptech.net/">Mumbai, IN</option>
+      <option value="http://sydney.hilltoptech.net/">Sydney, AU</option>
+    </select>
+
+    &nbsp &nbsp Test Type &nbsp
+    <select id="dropDown2" class="dropbutton">
+      <option value="tld">Single Domain</option>
+      <option value="comp">Competitive Analysis</option>
+    </select>
+
+    &nbsp &nbsp Conenctivity &nbsp
+    <select id="dropDown3" class="dropbutton">
+      <option value="lan">Lan</option>
+      <option value="mobile">LTE</option>
+    </select>
+  </p>
+
+<div id="text">
+  <p><hr>
+    Dive into all of the historical data with <button class="launch"
+   onclick="window.open('http://graphite.hilltoptech.net:3000','_blank')">Grafana</button> dashboards that provide
+   information about page performance and construction, along with details about CPU events and the impact of JavaScript. All data is saved in a <a href="http://graphiteapp.org/quick-start-guides/" target="_blank">Graphite</a> database for up to 13 months.
+  </p>
+</div>
+
+<div id="text">
+  <p>
+   <hr>For questions or to schedule a test contact <a href="mailto:gwolf@akamai.com">Greg Wolf</a>
+  </p>
+</div>
+
+</body>
+</html>

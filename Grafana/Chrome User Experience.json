@@ -1,0 +1,4709 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 42,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 65,
+      "panels": [],
+      "title": "Origin Data",
+      "type": "row"
+    },
+    {
+      "activePatternIndex": 2,
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "debug_mode": false,
+      "defaultPattern": {
+        "bgColors": "green|orange|red",
+        "bgColors_overrides": "0->green|2->red|1->yellow",
+        "clickable_cells_link": "",
+        "col_name": "_10_",
+        "decimals": 2,
+        "defaultBGColor": "transparent",
+        "defaultTextColor": "",
+        "delimiter": ".",
+        "displayTemplate": "_value_",
+        "enable_bgColor": false,
+        "enable_bgColor_overrides": false,
+        "enable_clickable_cells": false,
+        "enable_textColor": false,
+        "enable_textColor_overrides": false,
+        "enable_time_based_thresholds": false,
+        "enable_transform": false,
+        "enable_transform_overrides": false,
+        "filter": {
+          "value_above": "",
+          "value_below": ""
+        },
+        "format": "none",
+        "name": "Default Pattern",
+        "null_color": "darkred",
+        "null_textcolor": "black",
+        "null_value": "No data",
+        "pattern": "*",
+        "row_col_wrapper": "_",
+        "row_name": "_series_",
+        "textColors": "red|orange|green",
+        "textColors_overrides": "0->red|2->green|1->yellow",
+        "thresholds": "70,90",
+        "time_based_thresholds": [],
+        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "transform_values": "_value_|_value_|_value_",
+        "transform_values_overrides": "0->down|1->up",
+        "valueName": "avg"
+      },
+      "default_title_for_rows": "Company",
+      "description": "Results over the last 30 days for Chrome users",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 50,
+      "patterns": [
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "CLS",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "none",
+          "name": "CLS",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "CUMULATIVE_LAYOUT_SHIFT_SCORE.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": ".1,.25",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "FCP",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "FCP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "FIRST_CONTENTFUL_PAINT_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "1800,3000",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "LCP",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "LCP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "LARGEST_CONTENTFUL_PAINT_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "2500,4000",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "FID",
+          "decimals": "0",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "FID",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "FIRST_INPUT_DELAY_MS.p75",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "100,300",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "INP",
+          "decimals": "0",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "INP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "INTERACTION_TO_NEXT_PAINT_MS.p75",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "200,500",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "TTFB",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "TTFB",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "TIME_TO_FIRST_BYTE_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "800,1800",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        }
+      ],
+      "row_col_wrapper": "_",
+      "sorting_props": {
+        "col_index": 5,
+        "direction": "asc"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.DESKTOP.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.DESKTOP.FIRST_CONTENTFUL_PAINT_MS.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.DESKTOP.FIRST_INPUT_DELAY_MS.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "D",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.DESKTOP.INTERACTION_TO_NEXT_PAINT_MS.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "E",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.DESKTOP.LARGEST_CONTENTFUL_PAINT_MS.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.DESKTOP.TIME_TO_FIRST_BYTE_MS.p75",
+          "textEditor": false
+        }
+      ],
+      "title": "DESKTOP - Origin Data",
+      "type": "yesoreyeram-boomtable-panel"
+    },
+    {
+      "activePatternIndex": 5,
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "debug_mode": false,
+      "defaultPattern": {
+        "bgColors": "green|orange|red",
+        "bgColors_overrides": "0->green|2->red|1->yellow",
+        "clickable_cells_link": "",
+        "col_name": "_10_",
+        "decimals": 2,
+        "defaultBGColor": "transparent",
+        "defaultTextColor": "",
+        "delimiter": ".",
+        "displayTemplate": "_value_",
+        "enable_bgColor": false,
+        "enable_bgColor_overrides": false,
+        "enable_clickable_cells": false,
+        "enable_textColor": false,
+        "enable_textColor_overrides": false,
+        "enable_time_based_thresholds": false,
+        "enable_transform": false,
+        "enable_transform_overrides": false,
+        "filter": {
+          "value_above": "",
+          "value_below": ""
+        },
+        "format": "none",
+        "name": "Default Pattern",
+        "null_color": "darkred",
+        "null_textcolor": "black",
+        "null_value": "No data",
+        "pattern": "*",
+        "row_col_wrapper": "_",
+        "row_name": "_series_",
+        "textColors": "red|orange|green",
+        "textColors_overrides": "0->red|2->green|1->yellow",
+        "thresholds": "70,90",
+        "time_based_thresholds": [],
+        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "transform_values": "_value_|_value_|_value_",
+        "transform_values_overrides": "0->down|1->up",
+        "valueName": "avg"
+      },
+      "default_title_for_rows": "Company",
+      "description": "Results over the last 30 days for Chrome users",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 51,
+      "patterns": [
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "CLS",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "none",
+          "name": "CLS",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "CUMULATIVE_LAYOUT_SHIFT_SCORE.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": ".1,.25",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "FCP",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "FCP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "FIRST_CONTENTFUL_PAINT_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "1800,3000",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "LCP",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "LCP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "LARGEST_CONTENTFUL_PAINT_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "2500,4000",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "FID",
+          "decimals": "0",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "FID",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "FIRST_INPUT_DELAY_MS.p75",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "100,300",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "INP",
+          "decimals": "0",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "INP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "INTERACTION_TO_NEXT_PAINT_MS.p75",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "200,500",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "TTFB",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "TTFB",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "TIME_TO_FIRST_BYTE_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_5_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "800,1800",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        }
+      ],
+      "row_col_wrapper": "_",
+      "sorting_props": {
+        "col_index": 5,
+        "direction": "asc"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.PHONE.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.PHONE.FIRST_CONTENTFUL_PAINT_MS.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.PHONE.FIRST_INPUT_DELAY_MS.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "D",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.PHONE.INTERACTION_TO_NEXT_PAINT_MS.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "E",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.PHONE.LARGEST_CONTENTFUL_PAINT_MS.p75",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.PHONE.TIME_TO_FIRST_BYTE_MS.p75",
+          "textEditor": false
+        }
+      ],
+      "title": "PHONE - Origin Data",
+      "type": "yesoreyeram-boomtable-panel"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 47,
+      "panels": [],
+      "title": "Page Data",
+      "type": "row"
+    },
+    {
+      "activePatternIndex": 5,
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "debug_mode": false,
+      "defaultPattern": {
+        "bgColors": "green|orange|red",
+        "bgColors_overrides": "0->green|2->red|1->yellow",
+        "clickable_cells_link": "",
+        "col_name": "_10_",
+        "decimals": 2,
+        "defaultBGColor": "transparent",
+        "defaultTextColor": "",
+        "delimiter": ".",
+        "displayTemplate": "_value_",
+        "enable_bgColor": false,
+        "enable_bgColor_overrides": false,
+        "enable_clickable_cells": false,
+        "enable_textColor": false,
+        "enable_textColor_overrides": false,
+        "enable_time_based_thresholds": false,
+        "enable_transform": false,
+        "enable_transform_overrides": false,
+        "filter": {
+          "value_above": "",
+          "value_below": ""
+        },
+        "format": "none",
+        "name": "Default Pattern",
+        "null_color": "darkred",
+        "null_textcolor": "black",
+        "null_value": "No data",
+        "pattern": "*",
+        "row_col_wrapper": "_",
+        "row_name": "_series_",
+        "textColors": "red|orange|green",
+        "textColors_overrides": "0->red|2->green|1->yellow",
+        "thresholds": "70,90",
+        "time_based_thresholds": [],
+        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "transform_values": "_value_|_value_|_value_",
+        "transform_values_overrides": "0->down|1->up",
+        "valueName": "avg"
+      },
+      "default_title_for_rows": "Page/Company",
+      "description": "Pages that have recorded CrUX data at the 75th percentile",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 48,
+      "patterns": [
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "CLS",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "none",
+          "name": "CLS",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "CUMULATIVE_LAYOUT_SHIFT_SCORE.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": ".1,.25",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "FCP",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "FCP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "FIRST_CONTENTFUL_PAINT_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "1800,3000",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "LCP",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "LCP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "LARGEST_CONTENTFUL_PAINT_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "2500,4000",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "FID",
+          "decimals": "0",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "FID",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "FIRST_INPUT_DELAY_MS.p75",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "100,300",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "INP",
+          "decimals": "0",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "INP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "INTERACTION_TO_NEXT_PAINT_MS.p75",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "200,500",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "TTFB",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "TTFB",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "TIME_TO_FIRST_BYTE_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "800,1800",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        }
+      ],
+      "row_col_wrapper": "_",
+      "sorting_props": {
+        "col_index": 5,
+        "direction": "asc"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.DESKTOP.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.DESKTOP.FIRST_CONTENTFUL_PAINT_MS.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.DESKTOP.FIRST_INPUT_DELAY_MS.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "D",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.DESKTOP.INTERACTION_TO_NEXT_PAINT_MS.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "E",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.DESKTOP.LARGEST_CONTENTFUL_PAINT_MS.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.DESKTOP.TIME_TO_FIRST_BYTE_MS.p75",
+          "textEditor": true
+        }
+      ],
+      "title": "DESKTOP - Page Data",
+      "type": "yesoreyeram-boomtable-panel"
+    },
+    {
+      "activePatternIndex": 5,
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "debug_mode": false,
+      "defaultPattern": {
+        "bgColors": "green|orange|red",
+        "bgColors_overrides": "0->green|2->red|1->yellow",
+        "clickable_cells_link": "",
+        "col_name": "_10_",
+        "decimals": 2,
+        "defaultBGColor": "transparent",
+        "defaultTextColor": "",
+        "delimiter": ".",
+        "displayTemplate": "_value_",
+        "enable_bgColor": false,
+        "enable_bgColor_overrides": false,
+        "enable_clickable_cells": false,
+        "enable_textColor": false,
+        "enable_textColor_overrides": false,
+        "enable_time_based_thresholds": false,
+        "enable_transform": false,
+        "enable_transform_overrides": false,
+        "filter": {
+          "value_above": "",
+          "value_below": ""
+        },
+        "format": "none",
+        "name": "Default Pattern",
+        "null_color": "darkred",
+        "null_textcolor": "black",
+        "null_value": "No data",
+        "pattern": "*",
+        "row_col_wrapper": "_",
+        "row_name": "_series_",
+        "textColors": "red|orange|green",
+        "textColors_overrides": "0->red|2->green|1->yellow",
+        "thresholds": "70,90",
+        "time_based_thresholds": [],
+        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "transform_values": "_value_|_value_|_value_",
+        "transform_values_overrides": "0->down|1->up",
+        "valueName": "avg"
+      },
+      "default_title_for_rows": "Page/Company",
+      "description": "Pages that have recorded CrUX data at the 75th percentile",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 49,
+      "patterns": [
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "CLS",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "none",
+          "name": "CLS",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "CUMULATIVE_LAYOUT_SHIFT_SCORE.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": ".1,.25",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "FCP",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "FCP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "FIRST_CONTENTFUL_PAINT_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "1800,3000",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "LCP",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "LCP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "LARGEST_CONTENTFUL_PAINT_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "2500,4000",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "FID",
+          "decimals": "0",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "FID",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "FIRST_INPUT_DELAY_MS.p75",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "100,300",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "INP",
+          "decimals": "0",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "INP",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "INTERACTION_TO_NEXT_PAINT_MS.p75",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "200,500",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        },
+        {
+          "bgColors": "green|orange|red",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "TTFB",
+          "decimals": "2",
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": ".",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "ms",
+          "name": "TTFB",
+          "null_color": "",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "TIME_TO_FIRST_BYTE_MS.p75$",
+          "row_col_wrapper": "_",
+          "row_name": "_6_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "800,1800",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "avg"
+        }
+      ],
+      "row_col_wrapper": "_",
+      "sorting_props": {
+        "col_index": 5,
+        "direction": "asc"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.PHONE.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.PHONE.FIRST_CONTENTFUL_PAINT_MS.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.PHONE.FIRST_INPUT_DELAY_MS.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "D",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.PHONE.INTERACTION_TO_NEXT_PAINT_MS.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "E",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.PHONE.LARGEST_CONTENTFUL_PAINT_MS.p75",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.PHONE.TIME_TO_FIRST_BYTE_MS.p75",
+          "textEditor": true
+        }
+      ],
+      "title": "PHONE - Page Data",
+      "type": "yesoreyeram-boomtable-panel"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 67,
+      "panels": [],
+      "title": "LCP Origin Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 68,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "domains",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.LARGEST_CONTENTFUL_PAINT_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.LARGEST_CONTENTFUL_PAINT_MS.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.LARGEST_CONTENTFUL_PAINT_MS.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 144,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.LARGEST_CONTENTFUL_PAINT_MS.p75, 5)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 39
+      },
+      "id": 105,
+      "panels": [],
+      "title": "LCP Page Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 40
+      },
+      "id": 106,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "pages",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.LARGEST_CONTENTFUL_PAINT_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.LARGEST_CONTENTFUL_PAINT_MS.moderate, 'Moderate')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.LARGEST_CONTENTFUL_PAINT_MS.slow, 'Slow')",
+          "textEditor": true
+        }
+      ],
+      "title": "$device - $domains - $pages",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 56
+      },
+      "id": 149,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.LARGEST_CONTENTFUL_PAINT_MS.p75, 6)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 67
+      },
+      "id": 75,
+      "panels": [],
+      "title": "CLS Origin Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 68
+      },
+      "id": 146,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "domains",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.CUMULATIVE_LAYOUT_SHIFT_SCORE.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.CUMULATIVE_LAYOUT_SHIFT_SCORE.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.CUMULATIVE_LAYOUT_SHIFT_SCORE.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 76
+      },
+      "id": 147,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 5)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 87
+      },
+      "id": 117,
+      "panels": [],
+      "title": "CLS Page Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 88
+      },
+      "id": 150,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "pages",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.CUMULATIVE_LAYOUT_SHIFT_SCORE.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.CUMULATIVE_LAYOUT_SHIFT_SCORE.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.CUMULATIVE_LAYOUT_SHIFT_SCORE.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains - $pages",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 104
+      },
+      "id": 151,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 6)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 115
+      },
+      "id": 91,
+      "panels": [],
+      "title": "FID Origin Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 116
+      },
+      "id": 153,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "domains",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.FIRST_INPUT_DELAY_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.FIRST_INPUT_DELAY_MS.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.FIRST_INPUT_DELAY_MS.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "BistroMD"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 124
+      },
+      "id": 154,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.FIRST_INPUT_DELAY_MS.p75, 5)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 135
+      },
+      "id": 115,
+      "panels": [],
+      "title": "FID Page Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 136
+      },
+      "id": 164,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "pages",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.FIRST_INPUT_DELAY_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.FIRST_INPUT_DELAY_MS.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.FIRST_INPUT_DELAY_MS.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains - $pages",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 152
+      },
+      "id": 165,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.FIRST_INPUT_DELAY_MS.p75, 6)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 163
+      },
+      "id": 87,
+      "panels": [],
+      "title": "TTFB Origin Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 164
+      },
+      "id": 157,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "domains",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.TIME_TO_FIRST_BYTE_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.TIME_TO_FIRST_BYTE_MS.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.TIME_TO_FIRST_BYTE_MS.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 172
+      },
+      "id": 158,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.TIME_TO_FIRST_BYTE_MS.p75, 5)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 183
+      },
+      "id": 111,
+      "panels": [],
+      "title": "TTFB Page Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 184
+      },
+      "id": 173,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "pages",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.TIME_TO_FIRST_BYTE_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.TIME_TO_FIRST_BYTE_MS.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.TIME_TO_FIRST_BYTE_MS.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains - $pages",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 200
+      },
+      "id": 170,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.TIME_TO_FIRST_BYTE_MS.p75, 6)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 211
+      },
+      "id": 89,
+      "panels": [],
+      "title": "FCP Origin Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 212
+      },
+      "id": 155,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "domains",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.FIRST_CONTENTFUL_PAINT_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.FIRST_CONTENTFUL_PAINT_MS.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.FIRST_CONTENTFUL_PAINT_MS.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 220
+      },
+      "id": 156,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.FIRST_CONTENTFUL_PAINT_MS.p75, 5)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 231
+      },
+      "id": 113,
+      "panels": [],
+      "title": "FCP Page Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 232
+      },
+      "id": 169,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "pages",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.FIRST_CONTENTFUL_PAINT_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.FIRST_CONTENTFUL_PAINT_MS.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.FIRST_CONTENTFUL_PAINT_MS.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains - $pages",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 248
+      },
+      "id": 174,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.FIRST_CONTENTFUL_PAINT_MS.p75, 6)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 259
+      },
+      "id": 85,
+      "panels": [],
+      "title": "INP Origin Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 260
+      },
+      "id": 159,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "domains",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.INTERACTION_TO_NEXT_PAINT_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.INTERACTION_TO_NEXT_PAINT_MS.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.INTERACTION_TO_NEXT_PAINT_MS.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 268
+      },
+      "id": 160,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.$device.INTERACTION_TO_NEXT_PAINT_MS.p75, 5)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 279
+      },
+      "id": 109,
+      "panels": [],
+      "title": "INP Page Distribution",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fast"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Moderate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 280
+      },
+      "id": 178,
+      "maxPerRow": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "pages",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.INTERACTION_TO_NEXT_PAINT_MS.fast, 'Fast')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.INTERACTION_TO_NEXT_PAINT_MS.moderate, 'Moderate')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.INTERACTION_TO_NEXT_PAINT_MS.slow, 'Slow')",
+          "textEditor": false
+        }
+      ],
+      "title": "$device - $domains - $pages",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 296
+      },
+      "id": 179,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.$pages.crux.loadingExperience.$device.INTERACTION_TO_NEXT_PAINT_MS.p75, 6)",
+          "textEditor": false
+        }
+      ],
+      "title": "$device",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [
+    "CrUX",
+    "Chrome User Experience"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "TLD",
+          "value": "TLD"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Test Type",
+        "multi": false,
+        "name": "testtype",
+        "options": [],
+        "query": {
+          "queryType": "Default",
+          "refId": "A",
+          "target": "sitespeed_io.*"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "McAfee",
+          "value": "McAfee"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Test Name",
+        "multi": false,
+        "name": "testname",
+        "options": [],
+        "query": {
+          "queryType": "Default",
+          "refId": "A",
+          "target": "sitespeed_io.$testtype.*"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Domains",
+        "multi": true,
+        "name": "domains",
+        "options": [],
+        "query": {
+          "queryType": "Default",
+          "refId": "A",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.*"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Pages",
+        "multi": true,
+        "name": "pages",
+        "options": [],
+        "query": {
+          "queryType": "Default",
+          "refId": "A",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.pageSummary.$domains.*"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "DESKTOP",
+          "value": "DESKTOP"
+        },
+        "datasource": {
+          "type": "graphite",
+          "uid": "Qotwtdl7z"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Device",
+        "multi": false,
+        "name": "device",
+        "options": [],
+        "query": {
+          "queryType": "Default",
+          "refId": "A",
+          "target": "sitespeed_io.$testtype.$testname.PSI-CrUX.summary.$domains.crux.originLoadingExperience.*"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Chrome User Experience",
+  "uid": "5DLsVPv4z",
+  "version": 127,
+  "weekStart": ""
+}

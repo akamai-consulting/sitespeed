@@ -1,0 +1,444 @@
+Page Summary
+
+└── chrome
+    ├── LAN
+    │   ├── browsertime
+    │   │   └── statistics
+    │   │       ├── browser
+    │   │       │   └── cpuBenchmark
+    │   │       ├── cdp
+    │   │       │   └── performance
+    │   │       │       ├── FirstMeaningfulPaint
+    │   │       │       ├── JSHeapTotalSize
+    │   │       │       ├── JSHeapUsedSize
+    │   │       │       └── RecalcStyleCount
+    │   │       ├── cpu
+    │   │       │   ├── categories
+    │   │       │   │   ├── garbageCollection
+    │   │       │   │   ├── other
+    │   │       │   │   ├── paintCompositeRender
+    │   │       │   │   ├── parseHTML
+    │   │       │   │   ├── scriptEvaluation
+    │   │       │   │   ├── scriptParseCompile
+    │   │       │   │   └── styleLayout
+    │   │       │   ├── events
+    │   │       │   │   ├── CompositeLayers
+    │   │       │   │   ├── ContextCreatedNotification
+    │   │       │   │   ├── EvaluateScript
+    │   │       │   │   ├── EventDispatch
+    │   │       │   │   ├── FunctionCall
+    │   │       │   │   ├── InstallConditionalFeatures
+    │   │       │   │   ├── Layout
+    │   │       │   │   ├── LocalWindowProxy__CreateContext
+    │   │       │   │   ├── Paint
+    │   │       │   │   ├── ParseHTML
+    │   │       │   │   ├── PrePaint
+    │   │       │   │   ├── RunMicrotasks
+    │   │       │   │   ├── RunTask
+    │   │       │   │   ├── TimerFire
+    │   │       │   │   ├── UpdateLayoutTree
+    │   │       │   │   ├── V8_BytecodeBudgetInterrupt
+    │   │       │   │   ├── V8_BytecodeBudgetInterruptWithStackCheck
+    │   │       │   │   ├── v8_callFunction
+    │   │       │   │   ├── v8_compile
+    │   │       │   │   ├── V8_DeoptimizeCode
+    │   │       │   │   ├── V8_DeserializeContext
+    │   │       │   │   ├── V8_GC_MC_INCREMENTAL
+    │   │       │   │   ├── V8_GCScavenger
+    │   │       │   │   ├── V8_GC_SCAVENGER
+    │   │       │   │   ├── V8_GC_SCAVENGER_SCAVENGE_PARALLEL
+    │   │       │   │   ├── V8_HandleInterrupts
+    │   │       │   │   ├── v8_run
+    │   │       │   │   └── XHRReadyStateChange
+    │   │       │   └── longTasks
+    │   │       │       ├── afterLoadEventEnd
+    │   │       │       │   ├── tasks
+    │   │       │       │   └── totalDuration
+    │   │       │       ├── beforeFirstContentfulPaint
+    │   │       │       │   ├── tasks
+    │   │       │       │   └── totalDuration
+    │   │       │       ├── beforeFirstPaint
+    │   │       │       │   ├── tasks
+    │   │       │       │   └── totalDuration
+    │   │       │       ├── beforeLargestContentfulPaint
+    │   │       │       │   ├── tasks
+    │   │       │       │   └── totalDuration
+    │   │       │       ├── durations
+    │   │       │       ├── lastLongTask
+    │   │       │       ├── maxPotentialFid
+    │   │       │       ├── tasks
+    │   │       │       ├── totalBlockingTime
+    │   │       │       └── totalDuration
+    │   │       ├── deltaToTFFB
+    │   │       │   ├── firstContentfulPaint
+    │   │       │   ├── firstVisualChange
+    │   │       │   ├── largestContentfulPaint
+    │   │       │   └── lastVisualChange
+    │   │       ├── errors
+    │   │       ├── googleWebVitals
+    │   │       │   ├── cumulativeLayoutShift
+    │   │       │   ├── firstContentfulPaint
+    │   │       │   ├── firstInputDelay
+    │   │       │   ├── largestContentfulPaint
+    │   │       │   ├── totalBlockingTime
+    │   │       │   └── ttfb
+    │   │       ├── pageinfo
+    │   │       │   ├── cumulativeLayoutShift
+    │   │       │   └── domElements
+    │   │       ├── timings
+    │   │       │   ├── firstPaint
+    │   │       │   ├── fullyLoaded
+    │   │       │   ├── largestContentfulPaint
+    │   │       │   │   ├── loadTime
+    │   │       │   │   └── renderTime
+    │   │       │   ├── loadEventEnd
+    │   │       │   ├── mainDocumentTimings
+    │   │       │   │   ├── blocked
+    │   │       │   │   ├── connect
+    │   │       │   │   ├── dns
+    │   │       │   │   ├── _queued
+    │   │       │   │   ├── receive
+    │   │       │   │   ├── send
+    │   │       │   │   ├── ssl
+    │   │       │   │   └── wait
+    │   │       │   ├── navigationTiming
+    │   │       │   │   ├── connectStart
+    │   │       │   │   ├── domainLookupEnd
+    │   │       │   │   ├── domainLookupStart
+    │   │       │   │   ├── domComplete
+    │   │       │   │   ├── domContentLoadedEventEnd
+    │   │       │   │   ├── domContentLoadedEventStart
+    │   │       │   │   ├── domInteractive
+    │   │       │   │   ├── duration
+    │   │       │   │   ├── fetchStart
+    │   │       │   │   ├── loadEventEnd
+    │   │       │   │   ├── loadEventStart
+    │   │       │   │   ├── redirectEnd
+    │   │       │   │   ├── redirectStart
+    │   │       │   │   ├── requestStart
+    │   │       │   │   ├── responseEnd
+    │   │       │   │   ├── responseStart
+    │   │       │   │   ├── secureConnectionStart
+    │   │       │   │   ├── startTime
+    │   │       │   │   ├── unloadEventEnd
+    │   │       │   │   ├── unloadEventStart
+    │   │       │   │   └── workerStart
+    │   │       │   ├── pageTimings
+    │   │       │   │   ├── backEndTime
+    │   │       │   │   ├── domainLookupTime
+    │   │       │   │   ├── domContentLoadedTime
+    │   │       │   │   ├── domInteractiveTime
+    │   │       │   │   ├── frontEndTime
+    │   │       │   │   ├── pageDownloadTime
+    │   │       │   │   ├── pageLoadTime
+    │   │       │   │   ├── redirectionTime
+    │   │       │   │   ├── serverConnectionTime
+    │   │       │   │   └── serverResponseTime
+    │   │       │   ├── paintTiming
+    │   │       │   │   ├── first-contentful-paint
+    │   │       │   │   └── first-paint
+    │   │       │   └── ttfb
+    │   │       └── visualMetrics
+    │   │           ├── ContentfulSpeedIndex
+    │   │           ├── FirstVisualChange
+    │   │           ├── LargestContentfulPaint
+    │   │           ├── LargestImage
+    │   │           ├── LastMeaningfulPaint
+    │   │           ├── LastVisualChange
+    │   │           ├── PerceptualSpeedIndex
+    │   │           ├── SpeedIndex
+    │   │           ├── VisualComplete85
+    │   │           ├── VisualComplete95
+    │   │           ├── VisualComplete99
+    │   │           └── VisualReadiness
+    │   ├── coach
+    │   │   └── advice
+    │   │       ├── bestpractice
+    │   │       ├── info
+    │   │       │   └── domDepth
+    │   │       ├── performance
+    │   │       └── privacy
+    │   ├── pagexray
+    │   │   ├── contentTypes
+    │   │   │   ├── css
+    │   │   │   ├── favicon
+    │   │   │   ├── font
+    │   │   │   ├── html
+    │   │   │   ├── image
+    │   │   │   ├── javascript
+    │   │   │   ├── json
+    │   │   │   ├── other
+    │   │   │   └── plain
+    │   │   ├── expireStats
+    │   │   ├── firstParty
+    │   │   │   └── contentTypes
+    │   │   │       ├── css
+    │   │   │       ├── favicon
+    │   │   │       ├── font
+    │   │   │       ├── html
+    │   │   │       ├── image
+    │   │   │       ├── javascript
+    │   │   │       ├── json
+    │   │   │       ├── other
+    │   │   │       └── plain
+    │   │   ├── lastModifiedStats
+    │   │   ├── responseCodes
+    │   │   └── thirdParty
+    │   │       └── contentTypes
+    │   │           ├── css
+    │   │           ├── font
+    │   │           ├── html
+    │   │           ├── image
+    │   │           ├── javascript
+    │   │           ├── json
+    │   │           └── plain
+    │   └── thirdparty
+    │       ├── category
+    │       │   ├── ad
+    │       │   │   ├── requests
+    │       │   │   └── tools
+    │       │   ├── analytics
+    │       │   │   ├── requests
+    │       │   │   └── tools
+    │       │   ├── social
+    │       │   │   ├── requests
+    │       │   │   └── tools
+    │       │   ├── survelliance
+    │       │   │   ├── requests
+    │       │   │   └── tools
+    │       │   ├── tag-manager
+    │       │   │   ├── requests
+    │       │   │   └── tools
+    │       │   └── utility
+    │       │       ├── requests
+    │       │       └── tools
+    │       ├── cookies
+    │       ├── requests
+    │       │   ├── percentage
+    │       │   └── total
+    │       └── tool
+    │           ├── connect_secure_wellsfargo_com
+    │           │   └── cpu
+    │           ├── static_wellsfargo_com
+    │           │   └── cpu
+    │           └── www_wellsfargo_com
+    │               └── cpu
+    └── LTE
+        ├── browsertime
+        │   └── statistics
+        │       ├── browser
+        │       │   └── cpuBenchmark
+        │       ├── cdp
+        │       │   └── performance
+        │       │       ├── FirstMeaningfulPaint
+        │       │       ├── JSHeapTotalSize
+        │       │       ├── JSHeapUsedSize
+        │       │       └── RecalcStyleCount
+        │       ├── cpu
+        │       │   ├── categories
+        │       │   │   ├── garbageCollection
+        │       │   │   ├── other
+        │       │   │   ├── paintCompositeRender
+        │       │   │   ├── parseHTML
+        │       │   │   ├── scriptEvaluation
+        │       │   │   ├── scriptParseCompile
+        │       │   │   └── styleLayout
+        │       │   ├── events
+        │       │   │   ├── CompositeLayers
+        │       │   │   ├── EvaluateScript
+        │       │   │   ├── EventDispatch
+        │       │   │   ├── FunctionCall
+        │       │   │   ├── InstallConditionalFeatures
+        │       │   │   ├── Layout
+        │       │   │   ├── LocalWindowProxy__CreateContext
+        │       │   │   ├── Paint
+        │       │   │   ├── PaintImage
+        │       │   │   ├── ParseAuthorStyleSheet
+        │       │   │   ├── ParseHTML
+        │       │   │   ├── PrePaint
+        │       │   │   ├── RunMicrotasks
+        │       │   │   ├── RunTask
+        │       │   │   ├── TimerFire
+        │       │   │   ├── UpdateLayoutTree
+        │       │   │   ├── V8_BytecodeBudgetInterrupt
+        │       │   │   ├── V8_BytecodeBudgetInterruptWithStackCheck
+        │       │   │   ├── v8_callFunction
+        │       │   │   ├── v8_compile
+        │       │   │   ├── V8_DeserializeContext
+        │       │   │   ├── V8_GC_HEAP_EMBEDDER_TRACING_EPILOGUE
+        │       │   │   ├── V8_GC_SCAVENGER_SCAVENGE_PARALLEL
+        │       │   │   ├── V8_GC_SCAVENGER_SCAVENGE_ROOTS
+        │       │   │   ├── v8_newInstance
+        │       │   │   ├── v8_run
+        │       │   │   └── XHRReadyStateChange
+        │       │   └── longTasks
+        │       │       ├── afterLoadEventEnd
+        │       │       │   ├── tasks
+        │       │       │   └── totalDuration
+        │       │       ├── beforeFirstContentfulPaint
+        │       │       │   ├── tasks
+        │       │       │   └── totalDuration
+        │       │       ├── beforeFirstPaint
+        │       │       │   ├── tasks
+        │       │       │   └── totalDuration
+        │       │       ├── beforeLargestContentfulPaint
+        │       │       │   ├── tasks
+        │       │       │   └── totalDuration
+        │       │       ├── durations
+        │       │       ├── lastLongTask
+        │       │       ├── maxPotentialFid
+        │       │       ├── tasks
+        │       │       ├── totalBlockingTime
+        │       │       └── totalDuration
+        │       ├── deltaToTFFB
+        │       │   ├── firstContentfulPaint
+        │       │   ├── firstVisualChange
+        │       │   ├── largestContentfulPaint
+        │       │   └── lastVisualChange
+        │       ├── errors
+        │       ├── googleWebVitals
+        │       │   ├── cumulativeLayoutShift
+        │       │   ├── firstContentfulPaint
+        │       │   ├── firstInputDelay
+        │       │   ├── largestContentfulPaint
+        │       │   ├── totalBlockingTime
+        │       │   └── ttfb
+        │       ├── pageinfo
+        │       │   ├── cumulativeLayoutShift
+        │       │   └── domElements
+        │       ├── timings
+        │       │   ├── firstPaint
+        │       │   ├── fullyLoaded
+        │       │   ├── largestContentfulPaint
+        │       │   │   ├── loadTime
+        │       │   │   └── renderTime
+        │       │   ├── loadEventEnd
+        │       │   ├── mainDocumentTimings
+        │       │   │   ├── blocked
+        │       │   │   ├── connect
+        │       │   │   ├── dns
+        │       │   │   ├── _queued
+        │       │   │   ├── receive
+        │       │   │   ├── send
+        │       │   │   ├── ssl
+        │       │   │   └── wait
+        │       │   ├── navigationTiming
+        │       │   │   ├── connectStart
+        │       │   │   ├── domainLookupEnd
+        │       │   │   ├── domainLookupStart
+        │       │   │   ├── domComplete
+        │       │   │   ├── domContentLoadedEventEnd
+        │       │   │   ├── domContentLoadedEventStart
+        │       │   │   ├── domInteractive
+        │       │   │   ├── duration
+        │       │   │   ├── fetchStart
+        │       │   │   ├── loadEventEnd
+        │       │   │   ├── loadEventStart
+        │       │   │   ├── redirectEnd
+        │       │   │   ├── redirectStart
+        │       │   │   ├── requestStart
+        │       │   │   ├── responseEnd
+        │       │   │   ├── responseStart
+        │       │   │   ├── secureConnectionStart
+        │       │   │   ├── startTime
+        │       │   │   ├── unloadEventEnd
+        │       │   │   ├── unloadEventStart
+        │       │   │   └── workerStart
+        │       │   ├── pageTimings
+        │       │   │   ├── backEndTime
+        │       │   │   ├── domainLookupTime
+        │       │   │   ├── domContentLoadedTime
+        │       │   │   ├── domInteractiveTime
+        │       │   │   ├── frontEndTime
+        │       │   │   ├── pageDownloadTime
+        │       │   │   ├── pageLoadTime
+        │       │   │   ├── redirectionTime
+        │       │   │   ├── serverConnectionTime
+        │       │   │   └── serverResponseTime
+        │       │   ├── paintTiming
+        │       │   │   ├── first-contentful-paint
+        │       │   │   └── first-paint
+        │       │   └── ttfb
+        │       └── visualMetrics
+        │           ├── ContentfulSpeedIndex
+        │           ├── FirstVisualChange
+        │           ├── LargestContentfulPaint
+        │           ├── LargestImage
+        │           ├── LastMeaningfulPaint
+        │           ├── LastVisualChange
+        │           ├── PerceptualSpeedIndex
+        │           ├── SpeedIndex
+        │           ├── VisualComplete85
+        │           ├── VisualComplete95
+        │           ├── VisualComplete99
+        │           └── VisualReadiness
+        ├── coach
+        │   └── advice
+        │       ├── bestpractice
+        │       ├── info
+        │       │   └── domDepth
+        │       ├── performance
+        │       └── privacy
+        ├── pagexray
+        │   ├── contentTypes
+        │   │   ├── css
+        │   │   ├── favicon
+        │   │   ├── font
+        │   │   ├── html
+        │   │   ├── image
+        │   │   ├── javascript
+        │   │   ├── json
+        │   │   └── plain
+        │   ├── expireStats
+        │   ├── firstParty
+        │   │   └── contentTypes
+        │   │       ├── css
+        │   │       ├── favicon
+        │   │       ├── font
+        │   │       ├── html
+        │   │       ├── image
+        │   │       ├── javascript
+        │   │       ├── json
+        │   │       └── plain
+        │   ├── lastModifiedStats
+        │   ├── responseCodes
+        │   └── thirdParty
+        │       └── contentTypes
+        │           ├── css
+        │           ├── font
+        │           ├── html
+        │           ├── image
+        │           ├── javascript
+        │           ├── json
+        │           └── plain
+        └── thirdparty
+            ├── category
+            │   ├── ad
+            │   │   ├── requests
+            │   │   └── tools
+            │   ├── analytics
+            │   │   ├── requests
+            │   │   └── tools
+            │   ├── social
+            │   │   ├── requests
+            │   │   └── tools
+            │   ├── survelliance
+            │   │   ├── requests
+            │   │   └── tools
+            │   ├── tag-manager
+            │   │   ├── requests
+            │   │   └── tools
+            │   └── utility
+            │       ├── requests
+            │       └── tools
+            ├── cookies
+            ├── requests
+            │   ├── percentage
+            │   └── total
+            └── tool
+                ├── connect_secure_wellsfargo_com
+                │   └── cpu
+                ├── static_wellsfargo_com
+                │   └── cpu
+                └── www_wellsfargo_com
+                    └── cpu
