@@ -14,7 +14,7 @@
 # <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
 # <UDF name="LOCATION" Label="Location" Example="US-East or New-York (no spaces)" />
 # <UDF name="HOST" Label="Hostname" Example="sitespeed.akamai.com (must be resolvable)" />
-# <UDF name="GRAPHITE" Label="IP  or friendly name of Graphite (must be resolvable)" />
+# <UDF name="GRAPHITE" Label="IP or friendly name of Graphite (must be resolvable)" />
 
 # Update the core OS
 yum -y update
@@ -62,10 +62,12 @@ sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/sitespeed.sh
 # Extract portal files
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/portal -xf /portal.tgz
 
-# Modify index.html
+# Modify index.html and error.html
 sed -i "s/\[LOCATION\]/$LOCATION/g" /usr/local/sitespeed/portal/index.html
 sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/portal/index.html
 sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/portal/index.html
+sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/portal/error.html
+sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/portal/error.html
 
 # Create sitespeed group and set ownership and permissions
 groupadd sitespeed
