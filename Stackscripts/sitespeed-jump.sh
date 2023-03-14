@@ -2,7 +2,7 @@
 
 ############################################
 #                                          #
-#         sitespeed-sitespeed.sh           #
+#         sitespeed-jump.sh                #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -12,7 +12,7 @@
 # <UDF name="USERNAME" Label="Name of admin user" />
 # <UDF name="PASSWORD" Label="Password for admin user" />
 # <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
-# <UDF name="LOCATION" Label="Server location" Example="US-East or New-York (no spaces)" />
+# <UDF name="LOCATION" Label="Name(s) of Sitespeed servers" Example="New-York Dallas SanFran (no spaces in name)" />
 # <UDF name="HOST" Label="Hostname" Example="sitespeed.akamai.com (must be resolvable)" />
 # <UDF name="GRAPHITE" Label="IP or friendly name of Graphite (must be resolvable)" />
 
@@ -20,24 +20,17 @@
 yum -y update
 
 # Install packages
-yum -y install tree wget nmap-ncat iproute-tc kernel-modules-extra
+yum -y install tree wget nmap-ncat
 yum -y install epel-release && yum -y install nginx
 
 # Update the system timezone
 timedatectl set-timezone $TIMEZONE
 
-# Modify the kernel for network throttling 
-modprobe sch_netem
-
-# Install Docker
-curl -fsSL https://get.docker.com/ | sh
-
-# Start Docker
-systemctl --now enable docker
-
 # Download configurations files
-wget https://as.akamai.com/user/sitespeed/sitespeed.tgz
+wget https://as.akamai.com/user/sitespeed/jump.tgz
 wget https://as.akamai.com/user/sitespeed/portal.tgz
+wget https://as.akamai.com/user/sitespeed/google.tgz
+wget https://as.akamai.com/user/sitespeed/sitespeed.tgz
 
 # Modify sudoers
 sed -i 's/# %wheel/%wheel/' /etc/sudoers
@@ -46,56 +39,58 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 useradd $USERNAME
 echo "$PASSWORD" | passwd "$USERNAME" --stdin
 
-# Create sitespeed group and add user to required groups
+# Create sitespeed user
+useradd sitespeed
+echo "$PASSWORD" | passwd sitespeed --stdin
+
+# Add users to required groups
 groupadd sitespeed
+usermod -aG wheel sitespeed
+usermod -aG docker sitespeed
 usermod -aG wheel $USERNAME
 usermod -aG docker $USERNAME
 usermod -aG sitespeed $USERNAME
 
 # Create SSH folder and working Sitespeed folder
 mkdir /home/$USERNAME/.ssh
-mkdir -p /usr/local/sitespeed/comp
-mkdir /usr/local/sitespeed/tld
-mkdir /usr/local/sitespeed/logs
+mkdir -p /usr/local/sitespeed/logs
 mkdir /usr/local/sitespeed/portal
+mkdir /usr/local/sitespeed/Google
+mkdir /usr/local/sitespeed/Sitespeed
+mkdir /usr/local/sitespeed/Seeds
+mkdir /usr/local/sitespeed/Cron
 
 # Extract TAR files into appropriate folders
-tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sitespeed.tgz *.pub
-tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /sitespeed.tgz *.sh
-tar --warning=none --no-same-owner -C /usr/local/sitespeed/tld -xf /sitespeed.tgz config.json
-tar --warning=none --no-same-owner -C /usr/local/sitespeed/comp -xf /sitespeed.tgz config.json
+tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /jump.tgz *.pub sitespeed
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/portal -xf /portal.tgz
+tar --warning=none --no-same-owner -C /usr/local/sitespeed/Google -xf /google.tgz *.sh
+tar --warning=none --no-same-owner -C /usr/local/sitespeed/Sitespeed -xf /sitespeed.tgz *.sh *.json
+tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /jump.tgz *.sh
+tar --warning=none --no-same-owner -C /usr/local/sitespeed/Cron -xf /jump.tgz *cron
 tar --warning=none --no-same-owner -C /etc/nginx -xf /sitespeed.tgz nginx.conf
 
 # Set ownership and permissions
 chgrp -R sitespeed /usr/local/sitespeed
 chmod -R 775 /usr/local/sitespeed
-chmod 664 /usr/local/sitespeed/tld/config.json 
-chmod 664 /usr/local/sitespeed/comp/config.json
+chmod 664 /usr/local/sitespeed/Sitespeed/config.json
 
 # Set up SSH
 cat /home/$USERNAME/.ssh/jump-*.pub > /home/$USERNAME/.ssh/authorized_keys
-cat /home/$USERNAME/.ssh/sitespeed.pub >> /home/$USERNAME/.ssh/authorized_keys
 rm /home/$USERNAME/.ssh/*.pub
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
 chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
 chgrp $USERNAME /home/$USERNAME/.ssh/authorized_keys
+chmod 600 /home/$USERNAME/.ssh/sitespeed
+chown $USERNAME /home/$USERNAME/.ssh/sitespeed
+chgrp $USERNAME /home/$USERNAME/.ssh/sitespeed
 
-# Modify config.json
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/tld/config.json
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/comp/config.json
+# Modify lots of files
 
-# Modify sitespeed.sh
-sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/sitespeed.sh
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/sitespeed.sh
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/sitespeed.sh
+# Write out LOCATION to see what it looks like
+echo $LOCATION > /usr/local/sitespeed/LOCATION
 
-# Modify index.html and error.html
-sed -i "s/\[LOCATION\]/$LOCATION/g" /usr/local/sitespeed/portal/index.html
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/portal/index.html
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/portal/index.html
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/portal/error.html
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/portal/error.html
+# Create symbolic links properly to push, and the cron files
+
 
 # Start nginx
 systemctl --now enable nginx

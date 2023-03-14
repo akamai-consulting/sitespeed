@@ -24,36 +24,14 @@ yum -y install tree wget nmap-ncat
 # Update the system timezone
 timedatectl set-timezone $TIMEZONE
 
-# Download configurations files
-wget https://as.akamai.com/user/sitespeed/google.tgz
-
 # Install Docker
 curl -fsSL https://get.docker.com/ | sh
 
 # Start Docker
 systemctl --now enable docker
 
-# Create working Sitespeed folder
-mkdir -p /usr/local/sitespeed/comp
-mkdir /usr/local/sitespeed/tld
-mkdir /usr/local/sitespeed/logs
-
-# Extract and modify script
-tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /google.tgz google.sh
-chmod 755 /usr/local/sitespeed/google.sh
-sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/google.sh
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/google.sh
-sed -i "s/\[API\]/$API/" /usr/local/sitespeed/google.sh
-
-# Create sitespeed group and set ownership and permissions
-groupadd sitespeed
-chgrp -R sitespeed /usr/local/sitespeed
-chmod -R 775 /usr/local/sitespeed
-
-# Harden file system
-sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
-sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-systemctl restart sshd
+# Download configurations files
+wget https://as.akamai.com/user/sitespeed/google.tgz
 
 # Modify sudoers
 sed -i 's/# %wheel/%wheel/' /etc/sudoers
@@ -62,17 +40,40 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 useradd $USERNAME
 echo "$PASSWORD" | passwd "$USERNAME" --stdin
 
-# Add admin to required groups
+# Create sitespeed group and add user to required groups
+groupadd sitespeed
 usermod -aG wheel $USERNAME
 usermod -aG docker $USERNAME
 usermod -aG sitespeed $USERNAME
 
-# Set up SSH
+# Create SSH folder and working Sitespeed folder
 mkdir /home/$USERNAME/.ssh
+mkdir -p /usr/local/sitespeed/comp
+mkdir /usr/local/sitespeed/tld
+mkdir /usr/local/sitespeed/logs
+
+# Extract TAR files into appropriate folders
+tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /google.tgz google.sh
 tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /google.tgz *.pub
+
+# Set ownership and permissions
+chgrp -R sitespeed /usr/local/sitespeed
+chmod -R 775 /usr/local/sitespeed
+
+# Set up SSH
 cat /home/$USERNAME/.ssh/jump-*.pub > /home/$USERNAME/.ssh/authorized_keys
 cat /home/$USERNAME/.ssh/sitespeed.pub >> /home/$USERNAME/.ssh/authorized_keys
 rm /home/$USERNAME/.ssh/*.pub
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
 chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
 chgrp $USERNAME /home/$USERNAME/.ssh/authorized_keys
+
+# Modify google.sh
+sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/google.sh
+sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/google.sh
+sed -i "s/\[API\]/$API/" /usr/local/sitespeed/google.sh
+
+# Harden file system
+sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+systemctl restart sshd
