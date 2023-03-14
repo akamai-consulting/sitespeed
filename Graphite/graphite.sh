@@ -58,7 +58,7 @@ case $1 in
                -v /usr/local/graphite/graphite-storage:/opt/graphite/storage \
                -v /usr/local/graphite/log:/var/log \
                -p 8888:80 \
-               -p 2003-2004:2003-2004 \
+               -p 2003:2003 \
                graphiteapp/graphite-statsd:1.1.8-8
                if [ $? -eq 0 ]; then
                   echo -e "\n${Green}Graphite Docker container successfully started${NoColor}\n"
