@@ -1,1 +1,0 @@
-5 * * * * /usr/local/sitespeed/sitespeed.sh tld Adobe XXX 3 &>> /usr/local/sitespeed/logs/YYY.ZZZ.msg.log
