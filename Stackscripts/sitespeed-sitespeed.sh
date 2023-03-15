@@ -12,9 +12,9 @@
 # <UDF name="USERNAME" Label="Name of admin user" />
 # <UDF name="PASSWORD" Label="Password for admin user" />
 # <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
-# <UDF name="LOCATION" Label="Server location" Example="US-East or New-York (no spaces)" />
-# <UDF name="HOST" Label="Hostname" Example="sitespeed.akamai.com (must be resolvable)" />
-# <UDF name="GRAPHITE" Label="IP or friendly name of Graphite (must be resolvable)" />
+# <UDF name="HOST" Label="Host name for this server" Example="US-East or Chicago (no spaces allowed)" />
+# <UDF name="GRAPHITE" Label="Graphite host name" />
+# <UDF name="DOMAIN" Label="Domain name" Example="sitespeed.akamai.com" />
 
 # Update the core OS
 yum -y update
@@ -82,19 +82,19 @@ chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
 chgrp $USERNAME /home/$USERNAME/.ssh/authorized_keys
 
 # Modify config.json
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/tld/config.json
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/comp/config.json
+sed -i "s/\[GRAPHITE\]\.\[DOMAIN\]/$GRAPHITE.$DOMAIN/" /usr/local/sitespeed/tld/config.json
+sed -i "s/\[GRAPHITE\]\.\[DOMAIN\]/$GRAPHITE.$DOMAIN/" /usr/local/sitespeed/comp/config.json
 
 # Modify sitespeed.sh
 sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/sitespeed.sh
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/sitespeed.sh
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/sitespeed.sh
 sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/sitespeed.sh
 
 # Modify index.html and error.html
-sed -i "s/\[LOCATION\]/$LOCATION/g" /usr/local/sitespeed/portal/index.html
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/portal/index.html
+sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/index.html
+sed -i "s/\[HOST\]/$HOST/g" /usr/local/sitespeed/portal/index.html
 sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/portal/index.html
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/portal/error.html
+sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/error.html
 sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/portal/error.html
 
 # Start nginx

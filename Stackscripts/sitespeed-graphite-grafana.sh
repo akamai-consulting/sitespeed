@@ -12,6 +12,8 @@
 # <UDF name="USERNAME" Label="Name of admin user" />
 # <UDF name="PASSWORD" Label="Password for admin user" />
 # <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
+# <UDF name="HOST" Label="Host name for this server" Example="graphite or grafana (no spaces allowed)" />
+# <UDF name="DOMAIN" Label="Domain name" Example="sitespeed.akamai.com" />
 
 # Update the core OS
 yum -y update
@@ -89,6 +91,7 @@ sed -i -r "s#;default_timezone = browser#default_timezone = $TIMEZONE#" /etc/gra
 sed -i 's/;http_port = 3000/http_port = 80/' /etc/grafana/grafana.ini
 sed -i 's/;default_theme = dark/default_theme = light/' /etc/grafana/grafana.ini
 sed -i '/;default_home_dashboard_path =/a default_home_dashboard_path = /var/lib/grafana/dashboards/sitespeed/Welcome to sitespeed.io.json' /etc/grafana/grafana.ini
+sed -i "s/;domain = localhost/domain = $HOST.$DOMAIN/" /etc/grafana/grafana.ini
 sed -i 's/CapabilityBoundingSet=/&CAP_NET_BIND_SERVICE/' /usr/lib/systemd/system/grafana-server.service
 sed -i '/CAP_NET_BIND_SERVICE/a AmbientCapabilities=CAP_NET_BIND_SERVICE' /usr/lib/systemd/system/grafana-server.service
 sed -i '/AmbientCapabilities=CAP_NET_BIND_SERVICE/a PrivateUsers=false' /usr/lib/systemd/system/grafana-server.service

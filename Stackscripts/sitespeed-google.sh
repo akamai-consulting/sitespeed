@@ -12,7 +12,9 @@
 # <UDF name="USERNAME" Label="Name of admin user" />
 # <UDF name="PASSWORD" Label="Password for admin user" />
 # <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
-# <UDF name="GRAPHITE" Label="IP address OR friendly name of Graphite database (must be resolvable)" />
+# <UDF name="HOST" Label="Host name for this server" Example="google or psi-crux (no spaces allowed)" />
+# <UDF name="GRAPHITE" Label="Graphite host name" />
+# <UDF name="DOMAIN" Label="Domain name" Example="sitespeed.akamai.com" />
 # <UDF name="API" Label="Google API Key" />
 
 # Update the core OS
@@ -71,6 +73,7 @@ chgrp $USERNAME /home/$USERNAME/.ssh/authorized_keys
 # Modify google.sh
 sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/google.sh
 sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/google.sh
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/google.sh
 sed -i "s/\[API\]/$API/" /usr/local/sitespeed/google.sh
 
 # Harden file system

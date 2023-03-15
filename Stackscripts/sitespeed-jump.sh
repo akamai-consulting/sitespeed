@@ -13,6 +13,7 @@
 # <UDF name="PASSWORD" Label="Password for admin user" />
 # <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
 # <UDF name="LOCATION" Label="Name(s) of Sitespeed servers" Example="New-York Dallas SanFran (no spaces in name)" />
+# <UDF name="GOOGLE" Label="Name of the Google server" Example="Google or PSI-CrUX (no spaces in name)" />
 # <UDF name="HOST" Label="Hostname" Example="sitespeed.akamai.com (must be resolvable)" />
 # <UDF name="GRAPHITE" Label="IP or friendly name of Graphite (must be resolvable)" />
 
@@ -86,11 +87,7 @@ chgrp $USERNAME /home/$USERNAME/.ssh/sitespeed
 
 # Modify lots of files
 
-# Write out LOCATION to see what it looks like
-echo $LOCATION > /usr/local/sitespeed/LOCATION
-
 # Create symbolic links properly to push, and the cron files
-
 
 # Start nginx
 systemctl --now enable nginx

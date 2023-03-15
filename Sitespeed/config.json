@@ -25,7 +25,7 @@
   "showAll": true
   },
 "graphite": {
-  "host": "[GRAPHITE]",
+  "host": "[GRAPHITE].[DOMAIN]",
   "httpPort": "8888",
   "annotationScreenshot": true,
   "sendAnnotation": true,

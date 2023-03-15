@@ -3,12 +3,15 @@
 ############################################
 #                                          #
 #              sitespeed.sh                #
-#                  v 46                    #
+#                  v 47                    #
 #                                          #
 ############################################
 
 # Set variables
 SitespeedVer="sitespeedio/sitespeed.io:26.1.0"
+Graphite=[GRAPHITE]
+Domain=[DOMAIN]
+
 ChromeLAN="--browsertime.connectivity.alias LAN"
 ChromeLTE="-c custom --browsertime.connectivity.alias LTE --downstreamKbps 12000 --upstreamKbps 12000 --latency 35 --connectivity.engine throttle --chrome.CPUThrottlingRate 4 --mobile"
 Pragma="--requestheader Pragma:akamai-x-get-cache-key,akamai-x-cache-on,akamai-x-cache-remote-on,akamai-x-get-true-cache-key,akamai-x-check-cacheable,akamai-x-get-request-id"
@@ -121,7 +124,7 @@ for (( index=1; index < 3 ; index+=1 ))
      $SitespeedVer \
      -n $ITR \
      --config config.json \
-     --resultBaseURL "http://$3.[HOST]/$1/sitespeed-result" \
+     --resultBaseURL "http://$3.$Domain/$1/sitespeed-result" \
      $SitespeedDirs \
      --name "$RptName" \
      --slug $3 \
@@ -151,7 +154,7 @@ end=`date +%s`
 runtime=$((end-start))
 
 # Log the test duration
-echo "sitespeed_log.$graphdir.$2.$3.duration $runtime `date +%s`" | nc [GRAPHITE] 2003
+echo "sitespeed_log.$graphdir.$2.$3.duration $runtime `date +%s`" | nc $Graphite.$Domain 2003
 
 # Set the symlink for nginx root directive to point to the latest LAN index.html
 sudo ln -nsf $(find /usr/local/sitespeed/$1/sitespeed-result/ -maxdepth 3 -name index.html | xargs ls -Art | tail -n 1 | xargs dirname) /usr/local/sitespeed/portal/$weblan

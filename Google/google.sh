@@ -3,12 +3,14 @@
 ############################################
 #                                          #
 #               google.sh                  #
-#                  v 9                     #
+#                  v 10                     #
 #                                          #
 ############################################
 
 # Set variables
 SitespeedVer=sitespeedio/sitespeed.io:26.1.0-plus1
+Graphite=[GRAPHITE]
+Domain=[DOMAIN]
 
 # Print help
 if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
@@ -68,7 +70,7 @@ docker run \
  --gpsi.key "[API]" \
  --slug PSI-CrUX \
  --graphite.namespace sitespeed_io.$graphdir.$2 \
- --graphite.host [GRAPHITE] \
+ --graphite.host $Graphite.$Domain \
  $url
 
 echo "|=============================================================================="
@@ -92,7 +94,7 @@ docker run \
  --crux.collect "ALL" \
  --slug PSI-CrUX \
  --graphite.namespace sitespeed_io.$graphdir.$2 \
- --graphite.host [GRAPHITE] \
+ --graphite.host $Graphite.$Domain \
  $url
  
 end=`date +%s`
@@ -107,7 +109,7 @@ end=`date +%s`
 runtime=$((end-start))
 
 # Log the test duration
-echo "sitespeed_log.PSI-CrUX.$graphdir.$2.duration $runtime `date +%s`" | nc [GRAPHITE] 2003
+echo "sitespeed_log.PSI-CrUX.$graphdir.$2.duration $runtime `date +%s`" | nc $Graphite.$Domain 2003
 
 # Remove sitespeed_io structure
 sudo rm -Rf /usr/local/sitespeed/$1/sitespeed-result
