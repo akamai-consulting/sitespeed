@@ -12,8 +12,8 @@
 # <UDF name="USERNAME" Label="Name of admin user" />
 # <UDF name="PASSWORD" Label="Password for admin user" />
 # <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
-# <UDF name="HOST" Label="Host name for this server" Example="graphite or grafana (no spaces allowed)" />
-# <UDF name="DOMAIN" Label="Domain name" Example="sitespeed.akamai.com" />
+# <UDF name="HOST" Label="Host name for this server" Example="Example i.e., graphite or grafana (no spaces allowed)" />
+# <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
 
 # Update the core OS
 yum -y update
@@ -57,9 +57,16 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 useradd $USERNAME
 echo "$PASSWORD" | passwd "$USERNAME" --stdin
 
+# Create sitespeed user
+useradd sitespeed
+echo "$PASSWORD" | passwd sitespeed --stdin
+
 # Add admin to required groups
+usermod -aG wheel sitespeed
+usermod -aG docker sitespeed
 usermod -aG wheel $USERNAME
 usermod -aG docker $USERNAME
+usermod -aG sitespeed $USERNAME
 
 # Create Graphite, SSH, and Grafana dashboard folders
 mkdir /usr/local/graphite

@@ -12,9 +12,9 @@
 # <UDF name="USERNAME" Label="Name of admin user" />
 # <UDF name="PASSWORD" Label="Password for admin user" />
 # <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
-# <UDF name="HOST" Label="Host name for this server" Example="google or psi-crux (no spaces allowed)" />
+# <UDF name="HOST" Label="Host name for this server" Example="Example i.e., Google or PSI-CrUX (no spaces allowed)" />
+# <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
 # <UDF name="GRAPHITE" Label="Graphite host name" />
-# <UDF name="DOMAIN" Label="Domain name" Example="sitespeed.akamai.com" />
 # <UDF name="API" Label="Google API Key" />
 
 # Update the core OS
@@ -42,8 +42,11 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 useradd $USERNAME
 echo "$PASSWORD" | passwd "$USERNAME" --stdin
 
+# Create sitespeed user
+useradd sitespeed
+echo "$PASSWORD" | passwd sitespeed --stdin
+
 # Create sitespeed group and add user to required groups
-groupadd sitespeed
 usermod -aG wheel $USERNAME
 usermod -aG docker $USERNAME
 usermod -aG sitespeed $USERNAME
