@@ -12,7 +12,7 @@ The Graphite and Grafana components get installed on the same Linode.
 
 The Google and Portal components each get installed on their own Linode.
 
-The Sitespeed component is the primary testing machine, which gets installed on its own Linode. This componet should be installed in every location that you want to run tests.
+The Sitespeed component is the primary testing machine, which gets installed on its own Linode. This component should be installed in every location that you want to run tests.
 
 To install each of the components use the following Stackscrips:
 
