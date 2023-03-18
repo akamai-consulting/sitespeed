@@ -85,6 +85,13 @@ chmod 600 /home/$USERNAME/.ssh/sitespeed
 chown $USERNAME /home/$USERNAME/.ssh/sitespeed
 chgrp $USERNAME /home/$USERNAME/.ssh/sitespeed
 
+# Modify admin.sh
+sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/sitespeed/admin.sh
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/sitespeed/admin.sh
+sed -i "s/\[SERVERS\]/$SERVERS/" /usr/local/sitespeed/sitespeed/admin.sh
+sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/sitespeed/admin.sh
+sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/sitespeed/admin.sh
+
 # Modify index.html
 sortedSERVERS=$(echo $SERVERS | xargs -n 1 | sort | xargs)
 count=$(echo $sortedSERVERS | wc -w)
