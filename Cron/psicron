@@ -1,1 +1,1 @@
-5 1 * * * /usr/local/sitespeed/google.sh tld Adobe PSI-CrUX &>> /usr/local/sitespeed/logs/YYY.ZZZ.msg.log
+5 1 * * * /usr/local/sitespeed/google.sh tld ATT &>> /usr/local/sitespeed/logs/YYY.ZZZ.msg.log

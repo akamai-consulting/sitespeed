@@ -1,1 +1,1 @@
-1 5 * * * ~/maintenance.sh &>> ~/logs/maintenance.log
+1 5 * * * /usr/local/sitespeed/maintenance.sh &>> /usr/local/sitespeed/logs/maintenance.log
