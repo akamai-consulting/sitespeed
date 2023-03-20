@@ -11,6 +11,7 @@
 Green='\033[0;32m'
 NoColor='\033[0m'
 Options="all update docker seed reset cron logs cert graphite grafana storage core"
+
 Host=[HOST]
 Domain=[DOMAIN]
 Servers="[SERVERS]"
@@ -51,11 +52,11 @@ function mycron {
 function cronlist {
   if [ $? -eq 0 ]; then
      echo -e "\nDisplaying "$region" ... "
-     grep -v -e '^$' $Root/crontab
-     rm $Root/crontab
+     grep -v -e '^$' cron/crontab
+     rm cron/crontab
     else
      echo -e "\nDisplaying "$region" ... No entry exists"
-     rm $Root/crontab
+     rm cron/crontab
   fi
 }
 
@@ -73,19 +74,19 @@ if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
    echo -e "\n${Green}USAGE${NoColor} admin arg1 [arg2 arg3]\n"               
    echo -e "${Green}DESCRIPTION${NoColor} Automates the distribution files and execution of scripts across servers\n"
    
-   echo -e "The following options for arg1 are available:\n"
+   echo -e "The following options are available:\n"
    
-   echo -e "\t${Green}all${NoColor}\t   Copies all customized files across all servers\n"
+   echo -e "\t${Green}all${NoColor}\t   Copies customized files across servers\n"
    
-   echo -e "\t${Green}cert${NoColor}\t   Checks the certificate renewal date on all servers\n"
+   echo -e "\t${Green}cert${NoColor}\t   Checks the certificate renewal date on servers\n"
    
-   echo -e "\t${Green}core${NoColor}\t   Checks for core files across all servers. Requires:"
+   echo -e "\t${Green}core${NoColor}\t   Checks for core files on servers. Requires:"
    echo -e "\t\t   ${Green}arg2${NoColor} = check|delete\n"
 
-   echo -e "\t${Green}cron${NoColor}\t   Schedules cron jobs on all servers. Requires:"
+   echo -e "\t${Green}cron${NoColor}\t   Schedules cron jobs on servers. Requires:"
    echo -e "\t\t   ${Green}arg2${NoColor} = check|update|delete\n"
    
-   echo -e "\t${Green}docker${NoColor}\t   Performs various docker functions on all servers. Requires:"
+   echo -e "\t${Green}docker${NoColor}\t   Performs various docker functions on servers. Requires:"
    echo -e "\t\t   ${Green}arg2${NoColor} = check|clean\n"
    
    echo -e "\t${Green}grafana${NoColor}    Updates Grafana to the latest version. Requires:\n"
@@ -94,28 +95,28 @@ if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
    echo -e "\t${Green}graphite${NoColor}   Manages the size of graphite.db. Requires:"
    echo -e "\t\t   ${Green}arg2${NoColor} = check|reduce\n"
    
-   echo -e "\t${Green}logs${NoColor}\t   Checks for errors on all servers. Requires:"
+   echo -e "\t${Green}logs${NoColor}\t   Checks for errors on servers. Requires:"
    echo -e "\t\t   ${Green}arg2${NoColor} = check|delete\n"
    
-   echo -e "\t${Green}reset${NoColor}\t   Deletes Sitespeed data on all servers\n"
+   echo -e "\t${Green}reset${NoColor}\t   Deletes Sitespeed data on servers\n"
    
-   echo -e "\t${Green}seed${NoColor}\t   Manages the seed files on all servers. Requires:"
+   echo -e "\t${Green}seed${NoColor}\t   Manages the seed files on servers. Requires:"
    echo -e "\t\t   ${Green}arg2${NoColor} = tld|comp|delete"
    echo -e "\t\t   ${Green}arg3${NoColor} = seed file\n"
    
-   echo -e "\t${Green}storage${NoColor}\t   Checks the amount of storage used on all Linodes\n"
+   echo -e "\t${Green}storage${NoColor}\t   Checks the amount of storage used on servers\n"
    
-   echo -e "\t${Green}update${NoColor}\t   Updates YUM packages across all Linodes\n"
+   echo -e "\t${Green}update${NoColor}\t   Updates packages on all servers\n"
    exit 0
 fi
 
 # Make sure the user has a known_hosts file
 if [ ! -f $HOME/.ssh/known_hosts ]; then
-   echo -e "\nCreating an SSH known_hosts file\n"
+   echo -e "\nCreating an SSH known_hosts file"
    All="$Servers $Google $Graphite"
    for region in $All
      do
-      echo "Adding "$region" ... "
+      echo -e "\nAdding "$region" ... "
       ssh -i $Key "$region".$Domain ls
      done
 fi
@@ -123,10 +124,14 @@ fi
 # First time initialization
 if [ ! -f $Root/google/google.sh ]; then
    scp -q -i $Key $(whoami)@$Google.$Domain:$Root/google.sh /usr/local/sitespeed/google/
+   echo ""
    for region in $Servers
     do
      echo "Updating index.html on "$region" ... "
-     scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal/
+     until [ $? ]
+       do
+         scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal/
+     done
     done
 fi
 
@@ -139,12 +144,13 @@ fi
 
 # Process each option
 case $1 in
-      all ) echo -n "Updating "$Graphite" ... "
-            scp -q -i $Key $Root/google/google.sh $(whoami)@"$Graphite".$Domain:
+      all ) echo -n "Updating "$Google" ... "
+            scp -q -i $Key $Root/google/google.sh $(whoami)@"$Google".$Domain:$Root
+            chkresult
             for region in $Servers
               do
                 echo -n "Updating "$region" ... "           
-                   scp -q -i $Key $Root/sitespeed/*.sh $(whoami)@"$region".$Domain:
+                   scp -q -i $Key $Root/sitespeed/*.sh $(whoami)@"$region".$Domain:$Root
                    scp -q -i $Key $Root/sitespeed/config.json $(whoami)@"$region".$Domain:$Root/tld
                    scp -q -i $Key $Root/sitespeed/config.json $(whoami)@"$region".$Domain:$Root/comp
                    scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal
@@ -164,7 +170,7 @@ case $1 in
             ;;
 
      core ) if [ $# -ne 2 ]; then
-               echo -e "\nlog requires 1 argument: check|delete\n"
+               echo -e "\ncore requires 1 argument: check|delete\n"
                exit 1
             fi
             echo "check delete" | tr ' ' '\n' | grep -F -x -q $2
@@ -176,7 +182,7 @@ case $1 in
             for region in $All
               do
                 case $2 in
-                  check ) echo -n "Checking "$All" ... "
+                  check ) echo -n "Checking "$region" ... "
                           ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l
                           ;;
                  delete ) echo -n "Deleting core files on "$region" ... "
@@ -202,7 +208,7 @@ case $1 in
                mycron "cron/sitecron"
             fi           
             case $2 in
-               check ) crontab -l &> cron/crontab
+               check ) sudo -u sitespeed crontab -l &> cron/crontab
                        if [ $? -eq 0 ]; then
                            echo -e "\nDisplaying "$Host" ... "
                            grep -v -e '^$' cron/crontab
@@ -212,43 +218,51 @@ case $1 in
                            rm cron/crontab
                        fi
                        ;;
-              update ) sudo -u sitespeed crontab cron/jumpcron &> /dev/null
+              update ) echo -n "Updating "$Host" ... "
+                       sudo -u sitespeed crontab /home/sitespeed/jumpcron &> /dev/null
+                       chkresult
                        ;;
-              delete ) sudo -u sitespeed crontab -r                 
+              delete ) echo -n "Updating "$Host" ... "
+                       sudo -u sitespeed crontab -r &> /dev/null
+                       crondelete                
                        ;;
             esac
             All="$Google $Servers"
-            for region in $Servers
+            for region in $All
               do
                 case $2 in
-                 check ) ssh -i $Key $(whoami)@"$region".$Domain crontab -l &> cron/crontab
+                 check ) ssh -i $Key $(whoami)@"$region".$Domain sudo -u sitespeed crontab -l &> cron/crontab
                          cronlist
                          ;;
                 update ) echo -n "Updating "$region" ... "
                          if [ "$region" == "$Google" ]; then
-                             sed 's/XXX/'$region'/' cron/psicron.UPD > cron/psicron.REG                         
+                             sed 's/XXX/'$region'/' cron/psicron.UPD > cron/psicron.REG                     
                              scp -q -i $Key cron/psicron.REG $(whoami)@"$region".$Domain:crondata
-                             ssh -i $Key $(whoami)@"$region".$Domain sudo -u sitespeed crontab crondata &> /dev/null
-                             ssh -q -i $key $(whoami)@"$region".$Domain rm crondata
+                             ssh -i $Key $(whoami)@"$region".$Domain sudo mv crondata /home/sitespeed/
+                             ssh -i $Key $(whoami)@"$region".$Domain sudo chown sitespeed /home/sitespeed/crondata                         
+                             ssh -i $Key $(whoami)@"$region".$Domain sudo -u sitespeed crontab /home/sitespeed/crondata &> /dev/null
+                             ssh -q -i $Key $(whoami)@"$region".$Domain sudo rm /home/sitespeed/crondata
                            else
                              sed 's/XXX/'$region'/' cron/sitecron.UPD > cron/sitecron.REG                         
                              scp -q -i $Key cron/sitecron.REG $(whoami)@"$region".$Domain:crondata
-                             ssh -i $Key $(whoami)@"$region".$Domain sudo -u sitespeed crontab crondata &> /dev/null
-                             ssh -q -i $Key $(whoami)@"$region".$Domain rm crondata
+                             ssh -i $Key $(whoami)@"$region".$Domain sudo mv crondata /home/sitespeed/
+                             ssh -i $Key $(whoami)@"$region".$Domain sudo chown sitespeed /home/sitespeed/crondata                         
+                             ssh -i $Key $(whoami)@"$region".$Domain sudo -u sitespeed crontab /home/sitespeed/crondata &> /dev/null
+                             ssh -q -i $Key $(whoami)@"$region".$Domain sudo rm /home/sitespeed/crondata
                          fi
                          chkresult
                          ;;
 
                 delete ) echo -n "Updating "$region" ... "
-                         ssh -i $Key $(whoami)@"$region".$Domain sudo -u sitespeed crontab -r
+                         ssh -i $Key $(whoami)@"$region".$Domain sudo -u sitespeed crontab -r &> /dev/null
                          crondelete
                          ;;
                 esac         
               done
             echo ""
             if [ "$2" == "update" ]; then
-               rm Sitespeed/sitecron.*
-               rm PSI-CrUX/psicron.*
+               rm cron/sitecron.*
+               rm cron/psicron.*
             fi
             exit 0
             ;;
@@ -271,27 +285,48 @@ case $1 in
                          ssh -i $Key $(whoami)@"$region".$Domain docker container ls
                          ;;
                  clean ) echo -n "Cleaning "$region" ... "
-                         ssh -i $Key $(whoami)@"$region".$Domain docker stop $(docker ps -a -q) &> /dev/null
+                         ssh -i $Key $(whoami)@"$region".$Domain docker stop $(ssh -i $Key $(whoami)@"$region".$Domain docker ps -a -q) &> /dev/null
                          sleep 3
-                         ssh -i $Key $(whoami)@"$region".$Domain docker rm -f $(docker ps -a -q) &> /dev/null
+                         ssh -i $Key $(whoami)@"$region".$Domain docker rm -f $(ssh -i $Key $(whoami)@"$region".$Domain docker ps -a -q) &> /dev/null
                          sleep 3
-                         ssh "$region".$Domain docker system prune --all --volumes -f &> /dev/null
+                         ssh -i $Key $(whoami)@"$region".$Domain docker system prune --all --volumes -f &> /dev/null
                          chkresult
                          ;;
                 esac         
               done
             exit 0
             ;;
-         
-  grafana ) echo -n "Updating "$Graphite" ... "
-            ssh -q -i $Key $(whoami)@.$Domain sudo yum update -y grafana-enterprise
-            ssh -q -i $Key $(whoami)@.$Domain sudo systemctl restart grafana-server
-            chkresult
+                 
+  grafana ) if [ $# -ne 2 ]; then
+               echo -e "\ngrafana requires 1 argument: update|provision\n"
+               exit 1
+            fi
+            echo "update provision" | tr ' ' '\n' | grep -F -x -q $2
+            if [ $? -eq 1 ]; then
+               echo -e "\narg2 must be update or provision\n"
+               exit 1
+            fi
+            case $2 in
+                    update ) echo -n "Updating "$Graphite" ... "
+                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo yum -y update grafana-enterprise &> /dev/null
+                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo systemctl restart grafana-server &> /dev/null
+                             chkresult
+                             exit 0
+                             ;;
+                 provision ) echo -n "Provisioning new dashboards on "$Graphite" ... "            
+                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo /usr/local/graphite/provision.sh update
+                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo mv -f /provision.sh /usr/local/graphite/provision.sh
+                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo chmod 755 /usr/local/graphite/provision.sh
+                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo /usr/local/graphite/provision.sh
+                             chkresult
+                             exit 0
+                             ;;
+            esac
             exit 0
             ;;
-
+            
  graphite ) if [ $# -ne 2 ]; then
-               echo -e "\nlog requires 1 argument: check|reduce\n"
+               echo -e "\ngraphite requires 1 argument: check|reduce\n"
                exit 1
             fi
             echo "check reduce" | tr ' ' '\n' | grep -F -x -q $2
@@ -300,17 +335,12 @@ case $1 in
                exit 1
             fi
                case $2 in
-                  check ) echo ""
+                  check ) echo "Checking graphite.db on "$Graphite" ... "
                           ssh -i $Key $(whoami)@$Graphite.$Domain du -sh /usr/local/graphite/graphite-storage/graphite.db
-                          echo ""
                           ;;
                  reduce ) echo -n "Reducing graphite.db on "$Graphite" ... "
-                          ssh -q -i $Key $(whoami)@.$Domain sudo /usr/local/graphite/sqlite.sh
-                          if [ $? -eq 0 ]; then
-                             echo "Success"
-                           else
-                             echo "Fail"
-                          fi
+                          ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo /usr/local/graphite/sqlite.sh
+                          chkresult
                           ;;
                esac         
             exit 0
@@ -344,7 +374,7 @@ case $1 in
                           echo ""$region" errors: tld=$tldErrorCnt comp=$compErrorCnt"
                           ;;
                  delete ) echo -n "Starting "$region" ... "
-                          ssh -q -i $Key $(whoami)@"$region".$Domain rm logs/*log
+                          ssh -i $Key $(whoami)@"$region".$Domain rm logs/*log &> /dev/null
                           chkresult
                           ;;
                 esac         
@@ -355,7 +385,14 @@ case $1 in
     reset ) for region in $Servers
               do
                 echo -n "Resetting "$region" ... "
-                ssh -q -i $Key $(whoami)@"$region".$Domain $Root/reset.sh 2>/dev/null
+                ssh -i $Key $(whoami)@"$region".$Domain rm $Root/logs/* &> /dev/null
+                ssh -i $Key $(whoami)@"$region".$Domain rm $Root/tld/*.txt &> /dev/null
+                ssh -i $Key $(whoami)@"$region".$Domain rm $Root/comp/*.txt &> /dev/null
+                ssh -i $Key $(whoami)@"$region".$Domain rm $Root/portal/tld* &> /dev/null
+                ssh -i $Key $(whoami)@"$region".$Domain rm $Root/portal/comp* &> /dev/null
+                ssh -i $Key $(whoami)@"$region".$Domain sudo rm -Rf $Root/tld/sitespeed-result &> /dev/null
+                ssh -i $Key $(whoami)@"$region".$Domain sudo rm -Rf $Root/comp/sitespeed-result &> /dev/null
+                ssh -i $Key $(whoami)@"$region".$Domain sudo rm -Rf $Root/portal/images &> /dev/null
                 chkresult
               done
             exit 0
@@ -392,13 +429,12 @@ case $1 in
                 ssh -i $Key $(whoami)@"$region".$Domain du -sh $Root/tld
                 ssh -i $Key $(whoami)@"$region".$Domain du -sh $Root/comp
                 echo ""
-                fi
               done
             exit 0
             ;;
      
    update ) All="$Google $Servers"
-            for region in $Regions
+            for region in $All
               do
                 echo -n "Updating "$region" ... "
                 ssh -i $Key $(whoami)@"$region".$Domain sudo yum -y update &> /dev/null
