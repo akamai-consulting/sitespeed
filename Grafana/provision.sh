@@ -14,8 +14,14 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Download latest file
-wget -O /grafana.tgz https://as.akamai.com/user/sitespeed/grafana.tgz
+wget -q -O /grafana.tgz https://as.akamai.com/user/sitespeed/grafana.tgz
 
+# Perform provisioning update
+if [ "$1" == "update" ]; then
+  tar --warning=none --no-same-owner --overwrite -C / -xf /grafana.tgz provision.sh
+  exit 0
+fi
+  
 # Extract the provisioning files
 tar --warning=none --no-same-owner --overwrite -C /etc/grafana/provisioning/datasources -xf /grafana.tgz graphite.yaml
 tar --warning=none --no-same-owner --overwrite -C /etc/grafana/provisioning/dashboards -xf /grafana.tgz sitespeed.yaml apis.yaml google.yaml lyra.yaml ds2.yaml
