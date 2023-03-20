@@ -62,7 +62,8 @@ mkdir /usr/local/sitespeed/cron
 
 # Extract TAR files into appropriate folders
 tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /jump.tgz *.sh
-tar --warning=none --no-same-owner -C /usr/local/sitespeed/cron -xf /jump.tgz *cron
+tar --warning=none --no-same-owner -C /usr/local/sitespeed/cron -xf /jump.tgz psicron sitecron
+tar --warning=none --no-same-owner -C /home/sitespeed -xf /jump.tgz jumpcron
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/portal -xf /portal.tgz
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/sitespeed -xf /sitespeed.tgz *.sh *.json
 tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /jump.tgz *.pub sitespeed
@@ -72,6 +73,8 @@ tar --warning=none --no-same-owner -C /etc/nginx -xf /sitespeed.tgz nginx.conf
 chgrp -R sitespeed /usr/local/sitespeed
 chmod -R 775 /usr/local/sitespeed
 chmod 664 /usr/local/sitespeed/Sitespeed/config.json
+chown sitespeed /home/sitespeed/jumpcron
+chgrp sitespeed /home/sitespeed/jumpcron
 
 # Set up SSH
 cat /home/$USERNAME/.ssh/jump-*.pub > /home/$USERNAME/.ssh/authorized_keys
@@ -86,11 +89,18 @@ chown $USERNAME /home/$USERNAME/.ssh/sitespeed
 chgrp $USERNAME /home/$USERNAME/.ssh/sitespeed
 
 # Modify admin.sh
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/sitespeed/admin.sh
-sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/sitespeed/admin.sh
-sed -i "s/\[SERVERS\]/$SERVERS/" /usr/local/sitespeed/sitespeed/admin.sh
-sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/sitespeed/admin.sh
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/sitespeed/admin.sh
+sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/admin.sh
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/admin.sh
+sed -i "s/\[SERVERS\]/$SERVERS/" /usr/local/sitespeed/admin.sh
+sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/admin.sh
+sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/admin.sh
+
+# Modify maintenance.sh
+sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/maintenance.sh
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/maintenance.sh
+sed -i "s/\[SERVERS\]/$SERVERS/" /usr/local/sitespeed/maintenance.sh
+sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/maintenance.sh
+sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/maintenance.sh
 
 # Modify index.html
 sortedSERVERS=$(echo $SERVERS | xargs -n 1 | sort | xargs)
@@ -123,7 +133,7 @@ sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/sitespeed/sitespeed.sh
 sed -i "s/\[GRAPHITE\]\.\[DOMAIN\]/$GRAPHITE.$DOMAIN/" /usr/local/sitespeed/sitespeed/config.json
 
 # Create symbolic links
-sudo -u $USERNAME ln -s /usr/local/sitespeed/push.sh /home/$USERNAME/push.sh
+sudo -u $USERNAME ln -s /usr/local/sitespeed/admin.sh /home/$USERNAME/admin.sh
 sudo -u $USERNAME ln -s /usr/local/sitespeed/cron/ /home/$USERNAME/cron
 sudo -u $USERNAME ln -s /usr/local/sitespeed/seeds/ /home/$USERNAME/seeds
 
