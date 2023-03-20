@@ -51,6 +51,8 @@ useradd sitespeed
 echo "$PASSWORD" | passwd sitespeed --stdin
 
 # Create sitespeed group and add user to required groups
+usermod -aG wheel sitespeed
+usermod -aG docker sitespeed
 usermod -aG wheel $USERNAME
 usermod -aG docker $USERNAME
 usermod -aG sitespeed $USERNAME
