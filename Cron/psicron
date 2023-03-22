@@ -1,1 +1,2 @@
 5 1 * * * /usr/local/sitespeed/google.sh tld ATT &>> /usr/local/sitespeed/logs/YYY.ZZZ.msg.log
+10 1 * * * /usr/local/sitespeed/google.sh comp Abercrombie &>> /usr/local/sitespeed/logs/YYY.ZZZ.msg.log
