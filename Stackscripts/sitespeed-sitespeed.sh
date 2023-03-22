@@ -3,6 +3,7 @@
 ############################################
 #                                          #
 #         sitespeed-sitespeed.sh           #
+#                 v5                       #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -67,7 +68,7 @@ mkdir /usr/local/sitespeed/logs
 mkdir /usr/local/sitespeed/portal
 
 # Extract TAR files into appropriate folders
-tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz *.pub
+tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz sitespeed.pub
 tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /sitespeed.tgz *.sh
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/tld -xf /sitespeed.tgz config.json
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/comp -xf /sitespeed.tgz config.json
@@ -83,9 +84,7 @@ chmod 664 /usr/local/sitespeed/tld/config.json
 chmod 664 /usr/local/sitespeed/comp/config.json
 
 # Set up SSH
-cat /home/$USERNAME/.ssh/jump.pub > /home/$USERNAME/.ssh/authorized_keys
-cat /home/$USERNAME/.ssh/sitespeed.pub >> /home/$USERNAME/.ssh/authorized_keys
-rm /home/$USERNAME/.ssh/*.pub
+mv /home/$USERNAME/.ssh/sitespeed.pub /home/$USERNAME/.ssh/authorized_keys
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
 chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
 chgrp $USERNAME /home/$USERNAME/.ssh/authorized_keys

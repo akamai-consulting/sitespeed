@@ -3,6 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-google.sh             #
+#                  v5                      #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -63,7 +64,7 @@ mkdir /usr/local/sitespeed/logs
 
 # Extract TAR files into appropriate folders
 tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /google.tgz google.sh
-tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz *.pub
+tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz sitespeed.pub
 
 # Set ownership and permissions
 chown $USERNAME /home/$USERNAME/.ssh
@@ -72,9 +73,7 @@ chgrp -R sitespeed /usr/local/sitespeed
 chmod -R 775 /usr/local/sitespeed
 
 # Set up SSH
-cat /home/$USERNAME/.ssh/jump.pub > /home/$USERNAME/.ssh/authorized_keys
-cat /home/$USERNAME/.ssh/sitespeed.pub >> /home/$USERNAME/.ssh/authorized_keys
-rm /home/$USERNAME/.ssh/*.pub
+mv /home/$USERNAME/.ssh/sitespeed.pub /home/$USERNAME/.ssh/authorized_keys
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
 chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
 chgrp $USERNAME /home/$USERNAME/.ssh/authorized_keys

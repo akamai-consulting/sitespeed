@@ -3,6 +3,7 @@
 ############################################
 #                                          #
 #      sitespeed-graphite-grafana          #
+#                  v5                      #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -82,7 +83,7 @@ mkdir /var/lib/grafana/dashboards/ds2
 # Extract TAR files into appropriate folders
 tar --warning=none --no-same-owner -C /usr/local/graphite -xf /grafana.tgz *.sh
 tar --warning=none --no-same-owner -C /usr/local/graphite -xf /graphite.tgz *.sh *.sql
-tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz *.pub
+tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz sitespeed.pub
 
 # Set ownership and permissions
 chown $USERNAME /home/$USERNAME/.ssh
@@ -90,9 +91,7 @@ chgrp $USERNAME /home/$USERNAME/.ssh
 chmod 755 /usr/local/graphite/*.sh
 
 # Set up SSH
-cat /home/$USERNAME/.ssh/jump.pub > /home/$USERNAME/.ssh/authorized_keys
-cat /home/$USERNAME/.ssh/sitespeed.pub >> /home/$USERNAME/.ssh/authorized_keys
-rm /home/$USERNAME/.ssh/*.pub
+mv /home/$USERNAME/.ssh/sitespeed.pub /home/$USERNAME/.ssh/authorized_keys
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
 chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
 chgrp $USERNAME /home/$USERNAME/.ssh/authorized_keys

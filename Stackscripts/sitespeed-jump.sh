@@ -3,6 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
+#                  v5                      #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -69,7 +70,7 @@ tar --warning=none --no-same-owner -C /usr/local/sitespeed/cron -xf /jump.tgz ps
 tar --warning=none --no-same-owner -C /home/sitespeed -xf /jump.tgz jumpcron
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/portal -xf /portal.tgz
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/sitespeed -xf /sitespeed.tgz *.sh *.json
-tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz *.pub sitespeed
+tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz jump.pub sitespeed
 tar --warning=none --no-same-owner -C /etc/nginx -xf /sitespeed.tgz nginx.conf
 
 # Set ownership and permissions
@@ -82,8 +83,7 @@ chown sitespeed /home/sitespeed/jumpcron
 chgrp sitespeed /home/sitespeed/jumpcron
 
 # Set up SSH
-cat /home/$USERNAME/.ssh/jump.pub > /home/$USERNAME/.ssh/authorized_keys
-rm /home/$USERNAME/.ssh/*.pub
+mv /home/$USERNAME/.ssh/jump.pub /home/$USERNAME/.ssh/authorized_keys
 chown $USERNAME /home/$USERNAME/.ssh
 chgrp $USERNAME /home/$USERNAME/.ssh
 chmod 600 /home/$USERNAME/.ssh/authorized_keys

@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v1                      #
+#                  v2                      #
 #                                          #
 ############################################
 
@@ -21,7 +21,7 @@ if [ "$EUID" -ne 0 ]
   exit 1
 fi
 
-# Set Username
+# Create new use
 function setusername {
    User=""   
    until [ "$taken" == "false"  ]
@@ -55,17 +55,39 @@ function setpassword {
    done
 }
 
+function delusername {
+   User=""
+   until [ "$valid" == "true"  ]
+     do
+       read -p "Username: " User
+       if [ "$User" == "$(logname)" ]; then
+          echo "Cannot delete yourself"
+        else
+          grep -i -q $User /etc/passwd
+          if [ "$?" == "1" ]; then
+             echo "$User does not exist"
+             valid=false
+            else
+             valid=true
+          fi
+       fi   
+     done
+}
+
+
+All="$Google $Graphite $Servers"
 # Process each option
 case $1 in
     add ) setusername
           setpassword
+          # Create user on Jump server
           echo "Creating $User on $Host ..."
           useradd $User
           echo $Password | passwd $User --stdin
           usermod -aG wheel $User
           usermod -aG sitespeed $User
           mkdir /home/$User/.ssh
-          tar --warning=none --no-same-owner -C /home/$User/.ssh -xf /sshkeys.tgz *.pub sitespeed
+          tar --warning=none --no-same-owner -C /home/$User/.ssh -xf /sshkeys.tgz jump.pub sitespeed
           mv /home/$User/.ssh/jump.pub /home/$User/.ssh/authorized_keys
           chown $User /home/$User/.ssh
           chgrp $User /home/$User/.ssh
@@ -80,9 +102,9 @@ case $1 in
           sudo -u $User ln -s /usr/local/sitespeed/seeds/ /home/$User/seeds
           echo -e "function jump() {\n  ssh -i /home/$User/.ssh/sitespeed \$1.$Domain\n}\nexport PS1='[$Host \u@\h \W]\$ '" >> /home/$User/.bash_profile
           echo         
-          All="$Google $Graphite $Servers"
           for region in $All
             do
+              # Create users on remote servers
               echo "Creating $User on $region ..."
               ssh -i $Key $(logname)@"$region".$Domain sudo useradd $User
               # This is not working properly over SSH
@@ -90,18 +112,30 @@ case $1 in
               ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG wheel $User
               ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG sitespeed $User
               ssh -i $Key $(logname)@"$region".$Domain sudo mkdir /home/$User/.ssh
-              ssh -i $Key $(logname)@"$region".$Domain sudo tar --warning=none --no-same-owner -C /home/$User/.ssh -xf /sshkeys.tgz *.pub sitespeed
-              ssh -i $Key $(logname)@"$region".$Domain sudo mv /home/$User/.ssh/jump.pub /home/$User/.ssh/authorized_keys
+              ssh -i $Key $(logname)@"$region".$Domain sudo tar --warning=none --no-same-owner -C /home/$User/.ssh -xf /sshkeys.tgz sitespeed.pub
+              ssh -i $Key $(logname)@"$region".$Domain sudo mv /home/$User/.ssh/sitespeed.pub /home/$User/.ssh/authorized_keys
               ssh -i $Key $(logname)@"$region".$Domain sudo chown -R $User /home/$User/.ssh
               ssh -i $Key $(logname)@"$region".$Domain sudo chgrp -R $User /home/$User/.ssh            
               ssh -i $Key $(logname)@"$region".$Domain sudo chmod 600 /home/$User/.ssh/authorized_keys
-              sed -i "/export PATH/a export PS1=\'[$Host \u@\h \W]\$ \'" /home/$User/.bash_profile
+              # This is not working properly over SSH
+              # ssh -i $Key $(logname)@"$region".$Domain sudo sed -i "/export PATH/a export PS1='[$Host \u@\h \W]\$ '" /home/$User/.bash_profile
               echo
             done
+            exit 0
           ;;
           
- delete ) # need to validate username exists
-          # chkusername
+ delete ) delusername
+          # Delete user on Jump server
+          echo "Deleting $User on $Host ..."
+          echo
+          userdel -r $User
+          #Delete user on remote servers
+          for region in $All
+            do
+              echo "Deleting $User on $region ..."
+              ssh -i $Key $(logname)@"$region".$Domain sudo userdel -r $User
+              echo
+            done  
           exit 0
-           ;;
+          ;;
 esac

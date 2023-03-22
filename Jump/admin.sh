@@ -3,14 +3,14 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 24                     #
+#                 v 26                     #
 #                                          #
 ############################################
 
 # Set variables
 Green='\033[0;32m'
 NoColor='\033[0m'
-Options="all update docker seed reset cron logs cert graphite grafana storage core"
+Options="all update docker seed reset cron logs cert graphite grafana storage core user"
 Host=[HOST]
 Domain=[DOMAIN]
 Servers="[SERVERS]"
@@ -106,6 +106,10 @@ if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
    echo -e "\t${Green}storage${NoColor}\t   Checks the amount of storage used on servers\n"
    
    echo -e "\t${Green}update${NoColor}\t   Updates packages on all servers\n"
+   
+   echo -e "\t${Green}user${NoColor}\t   Manages user accounts on servers. Requires:"
+   echo -e "\t\t   ${Green}arg2${NoColor} = add|delete\n"
+  
    exit 0
 fi
 
@@ -319,7 +323,6 @@ case $1 in
                              ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo yum -y update grafana-enterprise &> /dev/null
                              ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo systemctl restart grafana-server &> /dev/null
                              chkresult
-                             exit 0
                              ;;
                  provision ) echo -n "Provisioning new dashboards on "$Graphite" ... "            
                              ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo /usr/local/graphite/provision.sh update
@@ -327,7 +330,6 @@ case $1 in
                              ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo chmod 755 /usr/local/graphite/provision.sh
                              ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo /usr/local/graphite/provision.sh
                              chkresult
-                             exit 0
                              ;;
             esac
             exit 0
@@ -451,4 +453,21 @@ case $1 in
             exit 0
             ;;
             
+     user ) if [ $# -ne 2 ]; then
+               echo -e "\nuser requires 1 argument: add|delete\n"
+               exit 1
+            fi
+            echo "add delete" | tr ' ' '\n' | grep -F -x -q $2
+            if [ $? -eq 1 ]; then
+               echo -e "\narg2 must be add or delete\n"
+               exit 1
+            fi            
+            case $2 in
+                 add ) sudo $Root/user.sh add
+                       ;;
+              delete ) sudo $Root/user.sh delete
+                       ;;
+            esac
+            exit 0
+            ;;
 esac
