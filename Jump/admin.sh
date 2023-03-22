@@ -11,7 +11,6 @@
 Green='\033[0;32m'
 NoColor='\033[0m'
 Options="all update docker seed reset cron logs cert graphite grafana storage core"
-
 Host=[HOST]
 Domain=[DOMAIN]
 Servers="[SERVERS]"
@@ -120,7 +119,16 @@ if [ ! -f $HOME/.ssh/known_hosts ]; then
       ssh -i $Key "$region".$Domain ls
      done
 fi
-     
+
+# Make sure sitespeed user has a known_hosts file
+sudo ls /home/sitespeed/.ssh/known_hosts &> /dev/null
+if [ "$?" -ne "0" ]; then
+   sudo cp $HOME/.ssh/known_hosts /home/sitespeed/.ssh/known_hosts
+   sudo chown sitespeed /home/sitespeed/.ssh/known_hosts
+   sudo chgrp sitespeed /home/sitespeed/.ssh/known_hosts
+   sudo chmod 644 /home/sitespeed/.ssh/known_hosts
+fi
+
 # First time initialization
 if [ ! -f $Root/google/google.sh ]; then
    scp -q -i $Key $(whoami)@$Google.$Domain:$Root/google.sh /usr/local/sitespeed/google/
@@ -131,7 +139,7 @@ if [ ! -f $Root/google/google.sh ]; then
      until [ $? ]
        do
          scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal/
-     done
+       done
     done
 fi
 
