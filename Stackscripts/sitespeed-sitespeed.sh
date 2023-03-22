@@ -38,6 +38,7 @@ systemctl --now enable docker
 # Download configurations files
 wget https://as.akamai.com/user/sitespeed/sitespeed.tgz
 wget https://as.akamai.com/user/sitespeed/portal.tgz
+wget https://as.akamai.com/user/sitespeed/sshkeys.tgz
 
 # Modify sudoers
 sed -i 's/# %wheel/%wheel/' /etc/sudoers
@@ -45,6 +46,7 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 # Create admin user
 useradd $USERNAME
 echo "$PASSWORD" | passwd "$USERNAME" --stdin
+echo "export PS1='[$HOST \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile
 
 # Create sitespeed user
 useradd sitespeed
@@ -65,7 +67,7 @@ mkdir /usr/local/sitespeed/logs
 mkdir /usr/local/sitespeed/portal
 
 # Extract TAR files into appropriate folders
-tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sitespeed.tgz *.pub
+tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz *.pub
 tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /sitespeed.tgz *.sh
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/tld -xf /sitespeed.tgz config.json
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/comp -xf /sitespeed.tgz config.json
@@ -73,13 +75,15 @@ tar --warning=none --no-same-owner -C /usr/local/sitespeed/portal -xf /portal.tg
 tar --warning=none --no-same-owner -C /etc/nginx -xf /sitespeed.tgz nginx.conf
 
 # Set ownership and permissions
+chown $USERNAME /home/$USERNAME/.ssh
+chgrp $USERNAME /home/$USERNAME/.ssh
 chgrp -R sitespeed /usr/local/sitespeed
 chmod -R 775 /usr/local/sitespeed
 chmod 664 /usr/local/sitespeed/tld/config.json 
 chmod 664 /usr/local/sitespeed/comp/config.json
 
 # Set up SSH
-cat /home/$USERNAME/.ssh/jump-*.pub > /home/$USERNAME/.ssh/authorized_keys
+cat /home/$USERNAME/.ssh/jump.pub > /home/$USERNAME/.ssh/authorized_keys
 cat /home/$USERNAME/.ssh/sitespeed.pub >> /home/$USERNAME/.ssh/authorized_keys
 rm /home/$USERNAME/.ssh/*.pub
 chmod 600 /home/$USERNAME/.ssh/authorized_keys

@@ -32,6 +32,7 @@ timedatectl set-timezone $TIMEZONE
 wget https://as.akamai.com/user/sitespeed/jump.tgz
 wget https://as.akamai.com/user/sitespeed/portal.tgz
 wget https://as.akamai.com/user/sitespeed/sitespeed.tgz
+wget https://as.akamai.com/user/sitespeed/sshkeys.tgz
 
 # Modify sudoers
 sed -i 's/# %wheel/%wheel/' /etc/sudoers
@@ -39,6 +40,7 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 # Create admin user
 useradd $USERNAME
 echo "$PASSWORD" | passwd "$USERNAME" --stdin
+echo -e "function jump() {\n  ssh -i /home/$USERNAME/.ssh/sitespeed \$1.$DOMAIN\n}\nexport PS1='[$HOST \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile 
 
 # Create sitespeed user
 useradd sitespeed
@@ -53,6 +55,7 @@ usermod -aG sitespeed $USERNAME
 
 # Create SSH folder and working Sitespeed folder
 mkdir /home/$USERNAME/.ssh
+mkdir /home/sitespeed/.ssh
 mkdir -p /usr/local/sitespeed/logs
 mkdir /usr/local/sitespeed/portal
 mkdir /usr/local/sitespeed/google
@@ -66,10 +69,12 @@ tar --warning=none --no-same-owner -C /usr/local/sitespeed/cron -xf /jump.tgz ps
 tar --warning=none --no-same-owner -C /home/sitespeed -xf /jump.tgz jumpcron
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/portal -xf /portal.tgz
 tar --warning=none --no-same-owner -C /usr/local/sitespeed/sitespeed -xf /sitespeed.tgz *.sh *.json
-tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /jump.tgz *.pub sitespeed
+tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz *.pub sitespeed
 tar --warning=none --no-same-owner -C /etc/nginx -xf /sitespeed.tgz nginx.conf
 
 # Set ownership and permissions
+chown $USERNAME /home/$USERNAME/.ssh
+chgrp $USERNAME /home/$USERNAME/.ssh
 chgrp -R sitespeed /usr/local/sitespeed
 chmod -R 775 /usr/local/sitespeed
 chmod 664 /usr/local/sitespeed/Sitespeed/config.json
@@ -77,7 +82,7 @@ chown sitespeed /home/sitespeed/jumpcron
 chgrp sitespeed /home/sitespeed/jumpcron
 
 # Set up SSH
-cat /home/$USERNAME/.ssh/jump-*.pub > /home/$USERNAME/.ssh/authorized_keys
+cat /home/$USERNAME/.ssh/jump.pub > /home/$USERNAME/.ssh/authorized_keys
 rm /home/$USERNAME/.ssh/*.pub
 chown $USERNAME /home/$USERNAME/.ssh
 chgrp $USERNAME /home/$USERNAME/.ssh
@@ -101,6 +106,13 @@ sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/maintenance.sh
 sed -i "s/\[SERVERS\]/$SERVERS/" /usr/local/sitespeed/maintenance.sh
 sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/maintenance.sh
 sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/maintenance.sh
+
+# Modify user.sh
+sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/user.sh
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/user.sh
+sed -i "s/\[SERVERS\]/$SERVERS/" /usr/local/sitespeed/user.sh
+sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/user.sh
+sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/user.sh
 
 # Modify index.html
 sortedSERVERS=$(echo $SERVERS | xargs -n 1 | sort | xargs)

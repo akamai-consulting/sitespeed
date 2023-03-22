@@ -49,6 +49,7 @@ systemctl --now enable docker
 # Download configurations files
 wget https://as.akamai.com/user/sitespeed/graphite.tgz
 wget https://as.akamai.com/user/sitespeed/grafana.tgz
+wget https://as.akamai.com/user/sitespeed/sshkeys.tgz
 
 # Modify sudoers
 sed -i 's/# %wheel/%wheel/' /etc/sudoers
@@ -56,6 +57,7 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 # Create admin user
 useradd $USERNAME
 echo "$PASSWORD" | passwd "$USERNAME" --stdin
+echo "export PS1='[$HOST \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile
 
 # Create sitespeed user
 useradd sitespeed
@@ -80,13 +82,15 @@ mkdir /var/lib/grafana/dashboards/ds2
 # Extract TAR files into appropriate folders
 tar --warning=none --no-same-owner -C /usr/local/graphite -xf /grafana.tgz *.sh
 tar --warning=none --no-same-owner -C /usr/local/graphite -xf /graphite.tgz *.sh *.sql
-tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /graphite.tgz *.pub
+tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz *.pub
 
 # Set ownership and permissions
+chown $USERNAME /home/$USERNAME/.ssh
+chgrp $USERNAME /home/$USERNAME/.ssh
 chmod 755 /usr/local/graphite/*.sh
 
 # Set up SSH
-cat /home/$USERNAME/.ssh/jump-*.pub > /home/$USERNAME/.ssh/authorized_keys
+cat /home/$USERNAME/.ssh/jump.pub > /home/$USERNAME/.ssh/authorized_keys
 cat /home/$USERNAME/.ssh/sitespeed.pub >> /home/$USERNAME/.ssh/authorized_keys
 rm /home/$USERNAME/.ssh/*.pub
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
