@@ -140,10 +140,7 @@ if [ ! -f $Root/google/google.sh ]; then
    for region in $Servers
     do
      echo "Updating index.html on "$region" ... "
-     until [ $? ]
-       do
-         scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal/
-       done
+     scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal/
     done
 fi
 
@@ -248,14 +245,16 @@ case $1 in
                          ;;
                 update ) echo -n "Updating "$region" ... "
                          if [ "$region" == "$Google" ]; then
-                             sed 's/XXX/'$region'/' cron/psicron.UPD > cron/psicron.REG                     
+                             sed 's/XXX/'$region'/' cron/psicron.UPD > cron/psicron.REG
+                             echo "" >> cron/psicron.REG                  
                              scp -q -i $Key cron/psicron.REG $(whoami)@"$region".$Domain:crondata
                              ssh -i $Key $(whoami)@"$region".$Domain sudo mv crondata /home/sitespeed/
                              ssh -i $Key $(whoami)@"$region".$Domain sudo chown sitespeed /home/sitespeed/crondata                         
                              ssh -i $Key $(whoami)@"$region".$Domain sudo -u sitespeed crontab /home/sitespeed/crondata &> /dev/null
                              ssh -q -i $Key $(whoami)@"$region".$Domain sudo rm /home/sitespeed/crondata
                            else
-                             sed 's/XXX/'$region'/' cron/sitecron.UPD > cron/sitecron.REG                         
+                             sed 's/XXX/'$region'/' cron/sitecron.UPD > cron/sitecron.REG
+                             echo "" >> cron/sitecron.REG                       
                              scp -q -i $Key cron/sitecron.REG $(whoami)@"$region".$Domain:crondata
                              ssh -i $Key $(whoami)@"$region".$Domain sudo mv crondata /home/sitespeed/
                              ssh -i $Key $(whoami)@"$region".$Domain sudo chown sitespeed /home/sitespeed/crondata                         
