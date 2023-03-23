@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
-#                  v5                      #
+#                  v6                      #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -54,7 +54,7 @@ usermod -aG wheel $USERNAME
 usermod -aG docker $USERNAME
 usermod -aG sitespeed $USERNAME
 
-# Create SSH folder and working Sitespeed folder
+# Create SSH and Sitespeed folders
 mkdir /home/$USERNAME/.ssh
 mkdir /home/sitespeed/.ssh
 mkdir -p /usr/local/sitespeed/logs
@@ -74,24 +74,24 @@ tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz jump
 tar --warning=none --no-same-owner -C /etc/nginx -xf /sitespeed.tgz nginx.conf
 
 # Set ownership and permissions
-chown $USERNAME /home/$USERNAME/.ssh
-chgrp $USERNAME /home/$USERNAME/.ssh
 chgrp -R sitespeed /usr/local/sitespeed
 chmod -R 775 /usr/local/sitespeed
 chmod 664 /usr/local/sitespeed/Sitespeed/config.json
 chown sitespeed /home/sitespeed/jumpcron
 chgrp sitespeed /home/sitespeed/jumpcron
 
-# Set up SSH
+# Set up SSH for admin user
 mv /home/$USERNAME/.ssh/jump.pub /home/$USERNAME/.ssh/authorized_keys
-chown $USERNAME /home/$USERNAME/.ssh
-chgrp $USERNAME /home/$USERNAME/.ssh
+chown -R $USERNAME /home/$USERNAME/.ssh
+chgrp -R $USERNAME /home/$USERNAME/.ssh
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
-chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
-chgrp $USERNAME /home/$USERNAME/.ssh/authorized_keys
 chmod 600 /home/$USERNAME/.ssh/sitespeed
-chown $USERNAME /home/$USERNAME/.ssh/sitespeed
-chgrp $USERNAME /home/$USERNAME/.ssh/sitespeed
+
+# Set up SSH for sitespeed user
+cp /home/$USERNAME/.ssh/authorized_keys /home/sitespeed/.ssh/authorized_keys
+cp /home/$USERNAME/.ssh/sitespeed /home/sitespeed/.ssh/sitespeed
+chown -R sitespeed /home/sitespeed/.ssh
+chgrp -R sitespeed /home/sitespeed/.ssh
 
 # Modify admin.sh
 sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/admin.sh

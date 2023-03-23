@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #      sitespeed-graphite-grafana          #
-#                  v5                      #
+#                  v6                      #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -74,6 +74,7 @@ usermod -aG sitespeed $USERNAME
 # Create Graphite, SSH, and Grafana dashboard folders
 mkdir /usr/local/graphite
 mkdir /home/$USERNAME/.ssh
+mkdir /home/sitespeed/.ssh
 mkdir -p /var/lib/grafana/dashboards/apis
 mkdir /var/lib/grafana/dashboards/google
 mkdir /var/lib/grafana/dashboards/lyra
@@ -85,16 +86,19 @@ tar --warning=none --no-same-owner -C /usr/local/graphite -xf /grafana.tgz *.sh
 tar --warning=none --no-same-owner -C /usr/local/graphite -xf /graphite.tgz *.sh *.sql
 tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz sitespeed.pub
 
-# Set ownership and permissions
-chown $USERNAME /home/$USERNAME/.ssh
-chgrp $USERNAME /home/$USERNAME/.ssh
+# Set permissions
 chmod 755 /usr/local/graphite/*.sh
 
-# Set up SSH
+# Set up SSH for admin user
 mv /home/$USERNAME/.ssh/sitespeed.pub /home/$USERNAME/.ssh/authorized_keys
+chown -R $USERNAME /home/$USERNAME/.ssh
+chgrp -R $USERNAME /home/$USERNAME/.ssh
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
-chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
-chgrp $USERNAME /home/$USERNAME/.ssh/authorized_keys
+
+# Set up SSH for sitespeed user
+cp /home/$USERNAME/.ssh/authorized_keys /home/sitespeed/.ssh/authorized_keys
+chown -R sitespeed /home/sitespeed/.ssh
+chgrp -R sitespeed /home/sitespeed/.ssh
 
 # Modify Grafana configuration files and start Grafana
 sed -i -r "s#;default_timezone = browser#default_timezone = $TIMEZONE#" /etc/grafana/grafana.ini
