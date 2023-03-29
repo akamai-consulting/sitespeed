@@ -38,35 +38,35 @@ grafana-cli plugins install yesoreyeram-boomtable-panel
 
 # Update the system timezone
 case $LINODE_DATACENTERID in
-  4 | 6 ) timedatectl set-timezone America/New_York
-          TIMEZONE=America/New_York ;;
+  4 | 6 | 17 ) timedatectl set-timezone America/New_York
+               TIMEZONE=America/New_York ;;
                   
-      2 ) timedatectl set-timezone America/Chicago
-          TIMEZONE=America/Chicago ;;
+           2 ) timedatectl set-timezone America/Chicago
+               TIMEZONE=America/Chicago ;;
       
-      3 ) timedatectl set-timezone America/Los_Angeles
-          TIMEZONE=America/Los_Angeles ;;
+           3 ) timedatectl set-timezone America/Los_Angeles
+               TIMEZONE=America/Los_Angeles ;;
  
-     15 ) timedatectl set-timezone America/Toronto
-          TIMEZONE=America/Toronto ;;
+          15 ) timedatectl set-timezone America/Toronto
+               TIMEZONE=America/Toronto ;;
      
-      7 ) timedatectl set-timezone Europe/London
-          TIMEZONE=Europe/London ;;
+           7 ) timedatectl set-timezone Europe/London
+               TIMEZONE=Europe/London ;;
         
-     10 ) timedatectl set-timezone Europe/Berlin
-          TIMEZONE=Europe/Berlin ;;
+          10 ) timedatectl set-timezone Europe/Berlin
+               TIMEZONE=Europe/Berlin ;;
      
-      9 ) timedatectl set-timezone Asia/Singapore
-          TIMEZONE=Asia/Singapore ;;
+           9 ) timedatectl set-timezone Asia/Singapore
+               TIMEZONE=Asia/Singapore ;;
        
-     16 ) timedatectl set-timezone Australia/Sydney
-          TIMEZONE=Australia/Sydney ;;
+          16 ) timedatectl set-timezone Australia/Sydney
+               TIMEZONE=Australia/Sydney ;;
    
-     11 ) timedatectl set-timezone Asia/Tokyo
-          TIMEZONE=Asia/Tokyo ;;
+          11 ) timedatectl set-timezone Asia/Tokyo
+               TIMEZONE=Asia/Tokyo ;;
    
-     14 ) timedatectl set-timezone Asia/Kolkata 
-          TIMEZONE=Asia/Kolkata ;;
+          14 ) timedatectl set-timezone Asia/Kolkata 
+               TIMEZONE=Asia/Kolkata ;;
 esac
 
 # Install Docker
