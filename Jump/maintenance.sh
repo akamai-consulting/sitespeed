@@ -3,22 +3,32 @@
 ############################################
 #                                          #
 #            maintenance.sh                #
-#                 v 7                      #
+#                 v 8                      #
 #                                          #
 ############################################
 
 # Set global variables
 Host=[HOST]
 Domain=[DOMAIN]
-Servers="[SERVERS]"
 Google=[GOOGLE]
 Graphite=[GRAPHITE]
 Key=$HOME/.ssh/sitespeed
 Root=/usr/local/sitespeed
 
+# Read servers and set Servers variable
+Servers=""
+end=$(cat /usr/local/sitespeed/servers | wc -l)
+exec 3</usr/local/sitespeed/servers
+read data <&3
+for (( index=1; index <= $end; index+=1 ))
+  do
+    Servers="$Servers$data "
+    read data <&3
+  done
+  
 # Mark the start of the run
 echo -e "\n|=========================================================="
-echo "| Start: $(TZ='America/New_York' date) $0"
+echo "| Start: $(TZ='[TIMEZONE]' date) $0"
 echo "|=========================================================="
 
 # Count the number of core dumps and errors on each server

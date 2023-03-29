@@ -3,17 +3,9 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v2                      #
+#                  v3                      #
 #                                          #
 ############################################
-
-# Set variables
-Host=[HOST]
-Domain=[DOMAIN]
-Servers="[SERVERS]"
-Google=[GOOGLE]
-Graphite=[GRAPHITE]
-Key=/home/$(logname)/.ssh/sitespeed
 
 # Make sure the script runs as root
 if [ "$EUID" -ne 0 ]
@@ -21,8 +13,15 @@ if [ "$EUID" -ne 0 ]
   exit 1
 fi
 
-# Create new use
-function setusername {
+# Set variables
+Host=[HOST]
+Domain=[DOMAIN]
+Google=[GOOGLE]
+Graphite=[GRAPHITE]
+Key=/home/$(logname)/.ssh/sitespeed
+
+# Create new user
+function adduser {
    User=""   
    until [ "$taken" == "false"  ]
      do
@@ -37,25 +36,8 @@ function setusername {
      done
 }
 
-# Set Password
-function setpassword {
-   Pass1=""
-   Pass2=""
-   until [ "$match" == "true" ]
-     do
-       read -s -p "Password: " Pass1 && echo
-       read -s -p "Enter again: " Pass2 && echo
-       if [ "$Pass1" == "$Pass2" ]; then
-          match=true
-          Password=$Pass1
-        else
-          match=false
-          echo "Passwords do not match"
-       fi
-   done
-}
-
-function delusername {
+# Delete existing user
+function deluser {
    User=""
    until [ "$valid" == "true"  ]
      do
@@ -74,16 +56,24 @@ function delusername {
      done
 }
 
+# Read servers and set Servers variable
+Servers=""
+end=$(cat /usr/local/sitespeed/servers | wc -l)
+exec 3</usr/local/sitespeed/servers
+read data <&3
+for (( index=1; index <= $end; index+=1 ))
+  do
+    Servers="$Servers$data "
+    read data <&3
+  done
 
-All="$Google $Graphite $Servers"
 # Process each option
+All="$Google $Graphite $Servers"
 case $1 in
-    add ) setusername
-          setpassword
+    add ) adduser
           # Create user on Jump server
           echo "Creating $User on $Host ..."
           useradd $User
-          echo $Password | passwd $User --stdin
           usermod -aG wheel $User
           usermod -aG sitespeed $User
           mkdir /home/$User/.ssh
@@ -107,8 +97,6 @@ case $1 in
               # Create users on remote servers
               echo "Creating $User on $region ..."
               ssh -i $Key $(logname)@"$region".$Domain sudo useradd $User
-              # This is not working properly over SSH
-              # ssh -i $Key $(logname)@"$region".$Domain "sudo echo $Password | passwd $User --stdin"
               ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG wheel $User
               ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG sitespeed $User
               ssh -i $Key $(logname)@"$region".$Domain sudo mkdir /home/$User/.ssh
@@ -117,19 +105,17 @@ case $1 in
               ssh -i $Key $(logname)@"$region".$Domain sudo chown -R $User /home/$User/.ssh
               ssh -i $Key $(logname)@"$region".$Domain sudo chgrp -R $User /home/$User/.ssh            
               ssh -i $Key $(logname)@"$region".$Domain sudo chmod 600 /home/$User/.ssh/authorized_keys
-              # This is not working properly over SSH
-              # ssh -i $Key $(logname)@"$region".$Domain sudo sed -i "/export PATH/a export PS1='[$Host \u@\h \W]\$ '" /home/$User/.bash_profile
               echo
             done
             exit 0
           ;;
           
- delete ) delusername
+ delete ) deluser
           # Delete user on Jump server
           echo "Deleting $User on $Host ..."
           echo
           userdel -r $User
-          #Delete user on remote servers
+          # Delete user on remote servers
           for region in $All
             do
               echo "Deleting $User on $region ..."

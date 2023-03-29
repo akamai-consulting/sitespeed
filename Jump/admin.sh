@@ -3,17 +3,16 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 26                     #
+#                 v 31                     #
 #                                          #
 ############################################
 
 # Set variables
 Green='\033[0;32m'
 NoColor='\033[0m'
-Options="all update docker seed reset cron logs cert graphite grafana storage core user"
+Options="all update docker seed reset cron logs cert graphite grafana storage core user server"
 Host=[HOST]
 Domain=[DOMAIN]
-Servers="[SERVERS]"
 Google=[GOOGLE]
 Graphite=[GRAPHITE]
 Key=$HOME/.ssh/sitespeed
@@ -21,6 +20,79 @@ Root=/usr/local/sitespeed
 successCnt=0
 failureCnt=0
 failure=""
+
+# Function that reads servers and set SERVERS variable
+function popservers {
+  Servers=""
+  end=$(cat $Root/servers | wc -l)
+  exec 3<$Root/servers
+  read data <&3
+  for (( index=1; index <= $end; index+=1 ))
+    do
+      Servers="$Servers$data "
+      read data <&3
+    done
+}
+
+# Invoke popserver function immediately to populate Servers variable
+popservers
+
+# Function that gets the name of new server
+function servername {
+  case $1 in
+      add ) until [ "$exists" == "false" ]
+              do
+                read -p "Server name to add: " Server
+                chkname "$Server"
+                if [ "$exists" == "true" ]; then
+                   echo "$Server already exists"
+                fi
+              done
+            ;;
+
+   delete ) until [ "$exists" == "true" ]
+              do
+                read -p "Server name to delete: " Server
+                chkname "$Server" "delete"
+                if [ "$exists" == "false" ]; then
+                   echo "$Server does not exist"
+                fi
+              done
+            ;;
+  esac     
+}
+
+# Function that checks for the existence of server name
+function chkname {
+  for name in $Servers
+   do
+    if [ "$(echo $name | tr [:upper:] [:lower:])" == "$(echo $1 | tr [:upper:] [:lower:])" ]; then
+       exists=true
+       if [ "$2" == "delete" ]; then
+          Server=$name
+       fi
+       break
+     else
+       exists=false
+    fi
+   done
+}
+
+# Function that modifies index.html
+function modifyindex {
+  sortedSERVERS=$(echo $Servers | xargs -n 1 | sort | xargs)
+  count=$(echo $sortedSERVERS | wc -w)
+  line=1
+  for (( index=0; index < count ; index+=1 ))
+    do
+      Region=$(echo $sortedSERVERS | awk -v var=$line '{print $var}')
+      echo "     <option value=\"http://$Region.$Domain/\">$Region</option>" >> $Root/foo
+      let "line++"
+    done
+  sudo sed -E -i "/option value.+$Domain/d" $Root/portal/index.html
+  sudo sed -i "/<!-- ServerDropDown -->/r $Root/foo" $Root/portal/index.html
+  rm $Root/foo
+}
 
 # Function that checks the results of each primary action
 function chkresult {
@@ -103,6 +175,9 @@ if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
    echo -e "\t\t   ${Green}arg2${NoColor} = tld|comp|delete"
    echo -e "\t\t   ${Green}arg3${NoColor} = seed file\n"
    
+   echo -e "\t${Green}server${NoColor}     Adds and removes servers. Requires:"
+   echo -e "\t\t   ${Green}arg2${NoColor} = add|delete\n"
+    
    echo -e "\t${Green}storage${NoColor}\t   Checks the amount of storage used on servers\n"
    
    echo -e "\t${Green}update${NoColor}\t   Updates packages on all servers\n"
@@ -368,22 +443,22 @@ case $1 in
             for region in $All
               do
                 case $2 in
-                  check ) ssh -i $Key $(whoami)@"$region".$Domain ls logs/tld.*.msg.log &> /dev/null
+                  check ) ssh -i $Key $(whoami)@"$region".$Domain ls $Root/logs/tld.*.msg.log &> /dev/null
                           if [ $? -eq 0 ]; then
-                             tldErrorCnt=$(ssh -q -i $Key $(whoami)@"$region".$Domain grep -i error logs/tld.*.msg.log | wc -l)
+                             tldErrorCnt=$(ssh -q -i $Key $(whoami)@"$region".$Domain grep -i error $Root/logs/tld.*.msg.log | wc -l)
                             else
                               tldErrorCnt="n/a"
                           fi
-                          ssh -i $Key $(whoami)@"$region".$Domain ls logs/comp.*.msg.log &> /dev/null
+                          ssh -i $Key $(whoami)@"$region".$Domain ls $Root/logs/comp.*.msg.log &> /dev/null
                           if [ $? -eq 0 ]; then
-                             compErrorCnt=$(ssh -q -i $Key $(whoami)@"$region".$Domain grep -i error logs/comp.*.msg.log | wc -l)
+                             compErrorCnt=$(ssh -q -i $Key $(whoami)@"$region".$Domain grep -i error $Root/logs/comp.*.msg.log | wc -l)
                             else
                               compErrorCnt="n/a"
                           fi
                           echo ""$region" errors: tld=$tldErrorCnt comp=$compErrorCnt"
                           ;;
                  delete ) echo -n "Starting "$region" ... "
-                          ssh -i $Key $(whoami)@"$region".$Domain rm logs/*log &> /dev/null
+                          ssh -i $Key $(whoami)@"$region".$Domain "rm $Root/logs/*log" &> /dev/null
                           chkresult
                           ;;
                 esac         
@@ -429,6 +504,53 @@ case $1 in
               done
             exit 0
             ;;
+            
+   server ) if [ $# -ne 2 ]; then
+               echo -e "\nserver requires 1 argument: add|delete\n"
+               exit 1
+            fi
+            echo "add delete" | tr ' ' '\n' | grep -F -x -q $2
+            if [ $? -eq 1 ]; then
+               echo -e "\narg2 must be add or delete\n"
+               exit 1
+            fi
+            case $2 in
+               add ) servername "add"
+                     curl $Server.$Domain &> /dev/null
+                     if [ $? -ne 0 ]; then
+                        echo "$Server must be onlne to continue"
+                        exit 1
+                       else
+                        echo -n "Adding $Server ..."
+                        chkresult
+                        echo $Server >> $Root/servers
+                        popservers
+                        modifyindex
+                        for region in $Servers
+                          do
+                            echo -n "Updating "$region" ... "           
+                            scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal
+                            chkresult
+                          done                  
+                     fi
+                     ;;
+                          
+            delete ) servername "delete"
+                     echo -n "Deleting $Server ..."
+                     chkresult
+                     sudo sed -i "/$Server/d" $Root/servers
+                     popservers
+                     modifyindex       
+                     for region in $Servers
+                       do
+                         echo -n "Updating "$region" ... "           
+                         scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal
+                         chkresult
+                       done                  
+                     ;;
+            esac
+            exit 0
+            ;;          
             
   storage ) echo ""
             for region in $Servers
