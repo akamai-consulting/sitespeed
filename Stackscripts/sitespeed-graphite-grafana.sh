@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #      sitespeed-graphite-grafana          #
-#                  v6                      #
+#                  v7                      #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -11,8 +11,6 @@
 ############################################
 
 # <UDF name="USERNAME" Label="Name of admin user" />
-# <UDF name="PASSWORD" Label="Password for admin user" />
-# <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
 # <UDF name="HOST" Label="Host name for this server" Example="Example i.e., graphite or grafana (no spaces allowed)" />
 # <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
 
@@ -39,7 +37,37 @@ yum -y install grafana-enterprise tree wget
 grafana-cli plugins install yesoreyeram-boomtable-panel
 
 # Update the system timezone
-timedatectl set-timezone $TIMEZONE
+case $LINODE_DATACENTERID in
+  4 | 6 ) timedatectl set-timezone America/New_York
+          TIMEZONE=America/New_York ;;
+                  
+      2 ) timedatectl set-timezone America/Chicago
+          TIMEZONE=America/Chicago ;;
+      
+      3 ) timedatectl set-timezone America/Los_Angeles
+          TIMEZONE=America/Los_Angeles ;;
+ 
+     15 ) timedatectl set-timezone America/Toronto
+          TIMEZONE=America/Toronto ;;
+     
+      7 ) timedatectl set-timezone Europe/London
+          TIMEZONE=Europe/London ;;
+        
+     10 ) timedatectl set-timezone Europe/Berlin
+          TIMEZONE=Europe/Berlin ;;
+     
+      9 ) timedatectl set-timezone Asia/Singapore
+          TIMEZONE=Asia/Singapore ;;
+       
+     16 ) timedatectl set-timezone Australia/Sydney
+          TIMEZONE=Australia/Sydney ;;
+   
+     11 ) timedatectl set-timezone Asia/Tokyo
+          TIMEZONE=Asia/Tokyo ;;
+   
+     14 ) timedatectl set-timezone Asia/Kolkata 
+          TIMEZONE=Asia/Kolkata ;;
+esac
 
 # Install Docker
 curl -fsSL https://get.docker.com/ | sh
@@ -57,12 +85,10 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 
 # Create admin user
 useradd $USERNAME
-echo "$PASSWORD" | passwd "$USERNAME" --stdin
 echo "export PS1='[$HOST \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile
 
 # Create sitespeed user
 useradd sitespeed
-echo "$PASSWORD" | passwd sitespeed --stdin
 
 # Add admin to required groups
 usermod -aG wheel sitespeed

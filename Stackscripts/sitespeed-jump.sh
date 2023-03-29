@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
-#                  v6                      #
+#                  v7                      #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -11,8 +11,6 @@
 ############################################
 
 # <UDF name="USERNAME" Label="Name of admin user" />
-# <UDF name="PASSWORD" Label="Password for admin user" />
-# <UDF name="TIMEZONE" Label="Timezone" Example="IANA timezone format, i.e., America/New_York" />
 # <UDF name="HOST" Label="Host name for this server" Example="Example i.e., Jump or Portal (no spaces allowed)" />
 # <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
 # <UDF name="SERVERS" Label="Sitespeed host name(s)" Example="Example i.e., US-East Chicago SanFran (space delimited)" />
@@ -27,7 +25,37 @@ yum -y install tree wget nmap-ncat
 yum -y install epel-release && yum -y install nginx
 
 # Update the system timezone
-timedatectl set-timezone $TIMEZONE
+case $LINODE_DATACENTERID in
+  4 | 6 ) timedatectl set-timezone America/New_York
+          TIMEZONE=America/New_York ;;
+                  
+      2 ) timedatectl set-timezone America/Chicago
+          TIMEZONE=America/Chicago ;;
+      
+      3 ) timedatectl set-timezone America/Los_Angeles
+          TIMEZONE=America/Los_Angeles ;;
+ 
+     15 ) timedatectl set-timezone America/Toronto
+          TIMEZONE=America/Toronto ;;
+     
+      7 ) timedatectl set-timezone Europe/London
+          TIMEZONE=Europe/London ;;
+        
+     10 ) timedatectl set-timezone Europe/Berlin
+          TIMEZONE=Europe/Berlin ;;
+     
+      9 ) timedatectl set-timezone Asia/Singapore
+          TIMEZONE=Asia/Singapore ;;
+       
+     16 ) timedatectl set-timezone Australia/Sydney
+          TIMEZONE=Australia/Sydney ;;
+   
+     11 ) timedatectl set-timezone Asia/Tokyo
+          TIMEZONE=Asia/Tokyo ;;
+   
+     14 ) timedatectl set-timezone Asia/Kolkata 
+          TIMEZONE=Asia/Kolkata ;;
+esac
 
 # Download configurations files
 wget https://as.akamai.com/user/sitespeed/jump.tgz
@@ -40,12 +68,10 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 
 # Create admin user
 useradd $USERNAME
-echo "$PASSWORD" | passwd "$USERNAME" --stdin
 echo -e "function jump() {\n  ssh -i /home/$USERNAME/.ssh/sitespeed \$1.$DOMAIN\n}\nexport PS1='[$HOST \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile 
 
 # Create sitespeed user
 useradd sitespeed
-echo "$PASSWORD" | passwd sitespeed --stdin
 
 # Add users to required groups
 usermod -aG wheel sitespeed
@@ -96,23 +122,29 @@ chgrp -R sitespeed /home/sitespeed/.ssh
 # Modify admin.sh
 sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/admin.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/admin.sh
-sed -i "s/\[SERVERS\]/$SERVERS/" /usr/local/sitespeed/admin.sh
 sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/admin.sh
 sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/admin.sh
 
 # Modify maintenance.sh
 sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/maintenance.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/maintenance.sh
-sed -i "s/\[SERVERS\]/$SERVERS/" /usr/local/sitespeed/maintenance.sh
 sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/maintenance.sh
 sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/maintenance.sh
 
 # Modify user.sh
 sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/user.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/user.sh
-sed -i "s/\[SERVERS\]/$SERVERS/" /usr/local/sitespeed/user.sh
 sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/user.sh
 sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/user.sh
+
+# Create servers config file and set ownership
+for data in $SERVERS
+  do
+   echo $data >> /usr/local/sitespeed/servers
+  done
+chown root /usr/local/sitespeed/servers
+chgrp sitespeed /usr/local/sitespeed/servers
+chmod 664 /usr/local/sitespeed/servers
 
 # Modify index.html
 sortedSERVERS=$(echo $SERVERS | xargs -n 1 | sort | xargs)
