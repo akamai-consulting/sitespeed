@@ -1,4 +1,4 @@
-# **Welcome to the Advanced Services Sitespeed Portal**
+# **Advanced Solutions Sitespeed Portal**
 
 The Sitespeed system requires the following components:
 
@@ -10,7 +10,7 @@ The Sitespeed system requires the following components:
 
 The Graphite and Grafana components get installed on the same Linode.
 
-The Google and Portal components each get installed on their own Linode.
+The Google and Portal components get installed on their own Linodes.
 
 The Sitespeed component is the primary testing machine, which gets installed on its own Linode. This component should be installed in every location that you want to run tests.
 
@@ -24,3 +24,5 @@ To install each of the components use the following Stackscrips:
 The system requires name resolution of all Linodes.
 
 To use the Google component you will need to obtain a GCP Chrome UX Report API key.
+
+Use the Planner Guide (Info/Planner.pdf) to predefine all of the required information, which will make the installation process go faster.
