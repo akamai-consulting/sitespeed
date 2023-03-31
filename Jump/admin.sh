@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 31                     #
+#                 v 32                     #
 #                                          #
 ############################################
 
@@ -21,7 +21,7 @@ successCnt=0
 failureCnt=0
 failure=""
 
-# Function that reads servers and set SERVERS variable
+# Function that reads servers and sets Servers variable
 function popservers {
   Servers=""
   end=$(cat $Root/servers | wc -l)
@@ -30,6 +30,19 @@ function popservers {
   for (( index=1; index <= $end; index+=1 ))
     do
       Servers="$Servers$data "
+      read data <&3
+    done
+}
+
+# Function that reads users and sets Users variable
+function popusers {
+  Users=""
+  end=$(cat $Root/users | wc -l)
+  exec 3<$Root/users
+  read data <&3
+  for (( index=1; index <= $end; index+=1 ))
+    do
+      Users="$Users$data "
       read data <&3
     done
 }
@@ -142,48 +155,48 @@ function crondelete {
 
 # Print help
 if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
-   echo -e "\n${Green}USAGE${NoColor} admin arg1 [arg2 arg3]\n"               
+   echo -e "\n${Green}USAGE${NoColor} admin command [arg1 arg2]\n"               
    echo -e "${Green}DESCRIPTION${NoColor} Automates the distribution files and execution of scripts across servers\n"
    
-   echo -e "The following options are available:\n"
+   echo -e "The following commands are available:\n"
    
    echo -e "\t${Green}all${NoColor}\t   Copies customized files across servers\n"
    
    echo -e "\t${Green}cert${NoColor}\t   Checks the certificate renewal date on servers\n"
    
    echo -e "\t${Green}core${NoColor}\t   Checks for core files on servers. Requires:"
-   echo -e "\t\t   ${Green}arg2${NoColor} = check|delete\n"
+   echo -e "\t\t   ${Green}arg1${NoColor} = check|delete\n"
 
    echo -e "\t${Green}cron${NoColor}\t   Schedules cron jobs on servers. Requires:"
-   echo -e "\t\t   ${Green}arg2${NoColor} = check|update|delete\n"
+   echo -e "\t\t   ${Green}arg1${NoColor} = check|update|delete\n"
    
    echo -e "\t${Green}docker${NoColor}\t   Performs various docker functions on servers. Requires:"
-   echo -e "\t\t   ${Green}arg2${NoColor} = check|clean\n"
+   echo -e "\t\t   ${Green}arg1${NoColor} = check|clean\n"
    
-   echo -e "\t${Green}grafana${NoColor}    Updates Grafana to the latest version. Requires:\n"
-   echo -e "\t\t   ${Green}arg2${NoColor} = update|provision\n"
+   echo -e "\t${Green}grafana${NoColor}    Updates Grafana to the latest version. Requires:"
+   echo -e "\t\t   ${Green}arg1${NoColor} = update|provision\n"
 
    echo -e "\t${Green}graphite${NoColor}   Manages the size of graphite.db. Requires:"
-   echo -e "\t\t   ${Green}arg2${NoColor} = check|reduce\n"
+   echo -e "\t\t   ${Green}arg1${NoColor} = check|reduce\n"
    
    echo -e "\t${Green}logs${NoColor}\t   Checks for errors on servers. Requires:"
-   echo -e "\t\t   ${Green}arg2${NoColor} = check|delete\n"
+   echo -e "\t\t   ${Green}arg1${NoColor} = check|delete\n"
    
    echo -e "\t${Green}reset${NoColor}\t   Deletes Sitespeed data on servers\n"
    
    echo -e "\t${Green}seed${NoColor}\t   Manages the seed files on servers. Requires:"
-   echo -e "\t\t   ${Green}arg2${NoColor} = tld|comp|delete"
-   echo -e "\t\t   ${Green}arg3${NoColor} = seed file\n"
+   echo -e "\t\t   ${Green}arg1${NoColor} = tld|comp|delete"
+   echo -e "\t\t   ${Green}arg2${NoColor} = seed file\n"
    
    echo -e "\t${Green}server${NoColor}     Adds and removes servers. Requires:"
-   echo -e "\t\t   ${Green}arg2${NoColor} = add|delete\n"
+   echo -e "\t\t   ${Green}arg1${NoColor} = add|delete|names\n"
     
    echo -e "\t${Green}storage${NoColor}\t   Checks the amount of storage used on servers\n"
    
    echo -e "\t${Green}update${NoColor}\t   Updates packages on all servers\n"
    
    echo -e "\t${Green}user${NoColor}\t   Manages user accounts on servers. Requires:"
-   echo -e "\t\t   ${Green}arg2${NoColor} = add|delete\n"
+   echo -e "\t\t   ${Green}arg1${NoColor} = add|delete|names\n"
   
    exit 0
 fi
@@ -486,9 +499,9 @@ case $1 in
                echo -e "\nseed requires 2 arguments\n"
                exit 1
             fi
-            echo "tld comp" | tr ' ' '\n' | grep -F -x -q $2
+            echo "tld comp delete" | tr ' ' '\n' | grep -F -x -q $2
             if [ $? -eq 1 ]; then
-               echo -e "\narg2 must be tld or comp\n"
+               echo -e "\narg2 must be tld|comp|delete\n"
                exit 1
             fi
             if [ ! -f $Root/seeds/$3.txt ]; then
@@ -499,19 +512,23 @@ case $1 in
             for region in $All
               do
                 echo -n "Starting "$region" ... "
-                scp -q -i $Key $Root/seeds/$3.txt $(whoami)@"$region".$Domain:$Root/$2
+                if [ "2" == "delete" ]; then
+                   ssh -i $Key $(whoami)@"$region".$Domain "rm $Root/tld/$3.txt || rm $Root/comp/$3.txt" &> /dev/null
+                 else
+                   scp -q -i $Key $Root/seeds/$3.txt $(whoami)@"$region".$Domain:$Root/$2
+                fi
                 chkresult
               done
             exit 0
             ;;
             
    server ) if [ $# -ne 2 ]; then
-               echo -e "\nserver requires 1 argument: add|delete\n"
+               echo -e "\nserver requires 1 argument: add|delete|names\n"
                exit 1
             fi
-            echo "add delete" | tr ' ' '\n' | grep -F -x -q $2
+            echo "add delete names" | tr ' ' '\n' | grep -F -x -q $2
             if [ $? -eq 1 ]; then
-               echo -e "\narg2 must be add or delete\n"
+               echo -e "\narg2 must be add|delete|names\n"
                exit 1
             fi
             case $2 in
@@ -548,6 +565,15 @@ case $1 in
                          chkresult
                        done                  
                      ;;
+             names ) echo "Active servers"
+                     echo $Google
+                     echo $Graphite
+                     sortedSERVERS=$(echo $Servers | xargs -n 1 | sort | xargs)
+                     for data in $sortedSERVERS
+                       do
+                         echo $data
+                       done
+                     ;;
             esac
             exit 0
             ;;          
@@ -575,10 +601,10 @@ case $1 in
             ;;
             
      user ) if [ $# -ne 2 ]; then
-               echo -e "\nuser requires 1 argument: add|delete\n"
+               echo -e "\nuser requires 1 argument: add|delete|names\n"
                exit 1
             fi
-            echo "add delete" | tr ' ' '\n' | grep -F -x -q $2
+            echo "add delete|names" | tr ' ' '\n' | grep -F -x -q $2
             if [ $? -eq 1 ]; then
                echo -e "\narg2 must be add or delete\n"
                exit 1
@@ -587,6 +613,14 @@ case $1 in
                  add ) sudo $Root/user.sh add
                        ;;
               delete ) sudo $Root/user.sh delete
+                       ;;
+               names ) popusers        
+                       sortedUSERS=$(echo $Users | xargs -n 1 | sort | xargs)
+                       echo "Sitespeed users"
+                       for data in $sortedUSERS
+                         do
+                           echo $data
+                         done
                        ;;
             esac
             exit 0

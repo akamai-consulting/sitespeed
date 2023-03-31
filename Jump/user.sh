@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v3                      #
+#                  v4                      #
 #                                          #
 ############################################
 
@@ -38,12 +38,15 @@ function adduser {
 
 # Delete existing user
 function deluser {
+   Admin=$(grep Admin /usr/local/sitespeed/users | awk '{print $1}')
    User=""
    until [ "$valid" == "true"  ]
      do
        read -p "Username: " User
        if [ "$User" == "$(logname)" ]; then
           echo "Cannot delete yourself"
+        elif [ "$User" == "$Admin" ]; then
+          echo "Cannot delete the Admin user"
         else
           grep -i -q $User /etc/passwd
           if [ "$?" == "1" ]; then
@@ -74,6 +77,7 @@ case $1 in
           # Create user on Jump server
           echo "Creating $User on $Host ..."
           useradd $User
+          echo $User >> /usr/local/sitespeed/users
           usermod -aG wheel $User
           usermod -aG sitespeed $User
           mkdir /home/$User/.ssh
@@ -115,6 +119,7 @@ case $1 in
           echo "Deleting $User on $Host ..."
           echo
           userdel -r $User
+          sed -i "/$User/d" /usr/local/sitespeed/users
           # Delete user on remote servers
           for region in $All
             do
