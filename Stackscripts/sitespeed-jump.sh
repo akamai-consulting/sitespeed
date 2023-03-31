@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
-#                  v7                      #
+#                  v8                      #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -145,6 +145,12 @@ for data in $SERVERS
 chown root /usr/local/sitespeed/servers
 chgrp sitespeed /usr/local/sitespeed/servers
 chmod 664 /usr/local/sitespeed/servers
+
+# Create users config file and set ownership
+echo $USERNAME Admin > /usr/local/sitespeed/users
+chown root /usr/local/sitespeed/users
+chgrp sitespeed /usr/local/sitespeed/users
+chmod 664 /usr/local/sitespeed/users
 
 # Modify index.html
 sortedSERVERS=$(echo $SERVERS | xargs -n 1 | sort | xargs)
