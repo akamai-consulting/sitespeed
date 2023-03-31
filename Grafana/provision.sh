@@ -3,7 +3,7 @@
 #########################################
 #                                       #
 #             provision.sh              #
-#                  v 1                  #
+#                  v 2                  #
 #                                       #
 #########################################
 
@@ -24,7 +24,11 @@ fi
   
 # Extract the provisioning files
 tar --warning=none --no-same-owner --overwrite -C /etc/grafana/provisioning/datasources -xf /grafana.tgz graphite.yaml
-tar --warning=none --no-same-owner --overwrite -C /etc/grafana/provisioning/dashboards -xf /grafana.tgz sitespeed.yaml apis.yaml google.yaml lyra.yaml ds2.yaml
+tar --warning=none --no-same-owner --overwrite -C /etc/grafana/provisioning/dashboards -xf /grafana.tgz sitespeed.yaml google.yaml
+
+# Release apis.yaml, lyra.yaml, and ds2.yaml at a future point in time
+# tar --warning=none --no-same-owner --overwrite -C /etc/grafana/provisioning/dashboards -xf /grafana.tgz sitespeed.yaml apis.yaml google.yaml lyra.yaml ds2.yaml
+
 tar --warning=none --no-same-owner --overwrite -C /var/lib/grafana/dashboards/google -xf /grafana.tgz Chrome*.json Light*.json
 tar --warning=none --no-same-owner --overwrite -C /var/lib/grafana/dashboards/sitespeed -xf /grafana.tgz Site*.json Page*.json Leader*.json Geo*.json Welcome*.json
 
