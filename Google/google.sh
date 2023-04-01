@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               google.sh                  #
-#                  v 10                     #
+#                  v 12                    #
 #                                          #
 ############################################
 
@@ -11,6 +11,7 @@
 SitespeedVer=sitespeedio/sitespeed.io:26.1.0-plus1
 Graphite=[GRAPHITE]
 Domain=[DOMAIN]
+Root=/usr/local/sitespeed
 
 # Print help
 if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
@@ -41,10 +42,10 @@ if [ "$1" == "tld" ]; then
 fi
 
 # Check that a seed file exists
-if [ -f /usr/local/sitespeed/$1/$2.txt ]; then
+if [ -f $Root/$1/$2.txt ]; then
    url=$2.txt
   else
-   echo -e "\n/usr/local/sitespeed/$1/$2.txt does not exist\n"
+   echo -e "\n$Root/$1/$2.txt does not exist\n"
    exit 1
 fi
 
@@ -59,7 +60,7 @@ docker run \
  --rm --name $2-`date +%s` \
  -e TZ=[TIMEZONE] \
  -e MAX_OLD_SPACE_SIZE=4096 \
- -v /usr/local/sitespeed/$1:/sitespeed.io \
+ -v $Root/$1:/sitespeed.io \
  -v /etc/localtime:/etc/localtime:ro \
  $SitespeedVer \
  -n 1 \
@@ -80,7 +81,7 @@ docker run \
  --rm --name $2-`date +%s` \
  -e TZ=[TIMEZONE] \
  -e MAX_OLD_SPACE_SIZE=4096 \
- -v /usr/local/sitespeed/$1:/sitespeed.io \
+ -v $Root/$1:/sitespeed.io \
  -v /etc/localtime:/etc/localtime:ro \
  $SitespeedVer \
  -n 1 \
@@ -102,7 +103,7 @@ runtime=$((end-teststart))
 hours=$((runtime / 3600))
 minutes=$(( (runtime % 3600) / 60 ))
 seconds=$(( (runtime % 3600) % 60 ))
-echo "$TestType End: $(TZ='[TIMEZONE]' date): $0 $@  Duration: $hours:$minutes:$seconds" >> /usr/local/sitespeed/logs/$1.$2.run.log
+echo "$TestType End: $(TZ='[TIMEZONE]' date): $0 $@  Duration: $hours:$minutes:$seconds" >> $Root/logs/$1.$2.run.log
 
 # Capture the end of the entire run
 end=`date +%s`
@@ -112,4 +113,4 @@ runtime=$((end-start))
 echo "sitespeed_log.PSI-CrUX.$graphdir.$2.duration $runtime `date +%s`" | nc $Graphite.$Domain 2003
 
 # Remove sitespeed_io structure
-sudo rm -Rf /usr/local/sitespeed/$1/sitespeed-result
+sudo rm -Rf $Root/$1/sitespeed-result
