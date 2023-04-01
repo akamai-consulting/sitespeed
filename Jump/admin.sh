@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 32                     #
+#                 v 35                     #
 #                                          #
 ############################################
 
@@ -223,7 +223,7 @@ fi
 
 # First time initialization
 if [ ! -f $Root/google/google.sh ]; then
-   scp -q -i $Key $(whoami)@$Google.$Domain:$Root/google.sh /usr/local/sitespeed/google/
+   scp -q -i $Key $(whoami)@$Google.$Domain:$Root/google.sh $Root/google/
    echo ""
    for region in $Servers
     do
@@ -512,7 +512,7 @@ case $1 in
             for region in $All
               do
                 echo -n "Starting "$region" ... "
-                if [ "2" == "delete" ]; then
+                if [ "$2" == "delete" ]; then
                    ssh -i $Key $(whoami)@"$region".$Domain "rm $Root/tld/$3.txt || rm $Root/comp/$3.txt" &> /dev/null
                  else
                    scp -q -i $Key $Root/seeds/$3.txt $(whoami)@"$region".$Domain:$Root/$2
@@ -604,9 +604,9 @@ case $1 in
                echo -e "\nuser requires 1 argument: add|delete|names\n"
                exit 1
             fi
-            echo "add delete|names" | tr ' ' '\n' | grep -F -x -q $2
+            echo "add delete names" | tr ' ' '\n' | grep -F -x -q $2
             if [ $? -eq 1 ]; then
-               echo -e "\narg2 must be add or delete\n"
+               echo -e "\narg2 must be add|delete|names\n"
                exit 1
             fi            
             case $2 in

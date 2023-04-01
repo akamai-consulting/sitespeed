@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v4                      #
+#                  v5                      #
 #                                          #
 ############################################
 
@@ -38,7 +38,7 @@ function adduser {
 
 # Delete existing user
 function deluser {
-   Admin=$(grep Admin /usr/local/sitespeed/users | awk '{print $1}')
+   Admin=$(grep Admin /usr/local/sitespeed/users | awk -F '-' '{print $1}')
    User=""
    until [ "$valid" == "true"  ]
      do
