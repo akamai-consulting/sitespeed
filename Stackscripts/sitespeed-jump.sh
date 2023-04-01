@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
-#                  v8                      #
+#                  v10                     #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -11,11 +11,12 @@
 ############################################
 
 # <UDF name="USERNAME" Label="Name of admin user" />
-# <UDF name="HOST" Label="Host name for this server" Example="Example i.e., Jump or Portal (no spaces allowed)" />
+# <UDF name="HOST" Label="Host name for this server" Example="Example i.e., Jump" />
 # <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
-# <UDF name="SERVERS" Label="Sitespeed host name(s)" Example="Example i.e., US-East Chicago SanFran (space delimited)" />
+# <UDF name="SERVERS" Label="Sitespeed host name(s)" Example="Example i.e., Newark Dallas London (space delimited)" />
 # <UDF name="GOOGLE" Label="Google host name" />
 # <UDF name="GRAPHITE" Label="Graphite host name" />
+# <UDF name="GRAFANA" Label="Grafana host name" />
 
 # Update the core OS
 yum -y update
@@ -147,7 +148,7 @@ chgrp sitespeed /usr/local/sitespeed/servers
 chmod 664 /usr/local/sitespeed/servers
 
 # Create users config file and set ownership
-echo $USERNAME Admin > /usr/local/sitespeed/users
+echo $USERNAME-Admin > /usr/local/sitespeed/users
 chown root /usr/local/sitespeed/users
 chgrp sitespeed /usr/local/sitespeed/users
 chmod 664 /usr/local/sitespeed/users
@@ -166,13 +167,13 @@ sed '/\[HOST\]\.\[DOMAIN\]/r foo' /usr/local/sitespeed/portal/index.html | sed '
 mv -f bar /usr/local/sitespeed/portal/index.html
 rm foo
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/index.html
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/portal/index.html
+sed -i "s/\[GRAFANA\]/$GRAFANA/" /usr/local/sitespeed/portal/index.html
 chmod 755 /usr/local/sitespeed/portal/index.html
 chgrp sitespeed /usr/local/sitespeed/portal/index.html
 
 # Modify error.html
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/error.html
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/portal/error.html
+sed -i "s/\[GRAFANA\]/$GRAFANA/" /usr/local/sitespeed/portal/error.html
 
 # Modify sitespeed.sh
 sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/sitespeed/sitespeed.sh
