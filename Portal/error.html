@@ -2,7 +2,7 @@
 ############################################
 #                                          #
 #              error.html                  #
-#                 V 4                      #        
+#                 V 6                      #        
 #                                          #
 ############################################
 -->
@@ -131,14 +131,14 @@
    <hr>This page gets displayed when one of the following happens, in order of likelihood:<br>
     <ul>
       <li>A test type requested from the main portal does not exist</li>
-      <li>Grafana tries to display an annotation that no longer exists*</li>
+      <li>Grafana tried to display an annotation that no longer exists*</li>
       <li>An incorrect URL was manually entered</li>
       <li>The web server encountered an issue</li>
     </ul>
     * HTML test results and Grafana annotations are saved for 7 days, but Graphite saves data for 13 months    
   </p>
   <p>
-    No worries! Jump to either <button class="launch" onclick="window.location.href='http://[DOMAIN]'">Sitespeed</button> or <button class="launch" onclick="window.location.href='http://[GRAPHITE].[DOMAIN]'">Grafana</button>
+    No worries! Jump to either <button class="launch" onclick="window.location.href='http://[DOMAIN]'">Sitespeed</button> or <button class="launch" onclick="window.location.href='http://[GRAFANA].[DOMAIN]'">Grafana</button>
    
    
   </p>
