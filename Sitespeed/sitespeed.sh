@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #              sitespeed.sh                #
-#                  v 47                    #
+#                  v 50                    #
 #                                          #
 ############################################
 
@@ -11,6 +11,7 @@
 SitespeedVer="sitespeedio/sitespeed.io:26.1.0"
 Graphite=[GRAPHITE]
 Domain=[DOMAIN]
+Root=/usr/local/sitespeed
 
 ChromeLAN="--browsertime.connectivity.alias LAN"
 ChromeLTE="-c custom --browsertime.connectivity.alias LTE --downstreamKbps 12000 --upstreamKbps 12000 --latency 35 --connectivity.engine throttle --chrome.CPUThrottlingRate 4 --mobile"
@@ -51,16 +52,16 @@ if [ "$1" == "tld" ]; then
 fi
 
 # Check that config.json exists
-if [ ! -f /usr/local/sitespeed/$1/config.json ]; then
-   echo -e "\n/usr/local/sitespeed/$1/config.json does not exist\n"
+if [ ! -f $Root/$1/config.json ]; then
+   echo -e "\n$Root/$1/config.json does not exist\n"
    exit 1
 fi
 
 # Check that a seed file exists
-if [ -f "/usr/local/sitespeed/$1/$2.txt" ]; then
+if [ -f "$Root/$1/$2.txt" ]; then
    url=$2.txt
   else
-   echo -e "\n/usr/local/sitespeed/$1/$2.txt does not exist\n"
+   echo -e "\n$Root/$1/$2.txt does not exist\n"
    exit 1
 fi
 
@@ -119,7 +120,7 @@ for (( index=1; index < 3 ; index+=1 ))
      $DockerCmds \
      -e TZ=[TIMEZONE] \
      -e MAX_OLD_SPACE_SIZE=4096 \
-     -v /usr/local/sitespeed/$1:/sitespeed.io \
+     -v $Root/$1:/sitespeed.io \
      -v /etc/localtime:/etc/localtime:ro \
      $SitespeedVer \
      -n $ITR \
@@ -136,17 +137,17 @@ for (( index=1; index < 3 ; index+=1 ))
     hours=$((runtime / 3600))
     minutes=$(( (runtime % 3600) / 60 ))
     seconds=$(( (runtime % 3600) % 60 ))
-    echo "$TestType End: $(TZ='[TIMEZONE]' date): $0 $@  Duration: $hours:$minutes:$seconds" >> /usr/local/sitespeed/logs/$1.$2.run.log
+    echo "$TestType End: $(TZ='[TIMEZONE]' date): $0 $@  Duration: $hours:$minutes:$seconds" >> $Root/logs/$1.$2.run.log
   done
 
 # Move the generated images to the correct location 
-if [ ! -d /usr/local/sitespeed/portal/images/$2 ]; then
-   sudo mkdir -p /usr/local/sitespeed/portal/images/$2
+if [ ! -d $Root/portal/images/$2 ]; then
+   sudo mkdir -p $Root/portal/images/$2
 fi
-domainList=$(cat /usr/local/sitespeed/$1/$2.txt | awk '{print $3}' | uniq )
+domainList=$(cat $Root/$1/$2.txt | awk '{print $3}' | uniq )
 for domain in $domainList
   do
-    sudo mv -f /usr/local/sitespeed/$1/sitespeed-result/$3/"$domain"* /usr/local/sitespeed/portal/images/$2/ &> /dev/null
+    sudo mv -f $Root/$1/sitespeed-result/$3/"$domain"* $Root/portal/images/$2/ &> /dev/null
   done
 
 # Capture the end of the entire run, but do not log locally
@@ -157,7 +158,7 @@ runtime=$((end-start))
 echo "sitespeed_log.$graphdir.$2.$3.duration $runtime `date +%s`" | nc $Graphite.$Domain 2003
 
 # Set the symlink for nginx root directive to point to the latest LAN index.html
-sudo ln -nsf $(find /usr/local/sitespeed/$1/sitespeed-result/ -maxdepth 3 -name index.html | xargs ls -Art | tail -n 1 | xargs dirname) /usr/local/sitespeed/portal/$weblan
+sudo ln -nsf $(find $Root/$1/sitespeed-result/ -maxdepth 3 -name index.html | xargs ls -Art | tail -n 1 | xargs dirname) $Root/portal/$weblan
 
 # Set the symlink for nginx root directive to point to the latest Mobile index.html
-sudo ln -nsf $(find /usr/local/sitespeed/$1/sitespeed-result/ -maxdepth 3 -name index.html | xargs ls -Art | tail -n 2 | xargs ls -At | tail -n 1 | xargs dirname) /usr/local/sitespeed/portal/$webmobile
+sudo ln -nsf $(find $Root/$1/sitespeed-result/ -maxdepth 3 -name index.html | xargs ls -Art | tail -n 2 | xargs ls -At | tail -n 1 | xargs dirname) $Root/portal/$webmobile
