@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 35                     #
+#                 v 40                     #
 #                                          #
 ############################################
 
@@ -11,10 +11,7 @@
 Green='\033[0;32m'
 NoColor='\033[0m'
 Options="all update docker seed reset cron logs cert graphite grafana storage core user server"
-Host=[HOST]
 Domain=[DOMAIN]
-Google=[GOOGLE]
-Graphite=[GRAPHITE]
 Key=$HOME/.ssh/sitespeed
 Root=/usr/local/sitespeed
 successCnt=0
@@ -204,7 +201,7 @@ fi
 # Make sure the user has a known_hosts file
 if [ ! -f $HOME/.ssh/known_hosts ]; then
    echo -e "\nCreating an SSH known_hosts file"
-   All="$Servers $Google $Graphite"
+   All="$Servers google graphite"
    for region in $All
      do
       echo -e "\nAdding "$region" ... "
@@ -223,7 +220,7 @@ fi
 
 # First time initialization
 if [ ! -f $Root/google/google.sh ]; then
-   scp -q -i $Key $(whoami)@$Google.$Domain:$Root/google.sh $Root/google/
+   scp -q -i $Key $(whoami)@google.$Domain:$Root/google.sh $Root/google/
    echo ""
    for region in $Servers
     do
@@ -241,8 +238,8 @@ fi
 
 # Process each option
 case $1 in
-      all ) echo -n "Updating "$Google" ... "
-            scp -q -i $Key $Root/google/google.sh $(whoami)@"$Google".$Domain:$Root
+      all ) echo -n "Updating Google ... "
+            scp -q -i $Key $Root/google/google.sh $(whoami)@google.$Domain:$Root
             chkresult
             for region in $Servers
               do
@@ -256,8 +253,8 @@ case $1 in
             exit 0
             ;;
  
-     cert ) echo -e "\nChecking "$Graphite" ... "
-            ssh -i $Key $(whoami)@$Graphite.$Domain sudo certbot certificates 
+     cert ) echo -e "\nChecking Graphite ... "
+            ssh -i $Key $(whoami)@graphite.$Domain sudo certbot certificates 
             for region in $Servers
               do
                 echo -e "\nChecking "$region" ... "
@@ -275,7 +272,7 @@ case $1 in
                echo -e "\narg2 must be check or delete\n"
                exit 1
             fi
-            All="$Google $Servers"
+            All="google $Servers"
             for region in $All
               do
                 case $2 in
@@ -307,24 +304,24 @@ case $1 in
             case $2 in
                check ) sudo -u sitespeed crontab -l &> cron/crontab
                        if [ $? -eq 0 ]; then
-                           echo -e "\nDisplaying "$Host" ... "
+                           echo -e "\nDisplaying Jump ... "
                            grep -v -e '^$' cron/crontab
                            rm cron/crontab
                        else
-                           echo -e "\nDisplaying "$Host" ... no entry exists"
+                           echo -e "\nDisplaying Jump ... no entry exists"
                            rm cron/crontab
                        fi
                        ;;
-              update ) echo -n "Updating "$Host" ... "
+              update ) echo -n "Updating Jump ... "
                        sudo -u sitespeed crontab /home/sitespeed/jumpcron &> /dev/null
                        chkresult
                        ;;
-              delete ) echo -n "Updating "$Host" ... "
+              delete ) echo -n "Updating Jump ... "
                        sudo -u sitespeed crontab -r &> /dev/null
                        crondelete                
                        ;;
             esac
-            All="$Google $Servers"
+            All="google $Servers"
             for region in $All
               do
                 case $2 in
@@ -332,7 +329,7 @@ case $1 in
                          cronlist
                          ;;
                 update ) echo -n "Updating "$region" ... "
-                         if [ "$region" == "$Google" ]; then
+                         if [ "$region" == "google" ]; then
                              sed 's/XXX/'$region'/' cron/psicron.UPD > cron/psicron.REG
                              echo "" >> cron/psicron.REG                  
                              scp -q -i $Key cron/psicron.REG $(whoami)@"$region".$Domain:crondata
@@ -375,7 +372,7 @@ case $1 in
                echo -e "\narg2 must be check or clean\n"
                exit 1
             fi
-            All="$Google $Servers"
+            All="google $Servers"
             for region in $All
               do
                 case $2 in
@@ -406,16 +403,16 @@ case $1 in
                exit 1
             fi
             case $2 in
-                    update ) echo -n "Updating "$Graphite" ... "
-                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo yum -y update grafana-enterprise &> /dev/null
-                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo systemctl restart grafana-server &> /dev/null
+                    update ) echo -n "Updating Graphite ... "
+                             ssh -q -i $Key $(whoami)@graphite.$Domain sudo yum -y update grafana-enterprise &> /dev/null
+                             ssh -q -i $Key $(whoami)@graphite.$Domain sudo systemctl restart grafana-server &> /dev/null
                              chkresult
                              ;;
-                 provision ) echo -n "Provisioning new dashboards on "$Graphite" ... "            
-                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo /usr/local/graphite/provision.sh update
-                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo mv -f /provision.sh /usr/local/graphite/provision.sh
-                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo chmod 755 /usr/local/graphite/provision.sh
-                             ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo /usr/local/graphite/provision.sh
+                 provision ) echo -n "Provisioning new Grafana dashboards ... "            
+                             ssh -q -i $Key $(whoami)@graphite.$Domain sudo /usr/local/graphite/provision.sh update
+                             ssh -q -i $Key $(whoami)@graphite.$Domain sudo mv -f /provision.sh /usr/local/graphite/provision.sh
+                             ssh -q -i $Key $(whoami)@graphite.$Domain sudo chmod 755 /usr/local/graphite/provision.sh
+                             ssh -q -i $Key $(whoami)@graphite.$Domain sudo /usr/local/graphite/provision.sh
                              chkresult
                              ;;
             esac
@@ -432,11 +429,11 @@ case $1 in
                exit 1
             fi
                case $2 in
-                  check ) echo "Checking graphite.db on "$Graphite" ... "
-                          ssh -i $Key $(whoami)@$Graphite.$Domain du -sh /usr/local/graphite/graphite-storage/graphite.db
+                  check ) echo "Checking graphite.db on Graphite ... "
+                          ssh -i $Key $(whoami)@graphite.$Domain du -sh /usr/local/graphite/graphite-storage/graphite.db
                           ;;
-                 reduce ) echo -n "Reducing graphite.db on "$Graphite" ... "
-                          ssh -q -i $Key $(whoami)@$Graphite.$Domain sudo /usr/local/graphite/sqlite.sh
+                 reduce ) echo -n "Reducing graphite.db on Graphite ... "
+                          ssh -q -i $Key $(whoami)@graphite.$Domain sudo /usr/local/graphite/sqlite.sh
                           chkresult
                           ;;
                esac         
@@ -452,7 +449,7 @@ case $1 in
                echo -e "\narg2 must be check or delete\n"
                exit 1
             fi
-            All="$Google $Servers"
+            All="google $Servers"
             for region in $All
               do
                 case $2 in
@@ -508,7 +505,7 @@ case $1 in
                echo -e "\n$3.txt does not exist\n"
                exit 1
             fi
-            All="$Google $Servers"
+            All="google $Servers"
             for region in $All
               do
                 echo -n "Starting "$region" ... "
@@ -538,8 +535,13 @@ case $1 in
                         echo "$Server must be onlne to continue"
                         exit 1
                        else
-                        echo -n "Adding $Server ..."
-                        chkresult
+                        echo -e "\nUpdating known_hosts with $Server"
+                        ssh -i $Key $Server.$Domain ls
+                        sudo cp -f $HOME/.ssh/known_hosts /home/sitespeed/.ssh/known_hosts
+                        sudo chown sitespeed /home/sitespeed/.ssh/known_hosts
+                        sudo chgrp sitespeed /home/sitespeed/.ssh/known_hosts
+                        sudo chmod 644 /home/sitespeed/.ssh/known_hosts
+                        echo
                         echo $Server >> $Root/servers
                         popservers
                         modifyindex
@@ -548,7 +550,7 @@ case $1 in
                             echo -n "Updating "$region" ... "           
                             scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal
                             chkresult
-                          done                  
+                          done                               
                      fi
                      ;;
                           
@@ -566,8 +568,8 @@ case $1 in
                        done                  
                      ;;
              names ) echo "Active servers"
-                     echo $Google
-                     echo $Graphite
+                     echo google
+                     echo graphite
                      sortedSERVERS=$(echo $Servers | xargs -n 1 | sort | xargs)
                      for data in $sortedSERVERS
                        do
@@ -590,7 +592,7 @@ case $1 in
             exit 0
             ;;
      
-   update ) All="$Google $Servers"
+   update ) All="google $Servers"
             for region in $All
               do
                 echo -n "Updating "$region" ... "

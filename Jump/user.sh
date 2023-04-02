@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v5                      #
+#                  v7                      #
 #                                          #
 ############################################
 
@@ -14,10 +14,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Set variables
-Host=[HOST]
 Domain=[DOMAIN]
-Google=[GOOGLE]
-Graphite=[GRAPHITE]
 Key=/home/$(logname)/.ssh/sitespeed
 
 # Create new user
@@ -71,11 +68,11 @@ for (( index=1; index <= $end; index+=1 ))
   done
 
 # Process each option
-All="$Google $Graphite $Servers"
+All="google graphite $Servers"
 case $1 in
     add ) adduser
           # Create user on Jump server
-          echo "Creating $User on $Host ..."
+          echo "Creating $User on Jump ..."
           useradd $User
           echo $User >> /usr/local/sitespeed/users
           usermod -aG wheel $User
@@ -94,7 +91,7 @@ case $1 in
           sudo -u $User ln -s /usr/local/sitespeed/admin.sh /home/$User/admin.sh
           sudo -u $User ln -s /usr/local/sitespeed/cron/ /home/$User/cron
           sudo -u $User ln -s /usr/local/sitespeed/seeds/ /home/$User/seeds
-          echo -e "function jump() {\n  ssh -i /home/$User/.ssh/sitespeed \$1.$Domain\n}\nexport PS1='[$Host \u@\h \W]\$ '" >> /home/$User/.bash_profile
+          echo -e "function jump() {\n  ssh -i /home/$User/.ssh/sitespeed \$1.$Domain\n}\nexport PS1='[Jump \u@\h \W]\$ '" >> /home/$User/.bash_profile
           echo         
           for region in $All
             do
@@ -116,7 +113,7 @@ case $1 in
           
  delete ) deluser
           # Delete user on Jump server
-          echo "Deleting $User on $Host ..."
+          echo "Deleting $User on Jump ..."
           echo
           userdel -r $User
           sed -i "/$User/d" /usr/local/sitespeed/users

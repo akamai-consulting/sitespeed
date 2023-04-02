@@ -3,15 +3,12 @@
 ############################################
 #                                          #
 #            maintenance.sh                #
-#                 v 8                      #
+#                 v 9                      #
 #                                          #
 ############################################
 
 # Set global variables
-Host=[HOST]
 Domain=[DOMAIN]
-Google=[GOOGLE]
-Graphite=[GRAPHITE]
 Key=$HOME/.ssh/sitespeed
 Root=/usr/local/sitespeed
 
@@ -32,19 +29,19 @@ echo "| Start: $(TZ='[TIMEZONE]' date) $0"
 echo "|=========================================================="
 
 # Count the number of core dumps and errors on each server
-All="$Google $Servers"
+All="google $Servers"
 echo -e "\nCount the number of core dumps and errors"
 for region in $All
   do
    echo -n "Processing "$region" ... "
-   echo "sitespeed_log.$region.core `ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l` `date +%s`" | nc $Graphite.$Domain 2003 &> /dev/null
-   echo "sitespeed_log.$region.errors `ssh -i $Key $(whoami)@"$region".$Domain grep -i error $Root/logs/*.msg.log | wc -l` `date +%s`" | nc $Graphite.$Domain 2003 &> /dev/null
+   echo "sitespeed_log.$region.core `ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+   echo "sitespeed_log.$region.errors `ssh -i $Key $(whoami)@"$region".$Domain grep -i error $Root/logs/*.msg.log | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
    echo "done"
   done
 
 # Clean Docker images
 echo -e "\nPerform Docker cleanup"
-All="$Google $Servers"
+All="google $Servers"
 for region in $All
   do
    echo -n "Starting "$region" ... "
@@ -58,24 +55,24 @@ for region in $Servers
   do
    echo -n "Processing "$region" ... "
    ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 4 -type d -name 20* -mmin +10080 -exec rm -Rf {} +;
-   echo "sitespeed_log.$region.tld `ssh -i $Key $(whoami)@"$region".$Domain du -s $Root/tld | awk '{print $1}'` `date +%s`" | nc $Graphite.$Domain 2003 &> /dev/null
-   echo "sitespeed_log.$region.comp `ssh -i $Key $(whoami)@"$region".$Domain du -s $Root/comp | awk '{print $1}'` `date +%s`" | nc $Graphite.$Domain 2003 &> /dev/null
-   echo "sitespeed_log.$region.images `ssh -i $Key $(whoami)@"$region".$Domain du -s $Root/portal/images | awk '{print $1}'` `date +%s`" | nc $Graphite.$Domain 2003 &> /dev/null
+   echo "sitespeed_log.$region.tld `ssh -i $Key $(whoami)@"$region".$Domain du -s $Root/tld | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+   echo "sitespeed_log.$region.comp `ssh -i $Key $(whoami)@"$region".$Domain du -s $Root/comp | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+   echo "sitespeed_log.$region.images `ssh -i $Key $(whoami)@"$region".$Domain du -s $Root/portal/images | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
    echo "done"
   done
 
 # Log disk usage on Graphite
 echo ""
-echo -n "Log disk usage on "$Graphite" ... "
-echo "sitespeed_log.disk `ssh -i $Key $(whoami)@$Graphite.$Domain du -s /usr/local/graphite/graphite-storage/whisper/sitespeed_io | awk '{print $1}'` `date +%s`" | nc $Graphite.$Domain 2003 &> /dev/null
-echo "sitespeed_log.TLD.disk `ssh -i $Key $(whoami)@$Graphite.$Domain du -s /usr/local/graphite/graphite-storage/whisper/sitespeed_io/TLD | awk '{print $1}'` `date +%s`" | nc $Graphite.$Domain 2003 &> /dev/null
-echo "sitespeed_log.Competitors.disk `ssh -i $Key $(whoami)@$Graphite.$Domain du -s /usr/local/graphite/graphite-storage/whisper/sitespeed_io/Competitors | awk '{print $1}'` `date +%s`" | nc $Graphite.$Domain 2003 &> /dev/null
+echo -n "Log disk usage on Graphite ... "
+echo "sitespeed_log.disk `ssh -i $Key $(whoami)@graphite.$Domain du -s /usr/local/graphite/graphite-storage/whisper/sitespeed_io | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+echo "sitespeed_log.TLD.disk `ssh -i $Key $(whoami)@graphite.$Domain du -s /usr/local/graphite/graphite-storage/whisper/sitespeed_io/TLD | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+echo "sitespeed_log.Competitors.disk `ssh -i $Key $(whoami)@graphite.$Domain du -s /usr/local/graphite/graphite-storage/whisper/sitespeed_io/Competitors | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
 echo "done"
      
 # Remove Graphite annotations older than 7 days
 echo ""
 echo -n "Removing old annotations on Graphite ... "
-ssh -i $Key $(whoami)@$Graphite.$Domain sudo /usr/local/graphite/sqlite.sh &> /dev/null
+ssh -i $Key $(whoami)@graphite.$Domain sudo /usr/local/graphite/sqlite.sh &> /dev/null
 echo "done"
 
 exit 0
