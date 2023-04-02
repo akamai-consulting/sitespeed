@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #      sitespeed-graphite-grafana          #
-#                  v7                      #
+#                  v11                     #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -11,7 +11,6 @@
 ############################################
 
 # <UDF name="USERNAME" Label="Name of admin user" />
-# <UDF name="HOST" Label="Host name for this server" Example="Example i.e., graphite or grafana (no spaces allowed)" />
 # <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
 
 # Update the core OS
@@ -85,7 +84,7 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 
 # Create admin user
 useradd $USERNAME
-echo "export PS1='[$HOST \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile
+echo "export PS1='[Graphite \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile
 
 # Create sitespeed user
 useradd sitespeed
@@ -126,16 +125,22 @@ cp /home/$USERNAME/.ssh/authorized_keys /home/sitespeed/.ssh/authorized_keys
 chown -R sitespeed /home/sitespeed/.ssh
 chgrp -R sitespeed /home/sitespeed/.ssh
 
-# Modify Grafana configuration files and start Grafana
+# Modify Grafana configuration file
 sed -i -r "s#;default_timezone = browser#default_timezone = $TIMEZONE#" /etc/grafana/grafana.ini
 sed -i 's/;http_port = 3000/http_port = 80/' /etc/grafana/grafana.ini
 sed -i 's/;default_theme = dark/default_theme = light/' /etc/grafana/grafana.ini
 sed -i '/;default_home_dashboard_path =/a default_home_dashboard_path = /var/lib/grafana/dashboards/sitespeed/Welcome to sitespeed.io.json' /etc/grafana/grafana.ini
-sed -i "s/;domain = localhost/domain = $HOST.$DOMAIN/" /etc/grafana/grafana.ini
+sed -i "s/;domain = localhost/domain = grafana.$DOMAIN/" /etc/grafana/grafana.ini
+sed -i 's#;protocol = http#protocol = http#' /etc/grafana/grafana.ini
+sed -i 's#;enforce_domain = false#enforce_domain = true#' /etc/grafana/grafana.ini
+
+# Modify Grafana systemd to support custom port
 sed -i 's/CapabilityBoundingSet=/&CAP_NET_BIND_SERVICE/' /usr/lib/systemd/system/grafana-server.service
 sed -i '/CAP_NET_BIND_SERVICE/a AmbientCapabilities=CAP_NET_BIND_SERVICE' /usr/lib/systemd/system/grafana-server.service
 sed -i '/AmbientCapabilities=CAP_NET_BIND_SERVICE/a PrivateUsers=false' /usr/lib/systemd/system/grafana-server.service
 systemctl daemon-reload
+
+# Enable Grafana service
 systemctl --now enable grafana-server
 
 # Execute Grafana provisioning script

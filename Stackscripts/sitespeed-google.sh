@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-google.sh             #
-#                  v7                      #
+#                  v11                     #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -11,9 +11,7 @@
 ############################################
 
 # <UDF name="USERNAME" Label="Name of admin user" />
-# <UDF name="HOST" Label="Host name for this server" Example="Example i.e., Google or PSI-CrUX (no spaces allowed)" />
 # <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
-# <UDF name="GRAPHITE" Label="Graphite host name" />
 # <UDF name="API" Label="Google API Key" />
 
 # Update the core OS
@@ -70,7 +68,7 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 
 # Create admin user
 useradd $USERNAME
-echo "export PS1='[$HOST \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile
+echo "export PS1='[Google \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile
 
 # Create sitespeed user
 useradd sitespeed
@@ -110,7 +108,6 @@ chgrp -R sitespeed /home/sitespeed/.ssh
 
 # Modify google.sh
 sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/google.sh
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/google.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/google.sh
 sed -i "s/\[API\]/$API/" /usr/local/sitespeed/google.sh
 

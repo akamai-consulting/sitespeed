@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
-#                  v10                     #
+#                  v11                     #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -11,12 +11,8 @@
 ############################################
 
 # <UDF name="USERNAME" Label="Name of admin user" />
-# <UDF name="HOST" Label="Host name for this server" Example="Example i.e., Jump" />
 # <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
 # <UDF name="SERVERS" Label="Sitespeed host name(s)" Example="Example i.e., Newark Dallas London (space delimited)" />
-# <UDF name="GOOGLE" Label="Google host name" />
-# <UDF name="GRAPHITE" Label="Graphite host name" />
-# <UDF name="GRAFANA" Label="Grafana host name" />
 
 # Update the core OS
 yum -y update
@@ -69,7 +65,7 @@ sed -i 's/# %wheel/%wheel/' /etc/sudoers
 
 # Create admin user
 useradd $USERNAME
-echo -e "function jump() {\n  ssh -i /home/$USERNAME/.ssh/sitespeed \$1.$DOMAIN\n}\nexport PS1='[$HOST \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile 
+echo -e "function jump() {\n  ssh -i /home/$USERNAME/.ssh/sitespeed \$1.$DOMAIN\n}\nexport PS1='[Jump \u@\h \W]\$ '" >> /home/$USERNAME/.bash_profile 
 
 # Create sitespeed user
 useradd sitespeed
@@ -121,24 +117,15 @@ chown -R sitespeed /home/sitespeed/.ssh
 chgrp -R sitespeed /home/sitespeed/.ssh
 
 # Modify admin.sh
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/admin.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/admin.sh
-sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/admin.sh
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/admin.sh
 
 # Modify maintenance.sh
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/maintenance.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/maintenance.sh
-sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/maintenance.sh
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/maintenance.sh
 
 # Modify user.sh
-sed -i "s/\[HOST\]/$HOST/" /usr/local/sitespeed/user.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/user.sh
-sed -i "s/\[GOOGLE\]/$GOOGLE/" /usr/local/sitespeed/user.sh
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/user.sh
 
-# Create servers config file and set ownership
+# Create servers config file and set ownership$
 for data in $SERVERS
   do
    echo $data >> /usr/local/sitespeed/servers
@@ -167,21 +154,18 @@ sed '/\[HOST\]\.\[DOMAIN\]/r foo' /usr/local/sitespeed/portal/index.html | sed '
 mv -f bar /usr/local/sitespeed/portal/index.html
 rm foo
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/index.html
-sed -i "s/\[GRAFANA\]/$GRAFANA/" /usr/local/sitespeed/portal/index.html
 chmod 755 /usr/local/sitespeed/portal/index.html
 chgrp sitespeed /usr/local/sitespeed/portal/index.html
 
 # Modify error.html
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/error.html
-sed -i "s/\[GRAFANA\]/$GRAFANA/" /usr/local/sitespeed/portal/error.html
 
 # Modify sitespeed.sh
 sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/sitespeed/sitespeed.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/sitespeed/sitespeed.sh
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/sitespeed/sitespeed.sh
 
 # Modify config.json
-sed -i "s/\[GRAPHITE\]\.\[DOMAIN\]/$GRAPHITE.$DOMAIN/" /usr/local/sitespeed/sitespeed/config.json
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/sitespeed/config.json
 
 # Create symbolic links
 sudo -u $USERNAME ln -s /usr/local/sitespeed/admin.sh /home/$USERNAME/admin.sh

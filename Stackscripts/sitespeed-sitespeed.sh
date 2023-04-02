@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #         sitespeed-sitespeed.sh           #
-#                 v10                      #
+#                 v11                      #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -13,8 +13,6 @@
 # <UDF name="USERNAME" Label="Name of admin user" />
 # <UDF name="HOST" Label="Host name for this server" Example="Example i.e., Newark or Dallas" />
 # <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
-# <UDF name="GRAPHITE" Label="Graphite host name" />
-# <UDF name="GRAFANA" Label="Grafana host name" />
 
 # Update the core OS
 yum -y update
@@ -121,22 +119,19 @@ chown -R sitespeed /home/sitespeed/.ssh
 chgrp -R sitespeed /home/sitespeed/.ssh
 
 # Modify config.json
-sed -i "s/\[GRAPHITE\]\.\[DOMAIN\]/$GRAPHITE.$DOMAIN/" /usr/local/sitespeed/tld/config.json
-sed -i "s/\[GRAPHITE\]\.\[DOMAIN\]/$GRAPHITE.$DOMAIN/" /usr/local/sitespeed/comp/config.json
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/tld/config.json
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/comp/config.json
 
 # Modify sitespeed.sh
 sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/sitespeed.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/sitespeed.sh
-sed -i "s/\[GRAPHITE\]/$GRAPHITE/" /usr/local/sitespeed/sitespeed.sh
 
 # Modify index.html
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/index.html
 sed -i "s/\[HOST\]/$HOST/g" /usr/local/sitespeed/portal/index.html
-sed -i "s/\[GRAFANA\]/$GRAFANA/" /usr/local/sitespeed/portal/index.html
 
 # Modify error.html
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/error.html
-sed -i "s/\[GRAFANA\]/$GRAFANA/" /usr/local/sitespeed/portal/error.html
 
 # Start nginx
 chcon -vR system_u:object_r:httpd_sys_content_t:s0 /usr/local/sitespeed
