@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #              sitespeed.sh                #
-#                  v 51                    #
+#                  v 54                    #
 #                                          #
 ############################################
 
@@ -161,3 +161,7 @@ sudo ln -nsf $(find $Root/$1/sitespeed-result/ -maxdepth 3 -name index.html | xa
 
 # Set the symlink for nginx root directive to point to the latest Mobile index.html
 sudo ln -nsf $(find $Root/$1/sitespeed-result/ -maxdepth 3 -name index.html | xargs ls -Art | tail -n 2 | xargs ls -At | tail -n 1 | xargs dirname) $Root/portal/$webmobile
+
+# Modify group ownership for portal files
+sudo chgrp -R sitespeed $Root/portal
+sudo chmod -R 775 $Root/portal
