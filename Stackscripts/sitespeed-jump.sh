@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
-#                  v11                     #
+#                  v14                     #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -86,6 +86,7 @@ mkdir /usr/local/sitespeed/google
 mkdir /usr/local/sitespeed/sitespeed
 mkdir /usr/local/sitespeed/seeds
 mkdir /usr/local/sitespeed/cron
+mkdir /usr/local/sitespeed/config
 
 # Extract TAR files into appropriate folders
 tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /jump.tgz *.sh
@@ -125,20 +126,18 @@ sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/maintenance.sh
 # Modify user.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/user.sh
 
-# Create servers config file and set ownership$
+# Create config files and set ownership
 for data in $SERVERS
   do
-   echo $data >> /usr/local/sitespeed/servers
+   echo $data >> /usr/local/sitespeed/config/servers
   done
-chown root /usr/local/sitespeed/servers
-chgrp sitespeed /usr/local/sitespeed/servers
-chmod 664 /usr/local/sitespeed/servers
+echo $USERNAME-Admin > /usr/local/sitespeed/config/users
+echo $DOMAIN > /usr/local/sitespeed/config/domain
 
-# Create users config file and set ownership
-echo $USERNAME-Admin > /usr/local/sitespeed/users
-chown root /usr/local/sitespeed/users
-chgrp sitespeed /usr/local/sitespeed/users
-chmod 664 /usr/local/sitespeed/users
+# Set the ownership and permissions for config folder and files
+chown -R root /usr/local/sitespeed/config
+chgrp -R sitespeed /usr/local/sitespeed/config
+chmod -R 664 /usr/local/sitespeed/config
 
 # Modify index.html
 sortedSERVERS=$(echo $SERVERS | xargs -n 1 | sort | xargs)

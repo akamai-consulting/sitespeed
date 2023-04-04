@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #      sitespeed-graphite-grafana          #
-#                  v11                     #
+#                  v12                     #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -145,6 +145,9 @@ systemctl --now enable grafana-server
 
 # Execute Grafana provisioning script
 /usr/local/graphite/provision.sh
+
+# Modify the Page Metrics dashboard to use the correct domain
+sed -i "s/\[DOMAIN\]/$DOMAIN/" Page\ Metrics.json
 
 # Modify graphite.sh to set timezone
 sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/graphite/graphite.sh
