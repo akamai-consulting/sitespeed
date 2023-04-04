@@ -4551,7 +4551,7 @@
       {
         "hide": 2,
         "name": "resulturl",
-        "query": "sitespeed.akadns.net/images",
+        "query": "DOMAIN/images",
         "skipUrlSync": false,
         "type": "constant"
       },
