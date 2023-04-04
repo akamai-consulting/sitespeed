@@ -23,6 +23,6 @@ To install each of the components use the following Stackscrips:
 
 The system requires name resolution of all Linodes.
 
-To use the Google component you will need to obtain a GCP Chrome UX Report API key.
+To use the Google component you will need to obtain a GCP Chrome UX Report API and PageSpeed Insights APIs.
 
 Use the Planner Guide (Info/Planner.pdf) to predefine all of the required information, which will make the installation process go faster.
