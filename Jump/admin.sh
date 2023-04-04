@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 40                     #
+#                 v 44                     #
 #                                          #
 ############################################
 
@@ -21,8 +21,8 @@ failure=""
 # Function that reads servers and sets Servers variable
 function popservers {
   Servers=""
-  end=$(cat $Root/servers | wc -l)
-  exec 3<$Root/servers
+  end=$(cat $Root/config/servers | wc -l)
+  exec 3<$Root/config/servers
   read data <&3
   for (( index=1; index <= $end; index+=1 ))
     do
@@ -34,8 +34,8 @@ function popservers {
 # Function that reads users and sets Users variable
 function popusers {
   Users=""
-  end=$(cat $Root/users | wc -l)
-  exec 3<$Root/users
+  end=$(cat $Root/config/users | wc -l)
+  exec 3<$Root/config/users
   read data <&3
   for (( index=1; index <= $end; index+=1 ))
     do
@@ -513,6 +513,7 @@ case $1 in
                    ssh -i $Key $(whoami)@"$region".$Domain "rm $Root/tld/$3.txt || rm $Root/comp/$3.txt" &> /dev/null
                  else
                    scp -q -i $Key $Root/seeds/$3.txt $(whoami)@"$region".$Domain:$Root/$2
+                   ssh -i $Key $(whoami)@"$region".$Domain sudo chgrp sitespeed $Root/$2/$3.txt
                 fi
                 chkresult
               done
@@ -542,7 +543,7 @@ case $1 in
                         sudo chgrp sitespeed /home/sitespeed/.ssh/known_hosts
                         sudo chmod 644 /home/sitespeed/.ssh/known_hosts
                         echo
-                        echo $Server >> $Root/servers
+                        echo $Server >> $Root/config/servers
                         popservers
                         modifyindex
                         for region in $Servers
@@ -557,7 +558,7 @@ case $1 in
             delete ) servername "delete"
                      echo -n "Deleting $Server ..."
                      chkresult
-                     sudo sed -i "/$Server/d" $Root/servers
+                     sudo sed -i "/$Server/d" $Root/config/servers
                      popservers
                      modifyindex       
                      for region in $Servers

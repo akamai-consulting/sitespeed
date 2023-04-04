@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v7                      #
+#                  v12                     #
 #                                          #
 ############################################
 
@@ -16,6 +16,7 @@ fi
 # Set variables
 Domain=[DOMAIN]
 Key=/home/$(logname)/.ssh/sitespeed
+Root=/usr/local/sitespeed
 
 # Create new user
 function adduser {
@@ -35,7 +36,7 @@ function adduser {
 
 # Delete existing user
 function deluser {
-   Admin=$(grep Admin /usr/local/sitespeed/users | awk -F '-' '{print $1}')
+   Admin=$(grep Admin $Root/config/users | awk -F '-' '{print $1}')
    User=""
    until [ "$valid" == "true"  ]
      do
@@ -58,8 +59,8 @@ function deluser {
 
 # Read servers and set Servers variable
 Servers=""
-end=$(cat /usr/local/sitespeed/servers | wc -l)
-exec 3</usr/local/sitespeed/servers
+end=$(cat $Root/config/servers | wc -l)
+exec 3<$Root/config/servers
 read data <&3
 for (( index=1; index <= $end; index+=1 ))
   do
@@ -74,7 +75,7 @@ case $1 in
           # Create user on Jump server
           echo "Creating $User on Jump ..."
           useradd $User
-          echo $User >> /usr/local/sitespeed/users
+          echo $User >> $Root/config/users
           usermod -aG wheel $User
           usermod -aG sitespeed $User
           mkdir /home/$User/.ssh
@@ -88,9 +89,9 @@ case $1 in
           chmod 600 /home/$User/.ssh/sitespeed
           chown $User /home/$User/.ssh/sitespeed
           chgrp $User /home/$User/.ssh/sitespeed
-          sudo -u $User ln -s /usr/local/sitespeed/admin.sh /home/$User/admin.sh
-          sudo -u $User ln -s /usr/local/sitespeed/cron/ /home/$User/cron
-          sudo -u $User ln -s /usr/local/sitespeed/seeds/ /home/$User/seeds
+          sudo -u $User ln -s $Root/admin.sh /home/$User/admin.sh
+          sudo -u $User ln -s $Root/cron/ /home/$User/cron
+          sudo -u $User ln -s $Root/seeds/ /home/$User/seeds
           echo -e "function jump() {\n  ssh -i /home/$User/.ssh/sitespeed \$1.$Domain\n}\nexport PS1='[Jump \u@\h \W]\$ '" >> /home/$User/.bash_profile
           echo         
           for region in $All
@@ -100,6 +101,7 @@ case $1 in
               ssh -i $Key $(logname)@"$region".$Domain sudo useradd $User
               ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG wheel $User
               ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG sitespeed $User
+              ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG docker $User
               ssh -i $Key $(logname)@"$region".$Domain sudo mkdir /home/$User/.ssh
               ssh -i $Key $(logname)@"$region".$Domain sudo tar --warning=none --no-same-owner -C /home/$User/.ssh -xf /sshkeys.tgz sitespeed.pub
               ssh -i $Key $(logname)@"$region".$Domain sudo mv /home/$User/.ssh/sitespeed.pub /home/$User/.ssh/authorized_keys
@@ -116,7 +118,7 @@ case $1 in
           echo "Deleting $User on Jump ..."
           echo
           userdel -r $User
-          sed -i "/$User/d" /usr/local/sitespeed/users
+          sed -i "/$User/d" $Root/config/users
           # Delete user on remote servers
           for region in $All
             do

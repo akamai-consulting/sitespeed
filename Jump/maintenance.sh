@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #            maintenance.sh                #
-#                 v 9                      #
+#                 v 10                     #
 #                                          #
 ############################################
 
@@ -14,8 +14,8 @@ Root=/usr/local/sitespeed
 
 # Read servers and set Servers variable
 Servers=""
-end=$(cat /usr/local/sitespeed/servers | wc -l)
-exec 3</usr/local/sitespeed/servers
+end=$(cat /usr/local/sitespeed/config/servers | wc -l)
+exec 3</usr/local/sitespeed/config/servers
 read data <&3
 for (( index=1; index <= $end; index+=1 ))
   do
