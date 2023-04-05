@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
-#                  v14                     #
+#                  v16                     #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -122,6 +122,7 @@ sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/admin.sh
 
 # Modify maintenance.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/maintenance.sh
+sed -i "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/maintenance.sh
 
 # Modify user.sh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/user.sh
