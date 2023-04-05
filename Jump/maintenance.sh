@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #            maintenance.sh                #
-#                 v 10                     #
+#                 v 14                     #
 #                                          #
 ############################################
 
@@ -11,6 +11,7 @@
 Domain=[DOMAIN]
 Key=$HOME/.ssh/sitespeed
 Root=/usr/local/sitespeed
+Dow=$(date +%A)
 
 # Read servers and set Servers variable
 Servers=""
@@ -34,20 +35,27 @@ echo -e "\nCount the number of core dumps and errors"
 for region in $All
   do
    echo -n "Processing "$region" ... "
-   echo "sitespeed_log.$region.core `ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
-   echo "sitespeed_log.$region.errors `ssh -i $Key $(whoami)@"$region".$Domain grep -i error $Root/logs/*.msg.log | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+   if [ "$region" == "google" ]; then
+      echo "sitespeed_log.PSI-CrUX.core `ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+      echo "sitespeed_log.PSI-CrUX.errors `ssh -i $Key $(whoami)@"$region".$Domain grep -i error $Root/logs/*.msg.log | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+    else
+      echo "sitespeed_log.$region.core `ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+      echo "sitespeed_log.$region.errors `ssh -i $Key $(whoami)@"$region".$Domain grep -i error $Root/logs/*.msg.log | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+   fi
    echo "done"
   done
 
-# Clean Docker images
-echo -e "\nPerform Docker cleanup"
-All="google $Servers"
-for region in $All
-  do
-   echo -n "Starting "$region" ... "
-   ssh -i $Key $(whoami)@"$region".$Domain docker system prune --all --volumes -f &> /dev/null
-   echo "done"
-  done
+# Clean Docker images only on Sundays
+if [ "$Dow" == "Sunday" ]; then
+   echo -e "\nPerform Docker cleanup"
+   All="google $Servers"
+   for region in $All
+     do
+      echo -n "Starting "$region" ... "
+      ssh -i $Key $(whoami)@"$region".$Domain docker system prune --all --volumes -f &> /dev/null
+      echo "done"
+     done
+fi
 
 # Delete Sitespeed runs older than 7 days (60 * 24 * 7) and log disk usage of each server
 echo -e "\nDelete old Sitespeed results and log disk usage of each server"

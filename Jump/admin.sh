@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 44                     #
+#                 v 48                     #
 #                                          #
 ############################################
 
@@ -412,7 +412,7 @@ case $1 in
                              ssh -q -i $Key $(whoami)@graphite.$Domain sudo /usr/local/graphite/provision.sh update
                              ssh -q -i $Key $(whoami)@graphite.$Domain sudo mv -f /provision.sh /usr/local/graphite/provision.sh
                              ssh -q -i $Key $(whoami)@graphite.$Domain sudo chmod 755 /usr/local/graphite/provision.sh
-                             ssh -q -i $Key $(whoami)@graphite.$Domain sudo /usr/local/graphite/provision.sh
+                             ssh -q -i $Key $(whoami)@graphite.$Domain sudo /usr/local/graphite/provision.sh $Domain
                              chkresult
                              ;;
             esac
@@ -476,10 +476,18 @@ case $1 in
             exit 0
             ;;
       
-    reset ) for region in $Servers
+    reset ) echo -n "Resetting Jump ..."
+            rm -f $Root/logs/* &> /dev/null
+            chkresult    
+            echo -n "Resetting Google ..."
+            ssh -i $Key $(whoami)@google.$Domain "rm -f $Root/logs/*" &> /dev/null
+            ssh -i $Key $(whoami)@google.$Domain rm -f $Root/tld/*.txt &> /dev/null
+            ssh -i $Key $(whoami)@google.$Domain rm -f $Root/comp/*.txt &> /dev/null
+            chkresult
+            for region in $Servers
               do
                 echo -n "Resetting "$region" ... "
-                ssh -i $Key $(whoami)@"$region".$Domain rm $Root/logs/* &> /dev/null
+                ssh -i $Key $(whoami)@"$region".$Domain "rm $Root/logs/*" &> /dev/null
                 ssh -i $Key $(whoami)@"$region".$Domain rm $Root/tld/*.txt &> /dev/null
                 ssh -i $Key $(whoami)@"$region".$Domain rm $Root/comp/*.txt &> /dev/null
                 ssh -i $Key $(whoami)@"$region".$Domain rm $Root/portal/tld* &> /dev/null

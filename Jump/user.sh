@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v12                     #
+#                  v14                     #
 #                                          #
 ############################################
 
@@ -89,6 +89,10 @@ case $1 in
           chmod 600 /home/$User/.ssh/sitespeed
           chown $User /home/$User/.ssh/sitespeed
           chgrp $User /home/$User/.ssh/sitespeed
+          sudo cp /home/$(logname)/.ssh/known_hosts /home/$User/.ssh/known_hosts
+          sudo chown $User /home/$User/.ssh/known_hosts
+          sudo chgrp $User /home/$User/.ssh/known_hosts
+          sudo chmod 644 /home/$User/.ssh/known_hosts
           sudo -u $User ln -s $Root/admin.sh /home/$User/admin.sh
           sudo -u $User ln -s $Root/cron/ /home/$User/cron
           sudo -u $User ln -s $Root/seeds/ /home/$User/seeds
@@ -108,6 +112,7 @@ case $1 in
               ssh -i $Key $(logname)@"$region".$Domain sudo chown -R $User /home/$User/.ssh
               ssh -i $Key $(logname)@"$region".$Domain sudo chgrp -R $User /home/$User/.ssh            
               ssh -i $Key $(logname)@"$region".$Domain sudo chmod 600 /home/$User/.ssh/authorized_keys
+              sudo -u $User ssh -i /home/$User/.ssh/sitespeed $User@$region.$Domain "echo "export PS1=\\\'[$region \\\\u@\\\\h \\\\W]\$ \\\'"  >> /home/$User/.bash_profile"
               echo
             done
             exit 0
