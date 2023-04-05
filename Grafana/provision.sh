@@ -3,7 +3,7 @@
 #########################################
 #                                       #
 #             provision.sh              #
-#                  v 4                  #
+#                  v 6                  #
 #                                       #
 #########################################
 
@@ -14,7 +14,6 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Set variables
-Domain=$(cat /usr/local/sitespeed/config/domain)
 Key=$HOME/.ssh/sitespeed
 
 # Download latest file
@@ -36,8 +35,8 @@ tar --warning=none --no-same-owner --overwrite -C /etc/grafana/provisioning/dash
 tar --warning=none --no-same-owner --overwrite -C /var/lib/grafana/dashboards/google -xf /grafana.tgz Chrome*.json Light*.json
 tar --warning=none --no-same-owner --overwrite -C /var/lib/grafana/dashboards/sitespeed -xf /grafana.tgz Site*.json Page*.json Leader*.json Geo*.json Welcome*.json
 
-# Modify Page Metrics dashboard to use the correct domain
-ssh -i $Key $(whoami)@graphite.$Domain "sudo sed -i "s/DOMAIN/$Domain/" /var/lib/grafana/dashboards/sitespeed/Page\ Metrics.json"
+# Modify the Page Metrics dashboard to use the correct domain
+sed -i "s/DOMAIN/$1/" /var/lib/grafana/dashboards/sitespeed/Page\ Metrics.json
 
 # Set the correct Grafana permissions
 chgrp -R grafana /etc/grafana/provisioning/
