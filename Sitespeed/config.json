@@ -1,6 +1,6 @@
 {
 "browsertime": {
-  "percentiles": [25,75,95],
+  "percentiles": [25,50,75,95],
   "browser": "chrome",
   "cacheClearRaw": true,
   "visualMetrics": true,

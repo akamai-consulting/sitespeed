@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 48                     #
+#                 v 52                     #
 #                                          #
 ############################################
 
@@ -17,6 +17,11 @@ Root=/usr/local/sitespeed
 successCnt=0
 failureCnt=0
 failure=""
+
+# Set the CDN variable iff HTML pages are served through Akamai
+# Example - If Domain=sitespeed.akadns.net and Akamai is being used
+# then set CDN=sitespeed.akamai.com
+CDN=""
 
 # Function that reads servers and sets Servers variable
 function popservers {
@@ -90,16 +95,21 @@ function chkname {
 
 # Function that modifies index.html
 function modifyindex {
+  sudo sed -E -i "/option value.+http/d" $Root/portal/index.html
   sortedSERVERS=$(echo $Servers | xargs -n 1 | sort | xargs)
   count=$(echo $sortedSERVERS | wc -w)
   line=1
+  if [ -z "$CDN" ]; then
+     tmp=$Domain
+   else
+     tmp=$CDN
+  fi
   for (( index=0; index < count ; index+=1 ))
     do
       Region=$(echo $sortedSERVERS | awk -v var=$line '{print $var}')
-      echo "     <option value=\"http://$Region.$Domain/\">$Region</option>" >> $Root/foo
+      echo "     <option value=\"https://$Region.$tmp/\">$Region</option>" >> $Root/foo
       let "line++"
     done
-  sudo sed -E -i "/option value.+$Domain/d" $Root/portal/index.html
   sudo sed -i "/<!-- ServerDropDown -->/r $Root/foo" $Root/portal/index.html
   rm $Root/foo
 }
@@ -248,6 +258,7 @@ case $1 in
                    scp -q -i $Key $Root/sitespeed/config.json $(whoami)@"$region".$Domain:$Root/tld
                    scp -q -i $Key $Root/sitespeed/config.json $(whoami)@"$region".$Domain:$Root/comp
                    scp -q -i $Key $Root/portal/index.html $(whoami)@"$region".$Domain:$Root/portal
+                   scp -q -i $Key $Root/portal/error.html $(whoami)@"$region".$Domain:$Root/portal
                 chkresult
               done
             exit 0

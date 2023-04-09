@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
-#                  v16                     #
+#                  v18                     #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -138,7 +138,7 @@ echo $DOMAIN > /usr/local/sitespeed/config/domain
 # Set the ownership and permissions for config folder and files
 chown -R root /usr/local/sitespeed/config
 chgrp -R sitespeed /usr/local/sitespeed/config
-chmod -R 664 /usr/local/sitespeed/config
+chmod -R 775 /usr/local/sitespeed/config
 
 # Modify index.html
 sortedSERVERS=$(echo $SERVERS | xargs -n 1 | sort | xargs)
