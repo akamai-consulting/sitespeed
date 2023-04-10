@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #         sitespeed-sitespeed.sh           #
-#                 v11                      #
+#                 v20                      #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -122,16 +122,21 @@ chgrp -R sitespeed /home/sitespeed/.ssh
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/tld/config.json
 sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/comp/config.json
 
-# Modify sitespeed.sh
-sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/sitespeed.sh
-sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/sitespeed.sh
-
 # Modify index.html
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/index.html
 sed -i "s/\[HOST\]/$HOST/g" /usr/local/sitespeed/portal/index.html
 
 # Modify error.html
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/error.html
+
+# Create config files and set ownership
+echo $DOMAIN > /usr/local/sitespeed/config/domain
+echo $TIMEZONE > /usr/local/sitespeed/config/timezone
+
+# Set the ownership and permissions for config folder and files
+chown -R root /usr/local/sitespeed/config
+chgrp -R sitespeed /usr/local/sitespeed/config
+chmod -R 775 /usr/local/sitespeed/config
 
 # Start nginx
 chcon -vR system_u:object_r:httpd_sys_content_t:s0 /usr/local/sitespeed

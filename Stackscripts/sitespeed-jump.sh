@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-jump.sh               #
-#                  v18                     #
+#                  v20                     #
 #                                          #
 #         Created by Greg Wolf             #
 #           gwolf@akamai.com               #
@@ -117,16 +117,6 @@ cp /home/$USERNAME/.ssh/sitespeed /home/sitespeed/.ssh/sitespeed
 chown -R sitespeed /home/sitespeed/.ssh
 chgrp -R sitespeed /home/sitespeed/.ssh
 
-# Modify admin.sh
-sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/admin.sh
-
-# Modify maintenance.sh
-sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/maintenance.sh
-sed -i "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/maintenance.sh
-
-# Modify user.sh
-sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/user.sh
-
 # Create config files and set ownership
 for data in $SERVERS
   do
@@ -134,6 +124,7 @@ for data in $SERVERS
   done
 echo $USERNAME-Admin > /usr/local/sitespeed/config/users
 echo $DOMAIN > /usr/local/sitespeed/config/domain
+echo $TIMEZONE > /usr/local/sitespeed/config/timezone
 
 # Set the ownership and permissions for config folder and files
 chown -R root /usr/local/sitespeed/config

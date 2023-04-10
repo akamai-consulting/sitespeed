@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #          sitespeed-google.sh             #
-#                  v11                     #
+#                  v20                     #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -106,10 +106,15 @@ cp /home/$USERNAME/.ssh/authorized_keys /home/sitespeed/.ssh/authorized_keys
 chown -R sitespeed /home/sitespeed/.ssh
 chgrp -R sitespeed /home/sitespeed/.ssh
 
-# Modify google.sh
-sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/google.sh
-sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/google.sh
-sed -i "s/\[API\]/$API/" /usr/local/sitespeed/google.sh
+# Create config files and set ownership
+echo $DOMAIN > /usr/local/sitespeed/config/domain
+echo $API > /usr/local/sitespeed/config/api
+echo $TIMEZONE > /usr/local/sitespeed/config/timezone
+
+# Set the ownership and permissions for config folder and files
+chown -R root /usr/local/sitespeed/config
+chgrp -R sitespeed /usr/local/sitespeed/config
+chmod -R 775 /usr/local/sitespeed/config
 
 # Harden file system
 sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config

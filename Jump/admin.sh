@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 52                     #
+#                 v 56                     #
 #                                          #
 ############################################
 
@@ -11,9 +11,9 @@
 Green='\033[0;32m'
 NoColor='\033[0m'
 Options="all update docker seed reset cron logs cert graphite grafana storage core user server"
-Domain=[DOMAIN]
 Key=$HOME/.ssh/sitespeed
 Root=/usr/local/sitespeed
+Domain=$(cat $Root/config/domain)
 successCnt=0
 failureCnt=0
 failure=""
@@ -107,7 +107,7 @@ function modifyindex {
   for (( index=0; index < count ; index+=1 ))
     do
       Region=$(echo $sortedSERVERS | awk -v var=$line '{print $var}')
-      echo "     <option value=\"https://$Region.$tmp/\">$Region</option>" >> $Root/foo
+      echo "     <option value=\"http://$Region.$tmp/\">$Region</option>" >> $Root/foo
       let "line++"
     done
   sudo sed -i "/<!-- ServerDropDown -->/r $Root/foo" $Root/portal/index.html
@@ -587,13 +587,34 @@ case $1 in
                          chkresult
                        done                  
                      ;;
-             names ) echo "Active servers"
-                     echo google
-                     echo graphite
-                     sortedSERVERS=$(echo $Servers | xargs -n 1 | sort | xargs)
+
+             names ) sortedSERVERS=$(echo $Servers | xargs -n 1 | sort | xargs)
+                     ssh -i $Key $(whoami)@grafana.$Domain systemctl status grafana-server | grep running &> /dev/null
+                     if [ $? -eq 0 ]; then
+                        echo "Grafana ... online"
+                      else
+                        echo "Grafana ... offline"
+                     fi
+                     curl graphite.$Domain:8888 &> /dev/null
+                     if [ $? -eq 0 ]; then
+                        echo "Graphite ... online"
+                      else
+                        echo "Graphite ... offline"
+                     fi
+                     ping -c 3 google.$Domain &> /dev/null
+                     if [ $? -eq 0 ]; then
+                        echo "Google ... online"
+                      else
+                        echo "Google ... offline"
+                     fi
                      for data in $sortedSERVERS
                        do
-                         echo $data
+                         curl $data.$Domain &> /dev/null
+                         if [ $? -eq 0 ]; then
+                            echo "$data ... online"
+                          else
+                            echo "$data ... offline"
+                         fi
                        done
                      ;;
             esac

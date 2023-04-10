@@ -3,14 +3,15 @@
 ############################################
 #                                          #
 #              sitespeed.sh                #
-#                  v 54                    #
+#                  v 58                    #
 #                                          #
 ############################################
 
 # Set variables
 SitespeedVer="sitespeedio/sitespeed.io:26.1.0"
-Domain=[DOMAIN]
 Root=/usr/local/sitespeed
+Domain=$(cat $Root/config/domain)
+Timezone=$(cat $Root/config/timezone)
 
 ChromeLAN="--browsertime.connectivity.alias LAN"
 ChromeLTE="-c custom --browsertime.connectivity.alias LTE --downstreamKbps 12000 --upstreamKbps 12000 --latency 35 --connectivity.engine throttle --chrome.CPUThrottlingRate 4 --mobile"
@@ -112,12 +113,12 @@ for (( index=1; index < 3 ; index+=1 ))
     RptName="$2 on Chrome over $TestType in $3"
     teststart=`date +%s`
     echo "|=============================================================================="
-    echo "| $TestType start: $(TZ='[TIMEZONE]' date): $0 $@"
+    echo "| $TestType Start: $(date): $0 $@"
     echo "|=============================================================================="
 
     docker run \
      $DockerCmds \
-     -e TZ=[TIMEZONE] \
+     -e TZ=$Timezone \
      -e MAX_OLD_SPACE_SIZE=4096 \
      -v $Root/$1:/sitespeed.io \
      -v /etc/localtime:/etc/localtime:ro \
@@ -136,7 +137,13 @@ for (( index=1; index < 3 ; index+=1 ))
     hours=$((runtime / 3600))
     minutes=$(( (runtime % 3600) / 60 ))
     seconds=$(( (runtime % 3600) % 60 ))
-    echo "$TestType End: $(TZ='[TIMEZONE]' date): $0 $@  Duration: $hours:$minutes:$seconds" >> $Root/logs/$1.$2.run.log
+
+# Make sure that sitespeed user owns log file before writing
+    if [ -f $Root/logs/$1.$2.run.log ]; then
+       sudo chown sitespeed $Root/logs/$1.$2.run.log
+       sudo chgrp sitespeed $Root/logs/$1.$2.run.log
+    fi
+    echo "$TestType End: $(date): $0 $@  Duration: $hours:$minutes:$seconds" >> $Root/logs/$1.$2.run.log
   done
 
 # Move the generated images to the correct location 

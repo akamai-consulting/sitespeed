@@ -3,14 +3,14 @@
 ############################################
 #                                          #
 #            maintenance.sh                #
-#                 v 14                     #
+#                 v 18                     #
 #                                          #
 ############################################
 
 # Set global variables
-Domain=[DOMAIN]
 Key=$HOME/.ssh/sitespeed
 Root=/usr/local/sitespeed
+Domain=$(cat $Root/config/domain)
 Dow=$(date +%A)
 
 # Read servers and set Servers variable
@@ -26,7 +26,7 @@ for (( index=1; index <= $end; index+=1 ))
   
 # Mark the start of the run
 echo -e "\n|=========================================================="
-echo "| Start: $(TZ='[TIMEZONE]' date) $0"
+echo "| Start: $(date) $0"
 echo "|=========================================================="
 
 # Count the number of core dumps and errors on each server

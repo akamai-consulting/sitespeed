@@ -3,14 +3,16 @@
 ############################################
 #                                          #
 #               google.sh                  #
-#                  v 15                    #
+#                  v 20                    #
 #                                          #
 ############################################
 
 # Set variables
 SitespeedVer=sitespeedio/sitespeed.io:26.1.0-plus1
-Domain=[DOMAIN]
 Root=/usr/local/sitespeed
+Domain=$(cat $Root/config/domain)
+Timezone=$(cat $Root/config/timezone)
+API=$(cat $Root/config/api)
 
 # Print help
 if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
@@ -53,11 +55,11 @@ start=`date +%s`
 
 teststart=`date +%s`
 echo "|=============================================================================="
-echo "| Phone start: $(TZ='[TIMEZONE]' date): $0 $@"
+echo "| Phone Start: $(date): $0 $@"
 echo "|=============================================================================="
 docker run \
  --rm --name $2-`date +%s` \
- -e TZ=[TIMEZONE] \
+ -e TZ=$Timezone \
  -e MAX_OLD_SPACE_SIZE=4096 \
  -v $Root/$1:/sitespeed.io \
  -v /etc/localtime:/etc/localtime:ro \
@@ -67,18 +69,18 @@ docker run \
  --plugins.remove browsertime \
  --plugins.remove /lighthouse \
  --plugins.remove html \
- --gpsi.key "[API]" \
+ --gpsi.key "$API" \
  --slug PSI-CrUX \
  --graphite.namespace sitespeed_io.$graphdir.$2 \
  --graphite.host graphite.$Domain \
  $url
 
 echo "|=============================================================================="
-echo "| Desktop start: $(TZ='[TIMEZONE]' date): $0 $@"
+echo "| Desktop Start: $(date): $0 $@"
 echo "|=============================================================================="
 docker run \
  --rm --name $2-`date +%s` \
- -e TZ=[TIMEZONE] \
+ -e TZ=$Timezone \
  -e MAX_OLD_SPACE_SIZE=4096 \
  -v $Root/$1:/sitespeed.io \
  -v /etc/localtime:/etc/localtime:ro \
@@ -87,8 +89,8 @@ docker run \
  --plugins.remove browsertime \
  --plugins.remove /lighthouse \
  --plugins.remove html \
- --gpsi.key "[API]" \
- --crux.key "[API]" \
+ --gpsi.key "$API" \
+ --crux.key "$API" \
  --crux.formFactor "DESKTOP" \
  --crux.formFactor "PHONE" \
  --crux.collect "ALL" \
@@ -102,7 +104,13 @@ runtime=$((end-teststart))
 hours=$((runtime / 3600))
 minutes=$(( (runtime % 3600) / 60 ))
 seconds=$(( (runtime % 3600) % 60 ))
-echo "$TestType End: $(TZ='[TIMEZONE]' date): $0 $@  Duration: $hours:$minutes:$seconds" >> $Root/logs/$1.$2.run.log
+
+# Make sure that sitespeed user owns log file before writing
+if [ -f $Root/logs/$1.$2.run.log ]; then
+   sudo chown sitespeed $Root/logs/$1.$2.run.log
+   sudo chgrp sitespeed $Root/logs/$1.$2.run.log
+fi
+echo "$TestType End: $(date): $0 $@  Duration: $hours:$minutes:$seconds" >> $Root/logs/$1.$2.run.log
 
 # Capture the end of the entire run
 end=`date +%s`

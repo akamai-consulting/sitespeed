@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #      sitespeed-graphite-grafana          #
-#                  v14                     #
+#                  v20                     #
 #                                          #
 #         Created by Greg Wolf             #
 #            gwolf@akamai.com              #
@@ -146,8 +146,13 @@ systemctl --now enable grafana-server
 # Execute Grafana provisioning script
 /usr/local/graphite/provision.sh $DOMAIN
 
-# Modify graphite.sh to set timezone
-sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/graphite/graphite.sh
+# Create config files and set ownership
+echo $TIMEZONE > /usr/local/sitespeed/config/timezone
+
+# Set the ownership and permissions for config folder and files
+chown -R root /usr/local/sitespeed/config
+chgrp -R sitespeed /usr/local/sitespeed/config
+chmod -R 775 /usr/local/sitespeed/config
 
 # Start Graphite for the first time to expose persistent volumes
 /usr/local/graphite/graphite.sh start

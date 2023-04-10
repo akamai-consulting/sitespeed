@@ -3,14 +3,21 @@
 #########################################
 #                                       #
 #             graphite.sh               #
-#                  v 5                  #
+#                  v10                  #
 #                                       #
 #########################################
+
+# Make sure the script runs as root
+if [ "$EUID" -ne 0 ]
+  then echo -e "\nNeed to run script as root\n"
+  exit 1
+fi
 
 # Set variables
 Green='\033[0;32m'
 NoColor='\033[0m'
 Options="start stop status"
+Timezone=$(cat /usr/local/graphite/config/timezone)
 
 # Print help
 if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
@@ -53,7 +60,7 @@ case $1 in
                docker run -d \
                --name graphite \
                --restart=always \
-               -e TZ=[TIMEZONE] \
+               -e TZ=$Timezone \
                -v /usr/local/graphite/graphite-conf:/opt/graphite/conf \
                -v /usr/local/graphite/graphite-storage:/opt/graphite/storage \
                -v /usr/local/graphite/log:/var/log \

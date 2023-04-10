@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v14                     #
+#                  v18                     #
 #                                          #
 ############################################
 
@@ -14,9 +14,9 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Set variables
-Domain=[DOMAIN]
 Key=/home/$(logname)/.ssh/sitespeed
 Root=/usr/local/sitespeed
+Domain=$(cat $Root/config/domain)
 
 # Create new user
 function adduser {
