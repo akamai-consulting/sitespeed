@@ -97,9 +97,9 @@ usermod -aG docker $USERNAME
 usermod -aG sitespeed $USERNAME
 
 # Create Graphite, SSH, and Grafana dashboard folders
-mkdir /usr/local/graphite
 mkdir /home/$USERNAME/.ssh
 mkdir /home/sitespeed/.ssh
+mkdir -p /usr/local/graphite/config
 mkdir -p /var/lib/grafana/dashboards/apis
 mkdir /var/lib/grafana/dashboards/google
 mkdir /var/lib/grafana/dashboards/lyra
@@ -147,12 +147,12 @@ systemctl --now enable grafana-server
 /usr/local/graphite/provision.sh $DOMAIN
 
 # Create config files and set ownership
-echo $TIMEZONE > /usr/local/sitespeed/config/timezone
+echo $TIMEZONE > /usr/local/graphite/config/timezone
 
 # Set the ownership and permissions for config folder and files
-chown -R root /usr/local/sitespeed/config
-chgrp -R sitespeed /usr/local/sitespeed/config
-chmod -R 775 /usr/local/sitespeed/config
+chown -R root /usr/local/graphite/config
+chgrp -R sitespeed /usr/local/graphite/config
+chmod -R 775 /usr/local/graphite/config
 
 # Start Graphite for the first time to expose persistent volumes
 /usr/local/graphite/graphite.sh start

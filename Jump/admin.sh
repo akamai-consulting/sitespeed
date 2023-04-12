@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 56                     #
+#                 v 60                     #
 #                                          #
 ############################################
 
@@ -14,6 +14,7 @@ Options="all update docker seed reset cron logs cert graphite grafana storage co
 Key=$HOME/.ssh/sitespeed
 Root=/usr/local/sitespeed
 Domain=$(cat $Root/config/domain)
+curUser=$(cat /usr/local/sitespeed/config/users | grep $(logname) | awk -F '-' '{print $2}')
 successCnt=0
 failureCnt=0
 failure=""
@@ -22,6 +23,13 @@ failure=""
 # Example - If Domain=sitespeed.akadns.net and Akamai is being used
 # then set CDN=sitespeed.akamai.com
 CDN=""
+
+function chkAccess {
+  if [ "$curUser" != "Admin" ]; then
+     echo -e "\nThe \"$1\" command requires Admin level access\n"
+     exit 1    
+  fi
+}
 
 # Function that reads servers and sets Servers variable
 function popservers {
@@ -248,7 +256,8 @@ fi
 
 # Process each option
 case $1 in
-      all ) echo -n "Updating Google ... "
+      all ) chkAccess all
+            echo -n "Updating Google ... "
             scp -q -i $Key $Root/google/google.sh $(whoami)@google.$Domain:$Root
             chkresult
             for region in $Servers
@@ -264,7 +273,8 @@ case $1 in
             exit 0
             ;;
  
-     cert ) echo -e "\nChecking Graphite ... "
+     cert ) chkAccess cert
+            echo -e "\nChecking Graphite ... "
             ssh -i $Key $(whoami)@graphite.$Domain sudo certbot certificates 
             for region in $Servers
               do
@@ -274,7 +284,8 @@ case $1 in
             exit 0
             ;;
 
-     core ) if [ $# -ne 2 ]; then
+     core ) chkAccess core
+            if [ $# -ne 2 ]; then
                echo -e "\ncore requires 1 argument: check|delete\n"
                exit 1
             fi
@@ -374,7 +385,8 @@ case $1 in
             exit 0
             ;;
 
-   docker ) if [ $# -ne 2 ]; then
+   docker ) chkAccess docker
+            if [ $# -ne 2 ]; then
                echo -e "\ndocker requires 1 argument: check|clean\n"
                exit 1
             fi
@@ -404,7 +416,8 @@ case $1 in
             exit 0
             ;;
                  
-  grafana ) if [ $# -ne 2 ]; then
+  grafana ) chkAccess grafana
+            if [ $# -ne 2 ]; then
                echo -e "\ngrafana requires 1 argument: update|provision\n"
                exit 1
             fi
@@ -430,7 +443,8 @@ case $1 in
             exit 0
             ;;
             
- graphite ) if [ $# -ne 2 ]; then
+ graphite ) chkAccess graphite
+            if [ $# -ne 2 ]; then
                echo -e "\ngraphite requires 1 argument: check|reduce\n"
                exit 1
             fi
@@ -451,7 +465,8 @@ case $1 in
             exit 0
             ;;
 
-     logs ) if [ $# -ne 2 ]; then
+     logs ) chkAccess logs
+            if [ $# -ne 2 ]; then
                echo -e "\nlog requires 1 argument: check|delete\n"
                exit 1
             fi
@@ -487,7 +502,8 @@ case $1 in
             exit 0
             ;;
       
-    reset ) echo -n "Resetting Jump ..."
+    reset ) chkAccess reset
+            echo -n "Resetting Jump ..."
             rm -f $Root/logs/* &> /dev/null
             chkresult    
             echo -n "Resetting Google ..."
@@ -549,7 +565,8 @@ case $1 in
                exit 1
             fi
             case $2 in
-               add ) servername "add"
+               add ) chkAccess "server add"
+                     servername "add"
                      curl $Server.$Domain &> /dev/null
                      if [ $? -ne 0 ]; then
                         echo "$Server must be onlne to continue"
@@ -574,7 +591,8 @@ case $1 in
                      fi
                      ;;
                           
-            delete ) servername "delete"
+            delete ) chkAccess "server delete"
+                     servername "delete"
                      echo -n "Deleting $Server ..."
                      chkresult
                      sudo sed -i "/$Server/d" $Root/config/servers
@@ -621,19 +639,21 @@ case $1 in
             exit 0
             ;;          
             
-  storage ) echo ""
+  storage ) chkAccess storage
+            echo
             for region in $Servers
               do
                 echo "Checking "$region" ... "
                 ssh -i $Key $(whoami)@"$region".$Domain du -sh $Root/portal
                 ssh -i $Key $(whoami)@"$region".$Domain du -sh $Root/tld
                 ssh -i $Key $(whoami)@"$region".$Domain du -sh $Root/comp
-                echo ""
+                echo
               done
             exit 0
             ;;
      
-   update ) All="google $Servers"
+   update ) chkAccess update
+            All="google $Servers"
             for region in $All
               do
                 echo -n "Updating "$region" ... "
@@ -653,16 +673,18 @@ case $1 in
                exit 1
             fi            
             case $2 in
-                 add ) sudo $Root/user.sh add
+                 add ) chkAccess "user add"
+                       sudo $Root/user.sh add
                        ;;
-              delete ) sudo $Root/user.sh delete
+              delete ) chkAccess "user delete"
+                       sudo $Root/user.sh delete
                        ;;
                names ) popusers        
                        sortedUSERS=$(echo $Users | xargs -n 1 | sort | xargs)
                        echo "Sitespeed users"
                        for data in $sortedUSERS
                          do
-                           echo $data
+                           echo $data | awk -F '-' '{print $1 " - " $2}'
                          done
                        ;;
             esac

@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v18                     #
+#                  v20                     #
 #                                          #
 ############################################
 
@@ -20,7 +20,8 @@ Domain=$(cat $Root/config/domain)
 
 # Create new user
 function adduser {
-   User=""   
+   User=""
+   Type=""   
    until [ "$taken" == "false"  ]
      do
        read -p "Username: " User
@@ -31,7 +32,14 @@ function adduser {
          else
           taken=false
        fi
-     done
+     done   
+   until [ "$valid" == "true" ]
+     do
+       read -p "Access level (Admin or User): " Type
+       if [[ "$Type" == "Admin" || "$Type" == "User" ]]; then
+          valid=true
+       fi
+     done     
 }
 
 # Delete existing user
@@ -75,7 +83,7 @@ case $1 in
           # Create user on Jump server
           echo "Creating $User on Jump ..."
           useradd $User
-          echo $User >> $Root/config/users
+          echo $User-$Type >> $Root/config/users
           usermod -aG wheel $User
           usermod -aG sitespeed $User
           mkdir /home/$User/.ssh

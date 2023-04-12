@@ -92,6 +92,7 @@ mkdir -p /usr/local/sitespeed/comp
 mkdir /usr/local/sitespeed/tld
 mkdir /usr/local/sitespeed/logs
 mkdir /usr/local/sitespeed/portal
+mkdir /usr/local/sitespeed/config
 
 # Extract TAR files into appropriate folders
 tar --warning=none --no-same-owner -C /home/$USERNAME/.ssh -xf /sshkeys.tgz sitespeed.pub

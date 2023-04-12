@@ -86,6 +86,7 @@ mkdir /home/sitespeed/.ssh
 mkdir -p /usr/local/sitespeed/comp
 mkdir /usr/local/sitespeed/tld
 mkdir /usr/local/sitespeed/logs
+mkdir /usr/local/sitespeed/config
 
 # Extract TAR files into appropriate folders
 tar --warning=none --no-same-owner -C /usr/local/sitespeed -xf /google.tgz google.sh
