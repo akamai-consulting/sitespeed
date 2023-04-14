@@ -684,7 +684,7 @@ case $1 in
                        echo "Sitespeed users"
                        for data in $sortedUSERS
                          do
-                           echo $data | awk -F '-' '{print $1 " - " $2}'
+                           echo $data | awk -F '-' '{print $1 " ... " $2}'
                          done
                        ;;
             esac

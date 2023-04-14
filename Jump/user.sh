@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #               user.sh                    #
-#                  v20                     #
+#                  v22                     #
 #                                          #
 ############################################
 
@@ -17,6 +17,15 @@ fi
 Key=/home/$(logname)/.ssh/sitespeed
 Root=/usr/local/sitespeed
 Domain=$(cat $Root/config/domain)
+
+# Function that checks the results of each primary action
+function chkresult {
+  if [ $? -eq 0 ]; then
+     echo "Success"
+    else
+     echo "Fail"
+  fi
+}
 
 # Create new user
 function adduser {
@@ -81,7 +90,7 @@ All="google graphite $Servers"
 case $1 in
     add ) adduser
           # Create user on Jump server
-          echo "Creating $User on Jump ..."
+          echo -n "Creating $User on Jump ... "
           useradd $User
           echo $User-$Type >> $Root/config/users
           usermod -aG wheel $User
@@ -105,39 +114,39 @@ case $1 in
           sudo -u $User ln -s $Root/cron/ /home/$User/cron
           sudo -u $User ln -s $Root/seeds/ /home/$User/seeds
           echo -e "function jump() {\n  ssh -i /home/$User/.ssh/sitespeed \$1.$Domain\n}\nexport PS1='[Jump \u@\h \W]\$ '" >> /home/$User/.bash_profile
-          echo         
+          chkresult         
           for region in $All
             do
               # Create users on remote servers
-              echo "Creating $User on $region ..."
-              ssh -i $Key $(logname)@"$region".$Domain sudo useradd $User
-              ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG wheel $User
-              ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG sitespeed $User
-              ssh -i $Key $(logname)@"$region".$Domain sudo usermod -aG docker $User
-              ssh -i $Key $(logname)@"$region".$Domain sudo mkdir /home/$User/.ssh
-              ssh -i $Key $(logname)@"$region".$Domain sudo tar --warning=none --no-same-owner -C /home/$User/.ssh -xf /sshkeys.tgz sitespeed.pub
-              ssh -i $Key $(logname)@"$region".$Domain sudo mv /home/$User/.ssh/sitespeed.pub /home/$User/.ssh/authorized_keys
-              ssh -i $Key $(logname)@"$region".$Domain sudo chown -R $User /home/$User/.ssh
-              ssh -i $Key $(logname)@"$region".$Domain sudo chgrp -R $User /home/$User/.ssh            
-              ssh -i $Key $(logname)@"$region".$Domain sudo chmod 600 /home/$User/.ssh/authorized_keys
-              sudo -u $User ssh -i /home/$User/.ssh/sitespeed $User@$region.$Domain "echo "export PS1=\\\'[$region \\\\u@\\\\h \\\\W]\$ \\\'"  >> /home/$User/.bash_profile"
-              echo
+              echo -n "Creating $User on $region ... "
+              ssh -i $Key $(logname)@$region.$Domain sudo useradd $User &> /dev/null
+              ssh -i $Key $(logname)@$region.$Domain sudo usermod -aG wheel $User &> /dev/null
+              ssh -i $Key $(logname)@$region.$Domain sudo usermod -aG sitespeed $User &> /dev/null
+              ssh -i $Key $(logname)@$region.$Domain sudo usermod -aG docker $User &> /dev/null
+              ssh -i $Key $(logname)@$region.$Domain sudo mkdir /home/$User/.ssh &> /dev/null
+              ssh -i $Key $(logname)@$region.$Domain sudo tar --warning=none --no-same-owner -C /home/$User/.ssh -xf /sshkeys.tgz sitespeed.pub &> /dev/null
+              ssh -i $Key $(logname)@$region.$Domain sudo mv /home/$User/.ssh/sitespeed.pub /home/$User/.ssh/authorized_keys &> /dev/null
+              ssh -i $Key $(logname)@$region.$Domain sudo chown -R $User /home/$User/.ssh &> /dev/null
+              ssh -i $Key $(logname)@$region.$Domain sudo chgrp -R $User /home/$User/.ssh &> /dev/null           
+              ssh -i $Key $(logname)@$region.$Domain sudo chmod 600 /home/$User/.ssh/authorized_keys &> /dev/null
+              sudo -u $User ssh -i /home/$User/.ssh/sitespeed $User@$region.$Domain "echo "export PS1=\\\'[$region \\\\u@\\\\h \\\\W]\$ \\\'"  >> /home/$User/.bash_profile" &> /dev/null
+              chkresult
             done
             exit 0
           ;;
           
  delete ) deluser
           # Delete user on Jump server
-          echo "Deleting $User on Jump ..."
-          echo
+          echo -n "Deleting $User on Jump ... "
           userdel -r $User
+          chkresult
           sed -i "/$User/d" $Root/config/users
           # Delete user on remote servers
           for region in $All
             do
-              echo "Deleting $User on $region ..."
-              ssh -i $Key $(logname)@"$region".$Domain sudo userdel -r $User
-              echo
+              echo -n "Deleting $User on $region ... "
+              ssh -i $Key $(logname)@$region.$Domain sudo userdel -r $User &> /dev/null
+              chkresult
             done  
           exit 0
           ;;
