@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 60                     #
+#                 v 61                     #
 #                                          #
 ############################################
 
@@ -427,7 +427,7 @@ case $1 in
                exit 1
             fi
             case $2 in
-                    update ) echo -n "Updating Graphite ... "
+                    update ) echo -n "Updating Grafana ... "
                              ssh -q -i $Key $(whoami)@graphite.$Domain sudo yum -y update grafana-enterprise &> /dev/null
                              ssh -q -i $Key $(whoami)@graphite.$Domain sudo systemctl restart grafana-server &> /dev/null
                              chkresult

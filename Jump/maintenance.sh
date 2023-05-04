@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #            maintenance.sh                #
-#                 v 18                     #
+#                 v 20                     #
 #                                          #
 ############################################
 
@@ -36,11 +36,11 @@ for region in $All
   do
    echo -n "Processing "$region" ... "
    if [ "$region" == "google" ]; then
-      echo "sitespeed_log.PSI-CrUX.core `ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
-      echo "sitespeed_log.PSI-CrUX.errors `ssh -i $Key $(whoami)@"$region".$Domain grep -i error $Root/logs/*.msg.log | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+      echo "sitespeed_log.PSI-CrUX.core `ssh -i $Key $(whoami)@$region.$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+      echo "sitespeed_log.PSI-CrUX.errors `ssh -i $Key $(whoami)@$region.$Domain grep -i error $Root/logs/*.msg.log | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
     else
-      echo "sitespeed_log.$region.core `ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
-      echo "sitespeed_log.$region.errors `ssh -i $Key $(whoami)@"$region".$Domain grep -i error $Root/logs/*.msg.log | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+      echo "sitespeed_log.$region.core `ssh -i $Key $(whoami)@$region.$Domain find $Root/ -maxdepth 2 -name core* -type f | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+      echo "sitespeed_log.$region.errors `ssh -i $Key $(whoami)@$region.$Domain grep -i error $Root/logs/*.msg.log | wc -l` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
    fi
    echo "done"
   done
@@ -52,7 +52,7 @@ if [ "$Dow" == "Sunday" ]; then
    for region in $All
      do
       echo -n "Starting "$region" ... "
-      ssh -i $Key $(whoami)@"$region".$Domain docker system prune --all --volumes -f &> /dev/null
+      ssh -i $Key $(whoami)@$region.$Domain docker system prune --all --volumes -f &> /dev/null
       echo "done"
      done
 fi
@@ -62,7 +62,7 @@ echo -e "\nDelete old Sitespeed results and log disk usage of each server"
 for region in $Servers
   do
    echo -n "Processing "$region" ... "
-   ssh -i $Key $(whoami)@"$region".$Domain find $Root/ -maxdepth 4 -type d -name 20* -mmin +10080 -exec rm -Rf {} +;
+   ssh -i $Key $(whoami)@$region.$Domain find $Root/ -maxdepth 4 -type d -name 20* -mmin +10080 -exec sudo rm -Rf {} +;
    echo "sitespeed_log.$region.tld `ssh -i $Key $(whoami)@"$region".$Domain du -s $Root/tld | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
    echo "sitespeed_log.$region.comp `ssh -i $Key $(whoami)@"$region".$Domain du -s $Root/comp | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
    echo "sitespeed_log.$region.images `ssh -i $Key $(whoami)@"$region".$Domain du -s $Root/portal/images | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
