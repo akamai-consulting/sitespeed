@@ -14,7 +14,7 @@ The Google and Portal components get installed on their own Linodes.
 
 The Sitespeed component is the primary testing machine, which gets installed on its own Linode. This component should be installed in every location that you want to run tests.
 
-To install each of the components use the following Stackscrips:
+To install each of the components use the following Stackscripts:
 
 - sitespeed-graphite-grafana
 - sitespeed-google
