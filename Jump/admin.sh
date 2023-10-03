@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #                admin.sh                  #
-#                 v 61                     #
+#                 v 62                     #
 #                                          #
 ############################################
 
@@ -455,7 +455,7 @@ case $1 in
             fi
                case $2 in
                   check ) echo "Checking graphite.db on Graphite ... "
-                          ssh -i $Key $(whoami)@graphite.$Domain du -sh /usr/local/graphite/graphite-storage/graphite.db
+                          ssh -i $Key $(whoami)@graphite.$Domain du -sh /mnt/data/graphite-storage/graphite.db
                           ;;
                  reduce ) echo -n "Reducing graphite.db on Graphite ... "
                           ssh -q -i $Key $(whoami)@graphite.$Domain sudo /usr/local/graphite/sqlite.sh
