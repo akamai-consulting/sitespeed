@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #            maintenance.sh                #
-#                 v 20                     #
+#                 v 21                     #
 #                                          #
 ############################################
 
@@ -70,11 +70,16 @@ for region in $Servers
   done
 
 # Log disk usage on Graphite
+#
+# This version uses a root of /mnt/data/ for Graphite, which in turn points to an external volume
+# The existing Stackscript installs Graphite using a root path of /usr/local/graphite/
+# If an external volume is used, be sure to create the volume and then move folders graphite-conf, graphite-storage, and log to /mnt/data/
+
 echo ""
 echo -n "Log disk usage on Graphite ... "
-echo "sitespeed_log.disk `ssh -i $Key $(whoami)@graphite.$Domain du -s /usr/local/graphite/graphite-storage/whisper/sitespeed_io | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
-echo "sitespeed_log.TLD.disk `ssh -i $Key $(whoami)@graphite.$Domain du -s /usr/local/graphite/graphite-storage/whisper/sitespeed_io/TLD | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
-echo "sitespeed_log.Competitors.disk `ssh -i $Key $(whoami)@graphite.$Domain du -s /usr/local/graphite/graphite-storage/whisper/sitespeed_io/Competitors | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+echo "sitespeed_log.disk `ssh -i $Key $(whoami)@graphite.$Domain du -s /mnt/data/graphite-storage/whisper/sitespeed_io | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+echo "sitespeed_log.TLD.disk `ssh -i $Key $(whoami)@graphite.$Domain du -s /mnt/data/graphite-storage/whisper/sitespeed_io/TLD | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
+echo "sitespeed_log.Competitors.disk `ssh -i $Key $(whoami)@graphite.$Domain du -s /mnt/data/graphite-storage/whisper/sitespeed_io/Competitors | awk '{print $1}'` `date +%s`" | nc graphite.$Domain 2003 &> /dev/null
 echo "done"
      
 # Remove Graphite annotations older than 7 days
