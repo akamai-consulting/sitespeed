@@ -3,19 +3,23 @@
 ############################################
 #                                          #
 #              sitespeed.sh                #
-#                  v 58                    #
+#                  v 59                    #
 #                                          #
 ############################################
 
 # Set variables
-SitespeedVer="sitespeedio/sitespeed.io:26.1.0"
+SitespeedVer="sitespeedio/sitespeed.io:29.7.0"
 Root=/usr/local/sitespeed
 Domain=$(cat $Root/config/domain)
 Timezone=$(cat $Root/config/timezone)
 
 ChromeLAN="--browsertime.connectivity.alias LAN"
 ChromeLTE="-c custom --browsertime.connectivity.alias LTE --downstreamKbps 12000 --upstreamKbps 12000 --latency 35 --connectivity.engine throttle --chrome.CPUThrottlingRate 4 --mobile"
-Pragma="--requestheader Pragma:akamai-x-get-cache-key,akamai-x-cache-on,akamai-x-cache-remote-on,akamai-x-get-true-cache-key,akamai-x-check-cacheable,akamai-x-get-request-id"
+
+# Pragma variable stopped being used as of v59. Some sites appear to throw an H2 error
+# The code will remain in place in case anything changes in the future
+#
+# Pragma="--requestheader Pragma:akamai-x-get-cache-key,akamai-x-cache-on,akamai-x-cache-remote-on,akamai-x-get-true-cache-key,akamai-x-check-cacheable,akamai-x-get-request-id"
 
 # Print help
 if [[ "$1" == "--help" || "$1" == "-h" || "$1" == "/?" || $# -eq 0 ]]; then
@@ -87,7 +91,7 @@ for (( index=1; index < 3 ; index+=1 ))
       1 ) TestType=LTE
           DockerCmds="--rm --name $2-`date +%s` --cap-add=NET_ADMIN"
           if [ "$1" == "tld" ]; then
-             SitespeedDirs="${ChromeLTE} ${Pragma}"
+             SitespeedDirs="${ChromeLTE}"
             else
              SitespeedDirs=$ChromeLTE
           fi
@@ -104,7 +108,7 @@ for (( index=1; index < 3 ; index+=1 ))
       2 ) TestType=LAN
           DockerCmds="--rm --name $2-`date +%s`"   
           if [ "$1" == "tld" ]; then
-             SitespeedDirs="${ChromeLAN} ${Pragma}"
+             SitespeedDirs="${ChromeLAN}"
             else
              SitespeedDirs=$ChromeLAN
           fi
