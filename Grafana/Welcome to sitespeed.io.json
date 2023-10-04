@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 9,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -47,10 +47,10 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://twitter.com/SiteSpeedio\">Twitter</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nSitespeed.io is a <a href=\"https://www.sitespeed.io/documentation/\">set of Open Source tools</a> that makes it easy to monitor and measure the performance of your web site.\n</p>",
+        "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://twitter.com/SiteSpeedio\">Twitter</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nSitespeed.io is a set of open source tools that makes it easy to monitor and measure site performance.\n</p>",
         "mode": "html"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -77,6 +77,8 @@
       },
       "id": 2,
       "options": {
+        "includeVars": false,
+        "keepTime": false,
         "maxItems": 10,
         "query": "",
         "showHeadings": true,
@@ -85,7 +87,7 @@
         "showStarred": false,
         "tags": []
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "tags": [],
       "targets": [
         {
@@ -101,7 +103,8 @@
       "type": "dashlist"
     }
   ],
-  "schemaVersion": 37,
+  "refresh": "",
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -127,6 +130,6 @@
   "timezone": "",
   "title": "Welcome to sitespeed.io",
   "uid": "3zStduRGk",
-  "version": 11,
+  "version": 4,
   "weekStart": ""
 }

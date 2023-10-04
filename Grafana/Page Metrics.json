@@ -46,7 +46,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -91,6 +91,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -107,6 +108,7 @@
               "mode": "off"
             }
           },
+          "decimals": 1,
           "links": [],
           "mappings": [],
           "thresholds": {
@@ -135,8 +137,7 @@
           "calcs": [
             "min",
             "mean",
-            "max",
-            "lastNotNull"
+            "max"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -156,63 +157,44 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.$function, \"First Visual Change\")",
-          "textEditor": true
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function, 'First Contentful Paint')",
+          "textEditor": false
         },
         {
           "datasource": {
             "type": "graphite",
             "uid": "Qotwtdl7z"
           },
+          "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestContentfulPaint.$function,  \"Largest Contentful Paint\")",
-          "textEditor": true
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, 'Largest Contentful Paint')",
+          "textEditor": false
         },
         {
           "datasource": {
             "type": "graphite",
             "uid": "Qotwtdl7z"
           },
+          "hide": false,
           "refCount": 0,
           "refId": "C",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.$function, \"Largest Image\")",
-          "textEditor": true
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, 'Total Blocking Time')",
+          "textEditor": false
         },
         {
           "datasource": {
             "type": "graphite",
             "uid": "Qotwtdl7z"
           },
+          "hide": false,
           "refCount": 0,
           "refId": "D",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, \"Speed Index\")",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "Qotwtdl7z"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "E",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.firstPaint.$function, \"First Paint\")",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "Qotwtdl7z"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "F",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.ttfb.$function, \"TTFB\")",
-          "textEditor": true
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.ttfb.$function, 'TTFB')",
+          "textEditor": false
         }
       ],
-      "title": "Visual Metrics",
+      "title": "Google Web Vitals",
       "type": "timeseries"
     },
     {
@@ -235,10 +217,10 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<a href=\"http://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\">\n<img src=\"http://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\"></a>",
+        "content": "<a href=\"https://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\">\n<img src=\"https://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\"></a>",
         "mode": "html"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "refCount": 0,
@@ -271,10 +253,10 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<video controls width=\"100%\"src=\"http://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.mp4\"></video>\n",
+        "content": "<video controls width=\"100%\"src=\"https://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.mp4\"></video>\n",
         "mode": "html"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "refCount": 0,
@@ -306,10 +288,10 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<a href=\"http://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\">\n<img src=\"http://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\"></a>",
+        "content": "<a href=\"https://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\">\n<img src=\"https://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\"></a>",
         "mode": "html"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "refCount": 0,
@@ -341,10 +323,10 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<a href=\"http://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\">\n<img src=\"http://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\"></a>",
+        "content": "<a href=\"https://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\">\n<img src=\"https://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\"></a>",
         "mode": "html"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "refCount": 0,
@@ -377,7 +359,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "refId": "A",
@@ -385,37 +367,6 @@
         }
       ],
       "title": "Page Info",
-      "type": "text"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "-PMS0T17z"
-      },
-      "gridPos": {
-        "h": 1,
-        "w": 12,
-        "x": 12,
-        "y": 17
-      },
-      "id": 190,
-      "options": {
-        "code": {
-          "language": "plaintext",
-          "showLineNumbers": false,
-          "showMiniMap": false
-        },
-        "content": "",
-        "mode": "markdown"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "refId": "A",
-          "target": ""
-        }
-      ],
-      "title": "Google Web Vitals",
       "type": "text"
     },
     {
@@ -478,7 +429,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -552,7 +503,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -626,7 +577,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -700,7 +651,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -710,319 +661,6 @@
           "refCount": 0,
           "refId": "A",
           "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.pagexray.thirdParty.requests, 'Third Party Requests')",
-          "textEditor": true
-        }
-      ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "Qotwtdl7z"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 12,
-        "y": 18
-      },
-      "id": 191,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "Qotwtdl7z"
-          },
-          "hide": false,
-          "refId": "A",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, 'LCP')",
-          "textEditor": true
-        }
-      ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "Qotwtdl7z"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 2500
-              },
-              {
-                "color": "red",
-                "value": 4000
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 15,
-        "y": 18
-      },
-      "id": 192,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "Qotwtdl7z"
-          },
-          "refCount": 0,
-          "refId": "A",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, 'TBT')",
-          "textEditor": true
-        }
-      ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "Qotwtdl7z"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 2,
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 0.1
-              },
-              {
-                "color": "red",
-                "value": 0.25
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 18,
-        "y": 18
-      },
-      "id": 193,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "Qotwtdl7z"
-          },
-          "refCount": 0,
-          "refId": "A",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function, 'CLS')",
-          "textEditor": true
-        }
-      ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "Qotwtdl7z"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 21,
-        "y": 18
-      },
-      "id": 268,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "Qotwtdl7z"
-          },
-          "refCount": 0,
-          "refId": "A",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.ttfb.$function, 'TTFB')",
           "textEditor": true
         }
       ],
@@ -1053,6 +691,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineStyle": {
               "fill": "solid"
@@ -1339,8 +978,8 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.paintTiming.first-contentful-paint.$function, 'FCP')",
-          "textEditor": true
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function, 'FCP')",
+          "textEditor": false
         }
       ],
       "title": "First Contentful Paint",
@@ -1472,7 +1111,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1556,8 +1198,8 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.largestContentfulPaint.renderTime.$function, 'LCP')",
-          "textEditor": true
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.p75, 'LCP')",
+          "textEditor": false
         }
       ],
       "title": "Largest Contentful Paint",
@@ -1672,7 +1314,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1756,8 +1401,8 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.longTasks.totalBlockingTime.$function, 'TBT')",
-          "textEditor": true
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, 'TBT')",
+          "textEditor": false
         }
       ],
       "title": "Total Blocking Time",
@@ -1873,7 +1518,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1958,8 +1606,8 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.pageinfo.cumulativeLayoutShift.$function, 'CLS')",
-          "textEditor": true
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function, 'CLS')",
+          "textEditor": false
         }
       ],
       "title": "Cumulative Layout Shift",
@@ -2562,7 +2210,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2634,7 +2282,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2706,7 +2354,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2778,7 +2426,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2850,7 +2498,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2922,7 +2570,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2994,7 +2642,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -3066,7 +2714,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -3133,7 +2781,32 @@
           },
           "unit": "ms"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Largest Contentful Paint"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
@@ -3170,7 +2843,7 @@
           "refCount": 0,
           "refId": "A",
           "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.fullyLoaded.$function, 'Fully Loaded')",
-          "textEditor": true
+          "textEditor": false
         },
         {
           "datasource": {
@@ -3189,7 +2862,7 @@
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.largestContentfulPaint.renderTime.$function, 'Largest Contentful Paint')",
+          "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.p75, 'Largest Contentful Paint')",
           "textEditor": false
         },
         {
@@ -3230,7 +2903,7 @@
           "refCount": 0,
           "refId": "G",
           "target": "alias($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.pageTimings.domInteractiveTime.$function, 'DOM Interactive')",
-          "textEditor": true
+          "textEditor": false
         }
       ],
       "title": "Page Timings",
@@ -3451,7 +3124,7 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.thirdparty.category.*.requests.$function, 11)",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.thirdparty.category.*.requests.mean, 11)",
           "textEditor": true
         }
       ],
@@ -3547,7 +3220,7 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.thirdparty.tool.*.cpu.$function, 11)",
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$group.$page.$browser.$connectivity.thirdparty.tool.*.cpu.mean, 11)",
           "textEditor": true
         }
       ],
@@ -3751,7 +3424,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -3833,7 +3506,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -3915,7 +3588,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -4310,8 +3983,9 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 37,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "Page Metrics",
@@ -4330,8 +4004,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Competitors",
-          "value": "Competitors"
+          "text": "TLD",
+          "value": "TLD"
         },
         "datasource": {
           "type": "graphite",
@@ -4355,8 +4029,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Nutrisystem",
-          "value": "Nutrisystem"
+          "text": "BBY",
+          "value": "BBY"
         },
         "datasource": {
           "type": "graphite",
@@ -4382,8 +4056,8 @@
       {
         "current": {
           "selected": false,
-          "text": "BistroMD",
-          "value": "BistroMD"
+          "text": "BestBuy",
+          "value": "BestBuy"
         },
         "datasource": {
           "type": "graphite",
@@ -4407,8 +4081,8 @@
       {
         "current": {
           "selected": false,
-          "text": "BistroMD",
-          "value": "BistroMD"
+          "text": "Cell-Phones",
+          "value": "Cell-Phones"
         },
         "datasource": {
           "type": "graphite",
@@ -4432,8 +4106,8 @@
       {
         "current": {
           "selected": false,
-          "text": "US-Central",
-          "value": "US-Central"
+          "text": "Newark",
+          "value": "Newark"
         },
         "datasource": {
           "type": "graphite",
@@ -4509,8 +4183,8 @@
         "auto_min": "10s",
         "current": {
           "selected": false,
-          "text": "median",
-          "value": "median"
+          "text": "p75",
+          "value": "p75"
         },
         "hide": 0,
         "label": "Percentile",
@@ -4518,21 +4192,21 @@
         "options": [
           {
             "selected": false,
+            "text": "mean",
+            "value": "mean"
+          },
+          {
+            "selected": false,
             "text": "p25",
             "value": "p25"
           },
           {
             "selected": false,
-            "text": "mean",
-            "value": "mean"
+            "text": "p50",
+            "value": "p50"
           },
           {
             "selected": true,
-            "text": "median",
-            "value": "median"
-          },
-          {
-            "selected": false,
             "text": "p75",
             "value": "p75"
           },
@@ -4542,7 +4216,7 @@
             "value": "p95"
           }
         ],
-        "query": "p25,mean,median,p75,p95",
+        "query": "mean,p25,p50,p75,p95",
         "queryValue": "",
         "refresh": 2,
         "skipUrlSync": false,
@@ -4551,7 +4225,7 @@
       {
         "hide": 2,
         "name": "resulturl",
-        "query": "DOMAIN/images",
+        "query": "sitespeed.akamai.com/images",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -4565,7 +4239,7 @@
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -4596,6 +4270,6 @@
   "timezone": "browser",
   "title": "Page Metrics",
   "uid": "9NDMzFfMk",
-  "version": 148,
+  "version": 22,
   "weekStart": ""
 }

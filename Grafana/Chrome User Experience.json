@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 42,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -42,7 +42,7 @@
       "type": "row"
     },
     {
-      "activePatternIndex": 2,
+      "activePatternIndex": 6,
       "datasource": {
         "type": "graphite",
         "uid": "Qotwtdl7z"
@@ -82,7 +82,7 @@
         "textColors_overrides": "0->red|2->green|1->yellow",
         "thresholds": "70,90",
         "time_based_thresholds": [],
-        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "tooltipTemplate": "-",
         "transform_values": "_value_|_value_|_value_",
         "transform_values_overrides": "0->down|1->up",
         "valueName": "avg"
@@ -131,7 +131,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": ".1,.25",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -170,7 +170,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "1800,3000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -209,7 +209,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "2500,4000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -248,7 +248,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "100,300",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -287,7 +287,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "200,500",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -326,7 +326,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "800,1800",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -408,7 +408,7 @@
       "type": "yesoreyeram-boomtable-panel"
     },
     {
-      "activePatternIndex": 5,
+      "activePatternIndex": 6,
       "datasource": {
         "type": "graphite",
         "uid": "Qotwtdl7z"
@@ -448,7 +448,7 @@
         "textColors_overrides": "0->red|2->green|1->yellow",
         "thresholds": "70,90",
         "time_based_thresholds": [],
-        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "tooltipTemplate": "-",
         "transform_values": "_value_|_value_|_value_",
         "transform_values_overrides": "0->down|1->up",
         "valueName": "avg"
@@ -497,7 +497,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": ".1,.25",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -536,7 +536,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "1800,3000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -575,7 +575,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "2500,4000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -614,7 +614,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "100,300",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -653,7 +653,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "200,500",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -692,7 +692,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "800,1800",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -787,7 +787,7 @@
       "type": "row"
     },
     {
-      "activePatternIndex": 5,
+      "activePatternIndex": 6,
       "datasource": {
         "type": "graphite",
         "uid": "Qotwtdl7z"
@@ -827,7 +827,7 @@
         "textColors_overrides": "0->red|2->green|1->yellow",
         "thresholds": "70,90",
         "time_based_thresholds": [],
-        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "tooltipTemplate": "-",
         "transform_values": "_value_|_value_|_value_",
         "transform_values_overrides": "0->down|1->up",
         "valueName": "avg"
@@ -835,7 +835,7 @@
       "default_title_for_rows": "Page/Company",
       "description": "Pages that have recorded CrUX data at the 75th percentile",
       "gridPos": {
-        "h": 9,
+        "h": 10,
         "w": 12,
         "x": 0,
         "y": 10
@@ -876,7 +876,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": ".1,.25",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -915,7 +915,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "1800,3000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -954,7 +954,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "2500,4000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -993,7 +993,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "100,300",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1032,7 +1032,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "200,500",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1071,7 +1071,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "800,1800",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1153,7 +1153,7 @@
       "type": "yesoreyeram-boomtable-panel"
     },
     {
-      "activePatternIndex": 5,
+      "activePatternIndex": 6,
       "datasource": {
         "type": "graphite",
         "uid": "Qotwtdl7z"
@@ -1193,7 +1193,7 @@
         "textColors_overrides": "0->red|2->green|1->yellow",
         "thresholds": "70,90",
         "time_based_thresholds": [],
-        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "tooltipTemplate": "-",
         "transform_values": "_value_|_value_|_value_",
         "transform_values_overrides": "0->down|1->up",
         "valueName": "avg"
@@ -1201,7 +1201,7 @@
       "default_title_for_rows": "Page/Company",
       "description": "Pages that have recorded CrUX data at the 75th percentile",
       "gridPos": {
-        "h": 9,
+        "h": 10,
         "w": 12,
         "x": 12,
         "y": 10
@@ -1242,7 +1242,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": ".1,.25",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1281,7 +1281,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "1800,3000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1320,7 +1320,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "2500,4000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1359,7 +1359,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "100,300",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1398,7 +1398,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "200,500",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1437,7 +1437,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "800,1800",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1524,7 +1524,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 20
       },
       "id": 67,
       "panels": [],
@@ -1605,7 +1605,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 21
       },
       "id": 68,
       "maxPerRow": 4,
@@ -1732,7 +1732,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 29
       },
       "id": 144,
       "options": {
@@ -1774,7 +1774,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 40
       },
       "id": 105,
       "panels": [],
@@ -1855,7 +1855,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 40
+        "y": 41
       },
       "id": 106,
       "maxPerRow": 4,
@@ -1981,7 +1981,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 129
       },
       "id": 149,
       "options": {
@@ -2023,7 +2023,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 67
+        "y": 140
       },
       "id": 75,
       "panels": [],
@@ -2104,7 +2104,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 68
+        "y": 141
       },
       "id": 146,
       "maxPerRow": 4,
@@ -2231,7 +2231,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 76
+        "y": 149
       },
       "id": 147,
       "options": {
@@ -2273,7 +2273,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 87
+        "y": 160
       },
       "id": 117,
       "panels": [],
@@ -2354,7 +2354,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 88
+        "y": 161
       },
       "id": 150,
       "maxPerRow": 4,
@@ -2480,7 +2480,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 104
+        "y": 249
       },
       "id": 151,
       "options": {
@@ -2522,7 +2522,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 115
+        "y": 260
       },
       "id": 91,
       "panels": [],
@@ -2603,7 +2603,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 116
+        "y": 261
       },
       "id": 153,
       "maxPerRow": 4,
@@ -2755,7 +2755,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 124
+        "y": 269
       },
       "id": 154,
       "options": {
@@ -2797,7 +2797,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 135
+        "y": 280
       },
       "id": 115,
       "panels": [],
@@ -2878,7 +2878,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 136
+        "y": 281
       },
       "id": 164,
       "maxPerRow": 4,
@@ -3004,7 +3004,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 152
+        "y": 369
       },
       "id": 165,
       "options": {
@@ -3046,7 +3046,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 163
+        "y": 380
       },
       "id": 87,
       "panels": [],
@@ -3127,7 +3127,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 164
+        "y": 381
       },
       "id": 157,
       "maxPerRow": 4,
@@ -3254,7 +3254,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 172
+        "y": 389
       },
       "id": 158,
       "options": {
@@ -3296,7 +3296,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 183
+        "y": 400
       },
       "id": 111,
       "panels": [],
@@ -3377,7 +3377,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 184
+        "y": 401
       },
       "id": 173,
       "maxPerRow": 4,
@@ -3503,7 +3503,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 200
+        "y": 489
       },
       "id": 170,
       "options": {
@@ -3545,7 +3545,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 211
+        "y": 500
       },
       "id": 89,
       "panels": [],
@@ -3626,7 +3626,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 212
+        "y": 501
       },
       "id": 155,
       "options": {
@@ -3752,7 +3752,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 220
+        "y": 509
       },
       "id": 156,
       "options": {
@@ -3794,7 +3794,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 231
+        "y": 520
       },
       "id": 113,
       "panels": [],
@@ -3875,7 +3875,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 232
+        "y": 521
       },
       "id": 169,
       "maxPerRow": 4,
@@ -4001,7 +4001,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 248
+        "y": 609
       },
       "id": 174,
       "options": {
@@ -4043,7 +4043,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 259
+        "y": 620
       },
       "id": 85,
       "panels": [],
@@ -4124,7 +4124,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 260
+        "y": 621
       },
       "id": 159,
       "maxPerRow": 4,
@@ -4251,7 +4251,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 268
+        "y": 629
       },
       "id": 160,
       "options": {
@@ -4293,7 +4293,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 279
+        "y": 640
       },
       "id": 109,
       "panels": [],
@@ -4374,7 +4374,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 280
+        "y": 641
       },
       "id": 178,
       "maxPerRow": 4,
@@ -4500,7 +4500,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 296
+        "y": 729
       },
       "id": 179,
       "options": {
@@ -4537,8 +4537,9 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 37,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "CrUX",
@@ -4577,8 +4578,8 @@
       {
         "current": {
           "selected": false,
-          "text": "McAfee",
-          "value": "McAfee"
+          "text": "Sony",
+          "value": "Sony"
         },
         "datasource": {
           "type": "graphite",
@@ -4697,13 +4698,13 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-30d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Chrome User Experience",
   "uid": "5DLsVPv4z",
-  "version": 127,
+  "version": 8,
   "weekStart": ""
 }

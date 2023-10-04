@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 6,
   "links": [
     {
       "icon": "external link",
@@ -128,9 +128,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -199,9 +200,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -269,9 +271,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -339,9 +342,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -792,19 +796,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "#5fcb01"
               },
               {
-                "color": "dark-green",
-                "value": 100
+                "color": "#f2a83b",
+                "value": 800
               },
               {
-                "color": "dark-yellow",
-                "value": 250
-              },
-              {
-                "color": "dark-red",
-                "value": 500
+                "color": "#ec5c4c",
+                "value": 1800
               }
             ]
           },
@@ -833,9 +833,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -843,8 +844,8 @@
             "uid": "Qotwtdl7z"
           },
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.ttfb.$function,'average'), 6)",
-          "textEditor": true
+          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.googleWebVitals.ttfb.$function, 'average'), 6)",
+          "textEditor": false
         }
       ],
       "title": "Time to First Byte",
@@ -860,6 +861,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "fixedColor": "dark-green",
             "mode": "thresholds"
           },
           "mappings": [],
@@ -868,19 +870,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "#5fcb75"
               },
               {
-                "color": "dark-green",
-                "value": 250
+                "color": "#f2a83b",
+                "value": 2500
               },
               {
-                "color": "dark-yellow",
-                "value": 500
-              },
-              {
-                "color": "dark-red",
-                "value": 1000
+                "color": "#ec5c4c",
+                "value": 4000
               }
             ]
           },
@@ -909,9 +907,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -919,8 +918,8 @@
             "uid": "Qotwtdl7z"
           },
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.largestContentfulPaint.renderTime.$function,'average'), 6)",
-          "textEditor": true
+          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, 'average'), 6)",
+          "textEditor": false
         }
       ],
       "title": "Largest Contentful Paint",
@@ -928,8 +927,11 @@
       "type": "bargauge"
     },
     {
-      "datasource": {},
-      "description": "Load Event End is when the load event end event fires in the Navigation Timing API",
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -941,15 +943,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "#5fcb01"
               },
               {
-                "color": "#EAB839",
-                "value": 1000
+                "color": "#f2a83b",
+                "value": 1800
               },
               {
-                "color": "red",
-                "value": 2000
+                "color": "#ec5c4c",
+                "value": 3000
               }
             ]
           },
@@ -963,7 +965,7 @@
         "x": 0,
         "y": 72
       },
-      "id": 64,
+      "id": 80,
       "links": [],
       "options": {
         "displayMode": "gradient",
@@ -978,9 +980,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -988,11 +991,11 @@
             "uid": "Qotwtdl7z"
           },
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.loadEventEnd.$function,'average'), 6)",
-          "textEditor": true
+          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function, 'average'), 6)",
+          "textEditor": false
         }
       ],
-      "title": "Load Event End",
+      "title": "First Contentful Paint",
       "transformations": [],
       "type": "bargauge"
     },
@@ -1047,9 +1050,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1066,6 +1070,76 @@
       "type": "bargauge"
     },
     {
+      "datasource": {},
+      "description": "Load Event End is when the load event end event fires in the Navigation Timing API",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "#EAB839",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 2000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 86
+      },
+      "id": 64,
+      "links": [],
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "Qotwtdl7z"
+          },
+          "refId": "A",
+          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.loadEventEnd.$function,'average'), 6)",
+          "textEditor": true
+        }
+      ],
+      "title": "Load Event End",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
       "collapsed": false,
       "datasource": {
         "type": "graphite",
@@ -1075,7 +1149,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 86
+        "y": 100
       },
       "id": 66,
       "panels": [],
@@ -1144,7 +1218,7 @@
         "h": 15,
         "w": 12,
         "x": 0,
-        "y": 87
+        "y": 101
       },
       "id": 67,
       "links": [],
@@ -1173,8 +1247,8 @@
             "uid": "Qotwtdl7z"
           },
           "refId": "A",
-          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.ttfb.$function, 6)",
-          "textEditor": true
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.googleWebVitals.ttfb.$function, 6)",
+          "textEditor": false
         }
       ],
       "title": "Time to First Byte",
@@ -1243,7 +1317,7 @@
         "h": 15,
         "w": 12,
         "x": 12,
-        "y": 87
+        "y": 101
       },
       "id": 76,
       "links": [],
@@ -1272,8 +1346,8 @@
             "uid": "Qotwtdl7z"
           },
           "refId": "A",
-          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.largestContentfulPaint.renderTime.$function, 6)",
-          "textEditor": true
+          "target": "aliasByNode($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, 6)",
+          "textEditor": false
         }
       ],
       "title": "Largest Contentful Paint",
@@ -1339,7 +1413,7 @@
         "h": 15,
         "w": 12,
         "x": 0,
-        "y": 102
+        "y": 116
       },
       "id": 75,
       "links": [],
@@ -1435,7 +1509,7 @@
         "h": 15,
         "w": 12,
         "x": 12,
-        "y": 102
+        "y": 116
       },
       "id": 68,
       "links": [],
@@ -1482,7 +1556,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 117
+        "y": 131
       },
       "id": 44,
       "panels": [],
@@ -1526,7 +1600,7 @@
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 118
+        "y": 132
       },
       "id": 41,
       "links": [],
@@ -1543,9 +1617,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1603,7 +1678,7 @@
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 118
+        "y": 132
       },
       "id": 79,
       "links": [],
@@ -1619,9 +1694,10 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true
+        "showUnfilled": true,
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1675,7 +1751,7 @@
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 132
+        "y": 146
       },
       "id": 45,
       "links": [],
@@ -1692,9 +1768,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1749,7 +1826,7 @@
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 132
+        "y": 146
       },
       "id": 46,
       "links": [],
@@ -1766,9 +1843,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1794,7 +1872,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 146
+        "y": 160
       },
       "id": 70,
       "panels": [],
@@ -1838,7 +1916,7 @@
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 147
+        "y": 161
       },
       "id": 71,
       "links": [],
@@ -1855,9 +1933,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1911,7 +1990,7 @@
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 147
+        "y": 161
       },
       "id": 72,
       "links": [],
@@ -1928,9 +2007,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1956,7 +2036,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 161
+        "y": 175
       },
       "id": 7,
       "panels": [],
@@ -2021,7 +2101,7 @@
         "h": 16,
         "w": 12,
         "x": 0,
-        "y": 162
+        "y": 176
       },
       "id": 3,
       "links": [],
@@ -2119,7 +2199,7 @@
         "h": 16,
         "w": 12,
         "x": 12,
-        "y": 162
+        "y": 176
       },
       "id": 4,
       "links": [],
@@ -2166,7 +2246,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 178
+        "y": 192
       },
       "id": 35,
       "panels": [],
@@ -2213,7 +2293,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 179
+        "y": 193
       },
       "id": 37,
       "links": [],
@@ -2232,7 +2312,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2290,7 +2370,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 189
+        "y": 203
       },
       "id": 38,
       "links": [],
@@ -2309,7 +2389,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2335,7 +2415,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 199
+        "y": 213
       },
       "id": 40,
       "panels": [],
@@ -2393,7 +2473,7 @@
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 200
+        "y": 214
       },
       "id": 49,
       "links": [],
@@ -2410,9 +2490,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2466,7 +2547,7 @@
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 200
+        "y": 214
       },
       "id": 78,
       "links": [],
@@ -2482,9 +2563,10 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true
+        "showUnfilled": true,
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2541,7 +2623,7 @@
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 214
+        "y": 228
       },
       "id": 50,
       "links": [],
@@ -2559,9 +2641,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2614,7 +2697,7 @@
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 214
+        "y": 228
       },
       "id": 42,
       "links": [],
@@ -2631,9 +2714,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2659,7 +2743,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 228
+        "y": 242
       },
       "id": 18,
       "panels": [],
@@ -2727,7 +2811,7 @@
         "h": 15,
         "w": 8,
         "x": 0,
-        "y": 229
+        "y": 243
       },
       "id": 19,
       "links": [],
@@ -2822,7 +2906,7 @@
         "h": 15,
         "w": 8,
         "x": 8,
-        "y": 229
+        "y": 243
       },
       "id": 20,
       "links": [],
@@ -2919,7 +3003,7 @@
         "h": 15,
         "w": 8,
         "x": 16,
-        "y": 229
+        "y": 243
       },
       "id": 21,
       "links": [],
@@ -2965,7 +3049,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 244
+        "y": 258
       },
       "id": 52,
       "panels": [],
@@ -2973,8 +3057,11 @@
       "type": "row"
     },
     {
-      "datasource": {},
-      "description": "Third party requests are calculated using the [Third party web](https://github.com/patrickhulce/third-party-web) library.",
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "Third party requests are calculated using the [Third party web](https://github.com/patrickhulce/third-party-web) library. \n\nNOTE - Changing the percentile will have no affect on the value",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3020,7 +3107,7 @@
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 245
+        "y": 259
       },
       "id": 53,
       "links": [],
@@ -3037,9 +3124,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -3047,8 +3135,8 @@
             "uid": "Qotwtdl7z"
           },
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.thirdparty.requests.total.$function, 'average'), 6)",
-          "textEditor": true
+          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.thirdparty.requests.total.mean, 'average'), 6)",
+          "textEditor": false
         }
       ],
       "title": "Third Party Requests - $connectivity",
@@ -3056,8 +3144,11 @@
       "type": "bargauge"
     },
     {
-      "datasource": {},
-      "description": "Third party % are calculated using the [Third party web](https://github.com/patrickhulce/third-party-web) library.",
+      "datasource": {
+        "type": "graphite",
+        "uid": "Qotwtdl7z"
+      },
+      "description": "Third party % are calculated using the [Third party web](https://github.com/patrickhulce/third-party-web) library.\n\nNOTE - Changing the percentile will have no affect on the value",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3094,7 +3185,7 @@
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 245
+        "y": 259
       },
       "id": 54,
       "links": [],
@@ -3111,9 +3202,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -3121,8 +3213,8 @@
             "uid": "Qotwtdl7z"
           },
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.thirdparty.requests.percentage.$function, 'average'), 6)",
-          "textEditor": true
+          "target": "aliasByNode(sortBy($namespace.$path.$testname.$region.pageSummary.$domains.$pages.$browser.$connectivity.thirdparty.requests.percentage.mean, 'average'), 6)",
+          "textEditor": false
         }
       ],
       "title": "% Third Party Requests - $connectivity",
@@ -3139,7 +3231,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 259
+        "y": 273
       },
       "id": 56,
       "panels": [],
@@ -3181,7 +3273,7 @@
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 260
+        "y": 274
       },
       "id": 57,
       "links": [],
@@ -3198,9 +3290,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -3258,7 +3351,7 @@
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 260
+        "y": 274
       },
       "id": 58,
       "links": [],
@@ -3275,9 +3368,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -3294,8 +3388,9 @@
       "type": "bargauge"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 37,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "Leaderboard"
@@ -3312,9 +3407,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "TLD",
-          "value": "TLD"
+          "selected": false,
+          "text": "Competitors",
+          "value": "Competitors"
         },
         "datasource": {
           "type": "graphite",
@@ -3339,9 +3434,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "EchoPark",
-          "value": "EchoPark"
+          "selected": false,
+          "text": "Dell",
+          "value": "Dell"
         },
         "datasource": {
           "type": "graphite",
@@ -3397,9 +3492,35 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "BestBuy-Home",
+            "Dell-Australia-Home",
+            "Dell-Brazil-Home",
+            "Dell-Canada-Home",
+            "Dell-China-Home",
+            "Dell-India-Home",
+            "Dell-Malaysia-Home",
+            "Dell-NewZealand-Home",
+            "Dell-Switzerland-Home",
+            "Dell-US-Home",
+            "HP-Home",
+            "Lenovo-Home"
+          ],
+          "value": [
+            "BestBuy-Home",
+            "Dell-Australia-Home",
+            "Dell-Brazil-Home",
+            "Dell-Canada-Home",
+            "Dell-China-Home",
+            "Dell-India-Home",
+            "Dell-Malaysia-Home",
+            "Dell-NewZealand-Home",
+            "Dell-Switzerland-Home",
+            "Dell-US-Home",
+            "HP-Home",
+            "Lenovo-Home"
+          ]
         },
         "datasource": {
           "type": "graphite",
@@ -3424,9 +3545,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "US-East",
-          "value": "US-East"
+          "selected": true,
+          "text": [
+            "London"
+          ],
+          "value": [
+            "London"
+          ]
         },
         "datasource": {
           "type": "graphite",
@@ -3436,7 +3561,7 @@
         "hide": 0,
         "includeAll": false,
         "label": "Region",
-        "multi": false,
+        "multi": true,
         "name": "region",
         "options": [],
         "query": "$namespace.$path.$testname.*",
@@ -3479,8 +3604,8 @@
         "auto_min": "10s",
         "current": {
           "selected": false,
-          "text": "median",
-          "value": "median"
+          "text": "p75",
+          "value": "p75"
         },
         "hide": 0,
         "label": "Percentile",
@@ -3488,21 +3613,21 @@
         "options": [
           {
             "selected": false,
+            "text": "mean",
+            "value": "mean"
+          },
+          {
+            "selected": false,
             "text": "p25",
             "value": "p25"
           },
           {
             "selected": false,
-            "text": "mean",
-            "value": "mean"
+            "text": "p50",
+            "value": "p50"
           },
           {
             "selected": true,
-            "text": "median",
-            "value": "median"
-          },
-          {
-            "selected": false,
             "text": "p75",
             "value": "p75"
           },
@@ -3512,7 +3637,7 @@
             "value": "p95"
           }
         ],
-        "query": "p25,mean,median,p75,p95",
+        "query": "mean,p25,p50,p75,p95",
         "queryValue": "",
         "refresh": 2,
         "skipUrlSync": false,
@@ -3520,9 +3645,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "LTE",
-          "value": "LTE"
+          "selected": false,
+          "text": "LAN",
+          "value": "LAN"
         },
         "datasource": {
           "type": "graphite",
@@ -3548,8 +3673,8 @@
     ]
   },
   "time": {
-    "from": "now-24h",
-    "to": "now"
+    "from": "2023-07-13T23:33:01.035Z",
+    "to": "2023-07-25T16:22:26.006Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -3579,6 +3704,6 @@
   "timezone": "",
   "title": "Leaderboard",
   "uid": "000000060",
-  "version": 115,
+  "version": 19,
   "weekStart": ""
 }

@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -43,7 +43,7 @@
       "type": "row"
     },
     {
-      "activePatternIndex": 0,
+      "activePatternIndex": 4,
       "datasource": {
         "type": "graphite",
         "uid": "Qotwtdl7z"
@@ -82,7 +82,7 @@
         "textColors_overrides": "0->red|2->green|1->yellow",
         "thresholds": "70,90",
         "time_based_thresholds": [],
-        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "tooltipTemplate": "-",
         "transform_values": "_value_|_value_|_value_",
         "transform_values_overrides": "0->down|1->up",
         "valueName": "avg"
@@ -130,7 +130,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": ".1,.25",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -169,7 +169,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "1800,3000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -208,7 +208,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "2500,4000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -247,7 +247,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "800,1800",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -274,7 +274,7 @@
       "type": "yesoreyeram-boomtable-panel"
     },
     {
-      "activePatternIndex": 3,
+      "activePatternIndex": 4,
       "datasource": {
         "type": "graphite",
         "uid": "Qotwtdl7z"
@@ -313,7 +313,7 @@
         "textColors_overrides": "0->red|2->green|1->yellow",
         "thresholds": "70,90",
         "time_based_thresholds": [],
-        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "tooltipTemplate": "-",
         "transform_values": "_value_|_value_|_value_",
         "transform_values_overrides": "0->down|1->up",
         "valueName": "avg"
@@ -361,7 +361,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": ".1,.25",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -400,7 +400,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "1800,3000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -439,7 +439,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "2500,4000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -478,7 +478,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "800,1800",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -561,7 +561,7 @@
         "textColors_overrides": "0->red|2->green|1->yellow",
         "thresholds": "70,90",
         "time_based_thresholds": [],
-        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "tooltipTemplate": "-",
         "transform_values": "_value_|_value_|_value_",
         "transform_values_overrides": "0->down|1->up",
         "valueName": "avg"
@@ -609,7 +609,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": ".1,.25",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -648,7 +648,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "1800,3000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -687,7 +687,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "2500,4000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -726,7 +726,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "800,1800",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -786,7 +786,7 @@
       "type": "yesoreyeram-boomtable-panel"
     },
     {
-      "activePatternIndex": 3,
+      "activePatternIndex": 4,
       "datasource": {
         "type": "graphite",
         "uid": "Qotwtdl7z"
@@ -825,7 +825,7 @@
         "textColors_overrides": "0->red|2->green|1->yellow",
         "thresholds": "70,90",
         "time_based_thresholds": [],
-        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "tooltipTemplate": "-",
         "transform_values": "_value_|_value_|_value_",
         "transform_values_overrides": "0->down|1->up",
         "valueName": "avg"
@@ -874,7 +874,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": ".1,.25",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -913,7 +913,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "1800,3000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -952,7 +952,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "2500,4000",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -991,7 +991,7 @@
           "textColors_overrides": "0->red|2->green|1->yellow",
           "thresholds": "800,1800",
           "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "tooltipTemplate": "-",
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "avg"
@@ -1245,8 +1245,9 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 37,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "Geography"
@@ -1264,8 +1265,8 @@
       {
         "current": {
           "selected": false,
-          "text": "TLD",
-          "value": "TLD"
+          "text": "Competitors",
+          "value": "Competitors"
         },
         "datasource": {
           "type": "graphite",
@@ -1293,8 +1294,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Safeway",
-          "value": "Safeway"
+          "text": "Carhartt",
+          "value": "Carhartt"
         },
         "datasource": {
           "type": "graphite",
@@ -1356,8 +1357,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Safeway",
-          "value": "Safeway"
+          "text": "Carhartt",
+          "value": "Carhartt"
         },
         "datasource": {
           "type": "graphite",
@@ -1385,8 +1386,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Health",
-          "value": "Health"
+          "text": "Car-Home",
+          "value": "Car-Home"
         },
         "datasource": {
           "type": "graphite",
@@ -1427,18 +1428,18 @@
         "options": [
           {
             "selected": false,
-            "text": "p25",
-            "value": "p25"
-          },
-          {
-            "selected": false,
             "text": "mean",
             "value": "mean"
           },
           {
             "selected": false,
-            "text": "median",
-            "value": "median"
+            "text": "p25",
+            "value": "p25"
+          },
+          {
+            "selected": false,
+            "text": "p50",
+            "value": "p50"
           },
           {
             "selected": true,
@@ -1451,7 +1452,7 @@
             "value": "p95"
           }
         ],
-        "query": "p25,mean,median,p75,p95",
+        "query": "mean,p25,p50,p75,p95",
         "queryValue": "",
         "refresh": 2,
         "skipUrlSync": false,
@@ -1489,7 +1490,7 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -1520,6 +1521,6 @@
   "timezone": "browser",
   "title": "Geographic Performance",
   "uid": "LviaJYr7k",
-  "version": 113,
+  "version": 8,
   "weekStart": ""
 }

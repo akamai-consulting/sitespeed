@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -88,7 +88,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -129,6 +129,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -257,7 +258,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -316,6 +317,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -817,7 +819,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -861,8 +863,7 @@
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
-              "log": 2,
-              "type": "log"
+              "type": "linear"
             },
             "showPoints": "auto",
             "spanNulls": true,
@@ -990,7 +991,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -1482,8 +1483,9 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 37,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "admin",
@@ -1525,8 +1527,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Safeway",
-          "value": "Safeway"
+          "text": "BBY",
+          "value": "BBY"
         },
         "datasource": {
           "type": "graphite",
@@ -1549,8 +1551,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Sydney",
-          "value": "Sydney"
+          "text": "Dallas",
+          "value": "Dallas"
         },
         "datasource": {
           "type": "graphite",
@@ -1597,6 +1599,6 @@
   "timezone": "",
   "title": "Sitespeed Monitor",
   "uid": "dk8erIbnz",
-  "version": 101,
+  "version": 4,
   "weekStart": ""
 }
