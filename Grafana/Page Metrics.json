@@ -217,7 +217,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<a href=\"https://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\">\n<img src=\"https://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\"></a>",
+        "content": "<a href=\"http://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\">\n<img src=\"http://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype\"></a>",
         "mode": "html"
       },
       "pluginVersion": "10.1.4",
@@ -253,7 +253,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<video controls width=\"100%\"src=\"https://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.mp4\"></video>\n",
+        "content": "<video controls width=\"100%\"src=\"http://$region.$resulturl/$testname/$group.$page.$browser.$connectivity.mp4\"></video>\n",
         "mode": "html"
       },
       "pluginVersion": "10.1.4",
@@ -288,7 +288,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<a href=\"https://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\">\n<img src=\"https://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\"></a>",
+        "content": "<a href=\"http://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\">\n<img src=\"http://$region.$resulturl/$testname/$group.$page.largestContentfulPaint.$browser.$connectivity.$screenshottype\"></a>",
         "mode": "html"
       },
       "pluginVersion": "10.1.4",
@@ -323,7 +323,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<a href=\"https://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\">\n<img src=\"https://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\"></a>",
+        "content": "<a href=\"http://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\">\n<img src=\"http://$region.$resulturl/$testname/$group.$page.layoutShift.$browser.$connectivity.$screenshottype\"></a>",
         "mode": "html"
       },
       "pluginVersion": "10.1.4",
@@ -4225,7 +4225,7 @@
       {
         "hide": 2,
         "name": "resulturl",
-        "query": "sitespeed.akamai.com/images",
+        "query": "DOMAIN/images",
         "skipUrlSync": false,
         "type": "constant"
       },
