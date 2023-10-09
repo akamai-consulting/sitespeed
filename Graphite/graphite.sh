@@ -3,7 +3,7 @@
 #########################################
 #                                       #
 #             graphite.sh               #
-#                  v11                  #
+#                  v12                  #
 #                                       #
 #########################################
 
@@ -61,9 +61,9 @@ case $1 in
                --name graphite \
                --restart=always \
                -e TZ=$Timezone \
-               -v /mnt/data/graphite-conf:/opt/graphite/conf \
-               -v /mnt/data/graphite-storage:/opt/graphite/storage \
-               -v /mnt/data/log:/var/log \
+               -v /usr/local/graphite/graphite-conf:/opt/graphite/conf \
+               -v /usr/local/graphite/graphite-storage:/opt/graphite/storage \
+               -v /usr/local/graphite/log:/var/log \
                -p 8888:80 \
                -p 2003:2003 \
                graphiteapp/graphite-statsd:1.1.8-8
