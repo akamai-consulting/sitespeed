@@ -3,7 +3,7 @@
 ############################################
 #                                          #
 #            maintenance.sh                #
-#                 v 22                     #
+#                 v 23                     #
 #                                          #
 ############################################
 
@@ -53,6 +53,18 @@ if [ "$Dow" == "Sunday" ]; then
      do
       echo -n "Starting "$region" ... "
       ssh -i $Key $(whoami)@$region.$Domain docker system prune --all --volumes -f &> /dev/null
+      echo "done"
+     done
+fi
+
+# Delete core dumps only on Sundays
+if [ "$Dow" == "Sunday" ]; then
+   echo -e "\nDeleting core dumps"
+   All="google $Servers"
+   for region in $All
+     do
+      echo -n "Starting "$region" ... "
+      ssh -i $Key $(whoami)@$region.$Domain find /usr/local/sitespeed/ -type f -name core* -exec sudo rm {} +; 
       echo "done"
      done
 fi
