@@ -8,7 +8,7 @@
 ############################################
 
 # Set variables
-SitespeedVer="sitespeedio/sitespeed.io:29.7.0"
+SitespeedVer="sitespeedio/sitespeed.io:35.7.2"
 Root=/usr/local/sitespeed
 Domain=$(cat $Root/config/domain)
 Timezone=$(cat $Root/config/timezone)
