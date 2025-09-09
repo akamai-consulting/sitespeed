@@ -3,12 +3,12 @@
 ############################################
 #                                          #
 #               google.sh                  #
-#                  v 21                    #
+#                  v 22                    #
 #                                          #
 ############################################
 
 # Set variables
-SitespeedVer=sitespeedio/sitespeed.io:26.1.0-plus1
+SitespeedVer=sitespeedio/sitespeed.io:35.7.2-plus1
 Root=/usr/local/sitespeed
 Domain=$(cat $Root/config/domain)
 Timezone=$(cat $Root/config/timezone)
@@ -117,7 +117,7 @@ end=`date +%s`
 runtime=$((end-start))
 
 # Log the test duration
-echo "sitespeed_log.PSI-CrUX.$graphdir.$2.duration $runtime `date +%s`" | nc graphite.$Domain 2003
+echo "sitespeed_log.PSI-CrUX.$graphdir.$2.duration $runtime `date +%s`" | nc -N graphite.$Domain 2003
 
 # Remove sitespeed_io structure
 sudo rm -Rf $Root/$1/sitespeed-result
