@@ -165,7 +165,7 @@ end=`date +%s`
 runtime=$((end-start))
 
 # Log the test duration
-echo "sitespeed_log.$graphdir.$2.$3.duration $runtime `date +%s`" | nc graphite.$Domain 2003
+echo "sitespeed_log.$graphdir.$2.$3.duration $runtime `date +%s`" | nc -N graphite.$Domain 2003
 
 # Set the symlink for nginx root directive to point to the latest LAN index.html
 sudo ln -nsf $(find $Root/$1/sitespeed-result/ -maxdepth 3 -name index.html | xargs ls -Art | tail -n 1 | xargs dirname) $Root/portal/$weblan

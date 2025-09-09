@@ -2,7 +2,7 @@
 
 ############################################
 #                                          #
-#         sitespeed-jump.sh                #
+#         sitespeed-agent.sh               #
 #                 v36                      #
 #           Ubuntu 24.04 LTS               #
 #         Author gwolf@akamai.com          #
@@ -10,9 +10,9 @@
 ############################################
 
 # <UDF name="USERNAME" Label="Name of admin user" />
-# <UDF name="JUMPKEY" Label="SSH public key for access to the Jump server" />
+# <UDF name="SITEKEY" Label="SSH public key for access from Jump server" />
+# <UDF name="HOST" Label="Host name for this server" Example="Example i.e., Newark or Dallas" />
 # <UDF name="DOMAIN" Label="Primary domain name" Example="Example i.e., sitespeed.akamai.com" />
-# <UDF name="SERVERS" Label="Sitespeed host name(s)" Example="Example i.e., Newark Dallas London (space delimited)" />
 
 # Update the OS
 apt -y update
@@ -77,30 +77,30 @@ case $LINODE_DATACENTERID in
 esac
 
 # Set the hostname
-hostnamectl set-hostname Jump
+hostnamectl set-hostname $HOST
+
+# Modify the kernel for network throttling 
+modprobe sch_netem
 
 # Download configurations files
-wget https://as.akamai.com/user/sitespeed/jump.tgz
-wget https://as.akamai.com/user/sitespeed/portal.tgz
 wget https://as.akamai.com/user/sitespeed/sitespeed.tgz
+wget https://as.akamai.com/user/sitespeed/portal.tgz
 
 # Create admin user
 useradd -m -s /bin/bash $USERNAME
-echo -e "function jump() {\n  ssh -i /home/$USERNAME/.ssh/sitespeed \$1.$DOMAIN\n}" >> /home/$USERNAME/.bashrc
 mkdir /home/$USERNAME/.ssh
-echo $JUMPKEY > /home/$USERNAME/.ssh/authorized_keys
+echo $SITEKEY > /home/$USERNAME/.ssh/authorized_keys
 chown -R $USERNAME /home/$USERNAME/.ssh
 chgrp -R $USERNAME /home/$USERNAME/.ssh
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
-chmod 600 /home/$USERNAME/.ssh/sitespeed
 
 # Create sitespeed user
 useradd -m -s /bin/bash sitespeed
 mkdir /home/sitespeed/.ssh
+echo $SITEKEY > /home/sitespeed/.ssh/authorized_keys
 chown -R sitespeed /home/sitespeed/.ssh
 chgrp -R sitespeed /home/sitespeed/.ssh
-chmod 600 /home/sitespeed/.ssh/sitespeed
-usermod -aG sitespeed $USERNAME
+chmod 600 /home/sitespeed/.ssh/authorized_keys
 
 # Enable sudo permission for admin and sitespeed
 sudo chmod 640 /etc/sudoers
@@ -117,58 +117,43 @@ systemctl restart ssh
 apt -y update
 apt -y upgrade
 
+# Install Docker
+apt -y install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt -y update
+apt-cache policy docker-ce
+apt -y install docker-ce
+
+# Add admin and sitespeed to appropriate groups
+usermod -aG docker sitespeed
+usermod -aG docker $USERNAME
+usermod -aG sitespeed $USERNAME
+
 # Create Sitespeed folder structure
-mkdir -p /usr/local/sitespeed/logs
+mkdir -p /usr/local/sitespeed/comp
+mkdir /usr/local/sitespeed/tld
+mkdir /usr/local/sitespeed/logs
 mkdir /usr/local/sitespeed/portal
-mkdir /usr/local/sitespeed/google
-mkdir /usr/local/sitespeed/sitespeed
-mkdir /usr/local/sitespeed/seeds
-mkdir /usr/local/sitespeed/cron
 mkdir /usr/local/sitespeed/config
 
-# Create config files and set ownership
-for data in $SERVERS
-  do
-   echo $data >> /usr/local/sitespeed/config/servers
-  done
-echo $USERNAME-Admin > /usr/local/sitespeed/config/users
+# Create config files
 echo $DOMAIN > /usr/local/sitespeed/config/domain
 echo $TIMEZONE > /usr/local/sitespeed/config/timezone
-chown -R root /usr/local/sitespeed/config
-chgrp -R sitespeed /usr/local/sitespeed/config
-chmod -R 775 /usr/local/sitespeed/config
 
 # Extract TAR files into appropriate folders
-tar --warning=none --no-same-owner --wildcards -C /usr/local/sitespeed -xf /jump.tgz *.sh
-tar --warning=none --no-same-owner -C /usr/local/sitespeed/cron -xf /jump.tgz psicron sitecron
-tar --warning=none --no-same-owner -C /home/sitespeed -xf /jump.tgz jumpcron
-tar --warning=none --no-same-owner -C /usr/local/sitespeed/portal -xf /portal.tgz
-tar --warning=none --no-same-owner --wildcards -C /usr/local/sitespeed/sitespeed -xf /sitespeed.tgz *.sh *.json
-tar --warning=none --no-same-owner -C /etc/nginx -xf /sitespeed.tgz nginx.conf
+tar --warning=none --no-same-owner --wildcards -C /usr/local/sitespeed -xf ./sitespeed.tgz *.sh
+tar --warning=none --no-same-owner -C /usr/local/sitespeed/tld -xf ./sitespeed.tgz config.json
+tar --warning=none --no-same-owner -C /usr/local/sitespeed/comp -xf ./sitespeed.tgz config.json
+tar --warning=none --no-same-owner -C /usr/local/sitespeed/portal -xf ./portal.tgz
 
 # Modify config.json
-sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/sitespeed/config.json
-
-# Modify sitespeed.sh
-sed -i -r "s#\[TIMEZONE\]#$TIMEZONE#" /usr/local/sitespeed/sitespeed/sitespeed.sh
-sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/sitespeed/sitespeed.sh
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/tld/config.json
+sed -i "s/\[DOMAIN\]/$DOMAIN/" /usr/local/sitespeed/comp/config.json
 
 # Modify index.html
-sortedSERVERS=$(echo $SERVERS | xargs -n 1 | sort | xargs)
-count=$(echo $sortedSERVERS | wc -w)
-line=1
-for (( index=0; index < count ; index+=1 ))
-  do
-    Region=$(echo $sortedSERVERS | awk -v var=$line '{print $var}')
-    echo "     <option value=\"http://$Region.$DOMAIN/\">$Region</option>" >> foo
-    let "line++"
-  done
-sed '/\[HOST\]\.\[DOMAIN\]/r foo' /usr/local/sitespeed/portal/index.html | sed '/\[HOST\]\.\[DOMAIN\]/d' > bar
-mv -f bar /usr/local/sitespeed/portal/index.html
-rm foo
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/index.html
-chmod 755 /usr/local/sitespeed/portal/index.html
-chgrp sitespeed /usr/local/sitespeed/portal/index.html
+sed -i "s/\[HOST\]/$HOST/g" /usr/local/sitespeed/portal/index.html
 
 # Modify error.html
 sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/error.html
@@ -176,14 +161,8 @@ sed -i "s/\[DOMAIN\]/$DOMAIN/g" /usr/local/sitespeed/portal/error.html
 # Set Sitespeed folder ownership and permissions
 chgrp -R sitespeed /usr/local/sitespeed
 chmod -R 775 /usr/local/sitespeed
-chmod 664 /usr/local/sitespeed/sitespeed/config.json
-chown sitespeed /home/sitespeed/jumpcron
-chgrp sitespeed /home/sitespeed/jumpcron
-
-# Create symbolic links
-sudo -u $USERNAME ln -s /usr/local/sitespeed/admin.sh /home/$USERNAME/admin.sh
-sudo -u $USERNAME ln -s /usr/local/sitespeed/cron/ /home/$USERNAME/cron
-sudo -u $USERNAME ln -s /usr/local/sitespeed/seeds/ /home/$USERNAME/seeds
+chmod 664 /usr/local/sitespeed/tld/config.json 
+chmod 664 /usr/local/sitespeed/comp/config.json
 
 # Set up nginx
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-ORG
